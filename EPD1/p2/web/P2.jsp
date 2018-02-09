@@ -12,7 +12,8 @@
     String estudios = "";
     String bloques = "";
     String nota = "";
-    double bloque1 = 0.0, bloque2 = 0.0, bloque3 = 0.0, proyecto = 0.0, epd = 0.0;
+    double bloque1 = 0.0, bloque2 = 0.0, bloque3 = 0.0, proyecto = 0.0, epd = 0.0, notaSobre7 = 0.0, notaSobre10 = 0.0, notaSobre2 = 0.0, notaSobre1 = 0.0, notaFinal = 0.0;
+    double valorBloque1 = 0.3111, valorBloque2 = 0.1556, valorBloque3 = 0.2333;
 %>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
         <title>EPD 1 Problema 2</title>
     </head>
     <body>
-        <form method="get" action="P1.jsp">
+        <form method="get" action="P2.jsp">
             Nombre: <input type="text" name="nombre" /><br/>
             Apellidos: <input type="text" name="apellidos" /><br/>
             Email: <input type="text" name="email" /><br/>
@@ -44,7 +45,7 @@
             bloques = request.getParameter("bloques");
             nota = request.getParameter("nota");
 
-            if (request.getParameter("bloque1") != null) {
+            if (request.getParameter("bloque1") != null && request.getParameter("bloque2") != null && request.getParameter("bloque3") != null && request.getParameter("proyecto") != null && request.getParameter("epd") != null) {
                 bloque1 = Double.parseDouble(request.getParameter("bloque1"));
                 bloque2 = Double.parseDouble(request.getParameter("bloque2"));
                 bloque3 = Double.parseDouble(request.getParameter("bloque3"));
@@ -73,18 +74,39 @@
             }
 
             //Ampliacion para el problema 2
-%>
+            notaSobre7 = (bloque1 * valorBloque1) + (bloque2 * valorBloque2) + (bloque3 * valorBloque3);
+            notaSobre7 = Math.rint(notaSobre7 * 1000) / 1000;
+            notaSobre10 = (notaSobre7 * 10) / 7;
+            notaSobre10 = Math.rint(notaSobre10 * 1000) / 1000;
+            notaSobre2 = (proyecto * 2) / 10;
+            notaSobre1 = epd / 10;
+        %>
 
         <table border="1">
             <tr><th></th><th style="background-color: gray"><b>Rendimiento individual</b></th><th colspan="2" style="background-color: gray"><b>Rendimiento Grupal</b></th><th rowspan="5" style="background-color: gray"><b>Nota Final</b></th></tr>
             <tr><td><b>Bloques</b></td><td><b>Pruebas EPD (sobre 10)</b></td><td><b>Proyecto (sobre 10)</b></td><td><b>Ejercicios EPD (sobre 10)</b></td></tr>
-            <tr><td><b>B1</b></td><td>Nota bloque 1</td><td rowspan="3">Nota proyecto</td><td rowspan="3">Nota EPD</td></tr>
-            <tr><td><b>B2</b></td><td>Nota bloque 2</td></tr>
-            <tr><td><b>B3</b></td><td>Nota bloque 3</td></tr>
-            <tr><td></td><td style="background-color: gray"><b>Nota total sobre 7</b></td><td style="background-color: gray"><b>Nota total sobre 2</b></td><td style="background-color: gray"><b>Nota total sobre 1</b></td><td style="background-color: gray">Nota final</td></tr>
-            <tr><td></td><td>Nota sobre 7</td><td>Nota sobre 2</td><td>Nota sobre 1</td></tr>
+            <tr><td><b>B1</b></td><td><%= bloque1%></td><td rowspan="3"><%= proyecto%></td><td rowspan="3"><%= epd%></td></tr>
+            <tr><td><b>B2</b></td><td><%= bloque2%></td></tr>
+            <tr><td><b>B3</b></td><td><%= bloque3%></td></tr>
+            <tr><td></td><td style="background-color: gray"><b>Nota total sobre 7</b></td><td style="background-color: gray"><b>Nota total sobre 2</b></td><td style="background-color: gray"><b>Nota total sobre 1</b></td>
+                <td>
+                    <% if (notaSobre10 < 5) {
+                            notaFinal = notaSobre10;
+                    %>
+                    <%= notaFinal%>
+                    <%
+                        } else {
+                            notaFinal = notaSobre7 + notaSobre2 + notaSobre1;
+                            notaFinal = Math.rint(notaFinal * 1000) / 1000;
+                    %>
+                    <%= notaFinal%>
+                    <%
+                        }
+                    %>
+                </td></tr>
+            <tr><td></td><td><%= notaSobre7%></td><td><%= notaSobre2%></td><td><%= notaSobre1%></td></tr>
             <tr><td></td><td style="background-color: gray"><b>Nota total sobre 10</b></td></tr>
-            <tr><td></td><td>Nota sobre 10</td></tr>
+            <tr><td></td><td><%= notaSobre10%></td></tr>
         </table>
 
 
