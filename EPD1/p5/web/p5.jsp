@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
+    //declaración variables
     String nombre, sedeSocial, telefono;
     String pais, aportacion, banco;
     String socioPpal, aportSocPpal, avalista;
@@ -19,6 +20,7 @@
     </head>
     <body>
         <%
+            //asingamos el valor del formulario a las variables.
             nombre = request.getParameter("nombre");
             sedeSocial = request.getParameter("sedeSocial");
             telefono = request.getParameter("telefono");
@@ -37,11 +39,15 @@
         %>
         <form method="POST" action="#">
             <table>
+                <%-- Formulario sin envío del formulario o sin elegir el capital Extrajero--%>
+
                 <% if (aceptar == null && capitalExtranjero == null) { %>
                 <tr><td>Nombre:</td><td><input type="text" name="nombre"  /></td></tr>
                 <tr><td>Sede Social:</td><td><input type="text" name="sedeSocial" /></td></tr>
                 <tr><td>Teléfono:</td><td><input type="number" name="telefono" /></td></tr>
-                        <%} else {%>
+
+                <%-- Formulario enviado con su valor--%>
+                <%} else {%>
                 <tr><td>Nombre:</td><td><input type="text" name="nombre" value="<%= nombre%>"  /></td></tr>
                 <tr><td>Sede Social:</td><td><input type="text" name="sedeSocial" value="<%= sedeSocial%>" /></td></tr>
                 <tr><td>Tel&eacute;fono:</td><td><input type="number" name="telefono" value="<%= telefono%>" /></td></tr>
@@ -49,7 +55,8 @@
                 <tr><td>Capital Extranjero:</td><td>Si<input type="radio" name="capitalExtranjero" value="si" />
                         No<input type="radio" name="capitalExtranjero" value="no" /></td></tr>
                         <%
-                            if (capitalExtranjero != null) {
+                            //comprobamos que todos los datos están rellenos para mostrar el capital Extranjero
+                            if (capitalExtranjero != null && nombre != "" && sedeSocial != "" && telefono != "") {
                                 if (capitalExtranjero.equals("si")) {
                                     out.write("<tr><td>Pa&iacute;s:</td><td><input type=\"text\" name=\"pais\" /></td></tr>");
                                     out.write("<tr><td>Aportaci&oacute;n en %:</td><td><input type=\"number\" name=\"aportacion\" /></td></tr>");
@@ -60,11 +67,17 @@
                                     out.write("<tr><td>Avalista:</td><td><input type=\"text\" name=\"avalista\" /></td></tr>");
                                 }
                             }
+                            if (nombre == "" || sedeSocial == "" || telefono == "") {
+                                out.write("<b>Deben de rellenarse todos los campos ya que son requeridos</b>");
+
+                            }
                         %>
                 <tr><td><input type="submit" name="aceptar" value="Aceptar" /></td></tr>
             </table>
         </form>
 
+        <%-- Comprobamos que todos los datos estén introducidos para mostrar las tablas con los datos --%>
+        
         <% if (aceptar != null && capitalExtranjero == null && nombre != "" && sedeSocial != "" && telefono != "") {
 
                 if (pais != null && pais != "" && aportacion != null && aportacion != "" && banco != null && banco != "") {%>
@@ -89,7 +102,9 @@
             <tr><td>Aportaci&oacute;n socio principal</td><td><%= aportSocPpal%></td></tr>
             <tr><td>Avalista:</td><td><%= avalista%></td></tr>
         </table>
-        <%}
+        <%} else {
+                    out.write("<b>Deben de rellenarse todos los campos ya que son requeridos</b>");
+                }
             }%>
 
     </body>
