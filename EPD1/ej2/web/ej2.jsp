@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 09-feb-2018, 18:43:18
-    Author     : Grupo7 IT
+    Author     : Grupo 7 IT
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,23 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ej2-EPD1-Grupo7</title>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-            }
-            table {
-                border-collapse: collapse;
-                text-align: left;
-                float:left;
-                margin-right: 10%;
-            }
-            div{
-                border:2px solid grey;
-                padding-left: 5%;
-                width: 50%;
-                margin-bottom: 2%;
-            }
-        </style>
+         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
         <%
