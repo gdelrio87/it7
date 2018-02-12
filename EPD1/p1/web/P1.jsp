@@ -1,17 +1,18 @@
 <%-- 
     Document   : P1
     Created on : 07-feb-2018, 17:05:46
+<<<<<<< HEAD
+    Author     : Grupo 7
+=======
     Author     : Grupo7 IT
+>>>>>>> 43050bbb143cdb0108aad107b03dd029f48f2875
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
-    String nombre = "";
-    String apellidos = "";
-    String email = "";
-    String estudios = "";
-    String bloques = "";
-    String nota = "";
+
+    String nombre, apellidos, email, estudios, bloques, nota;    
+
 %>
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,7 @@
             En caso negativo, indicar qué nota espera obtener en la asignatura: <input type="text" name="nota" /><br/>
             <input type="submit" name="enviar"/>
         </form>
-        <%
+        <%                        
             nombre = request.getParameter("nombre");
             apellidos = request.getParameter("apellidos");
             email = request.getParameter("email");
