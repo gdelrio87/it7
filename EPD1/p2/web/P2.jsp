@@ -10,19 +10,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
-<<<<<<< HEAD
+
     String nombre, apellidos, email, estudios, bloques, nota;
     double bloque1, bloque2, bloque3, proyecto, epd, notaSobre7, notaSobre10, notaSobre2, notaSobre1, notaFinal, valorBloque1, valorBloque2, valorBloque3;    
-=======
-    String nombre = "";
-    String apellidos = "";
-    String email = "";
-    String estudios = "";
-    String bloques = "";
-    String nota = "";
-    double bloque1 = 0.0, bloque2 = 0.0, bloque3 = 0.0, proyecto = 0.0, epd = 0.0, notaSobre7 = 0.0, notaSobre10 = 0.0, notaSobre2 = 0.0, notaSobre1 = 0.0, notaFinal = 0.0;
-    double valorBloque1 = 0.3111, valorBloque2 = 0.1556, valorBloque3 = 0.2333;
->>>>>>> 43050bbb143cdb0108aad107b03dd029f48f2875
+
 %>
 <!DOCTYPE html>
 <html>
