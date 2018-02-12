@@ -1,11 +1,11 @@
 <%-- 
     Document   : P1
     Created on : 07-feb-2018, 17:05:46
-    Author     : Antonio Jose Herrera Tabaco 
+    Author     : Grupo7 IT
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
+<%!
     String nombre = "";
     String apellidos = "";
     String email = "";
