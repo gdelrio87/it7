@@ -1,12 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
     //declaración variables
-    String nombre = "";
-    String apellidos = "";
-    String estado_civil = "";
-    String trabaja = "";
-    double ingresos = 0.0;
-    double gastos = 0.0;
+    String nombre, apellidos, estado_civil, trabaja;
+    double ingresos, gastos;
 %>
 <!DOCTYPE html>
 <html>
@@ -16,6 +12,14 @@
     </head>
     <body>
         <%
+            //Inicialización
+            String nombre = "";
+            String apellidos = "";
+            String estado_civil = "";
+            String trabaja = "";
+            double ingresos = 0.0;
+            double gastos = 0.0;
+
             boolean errores = false;
             String cadenaErrores = "";
 
@@ -37,15 +41,15 @@
 
             try {
                 ingresos = Double.parseDouble(request.getParameter("ingresos").trim());
-                
+
             } catch (NumberFormatException nfe) {
                 errores = true;
                 cadenaErrores += "El campo ingresos debe ser numerico.<br>";
             }
-            
+
             try {
                 gastos = Double.parseDouble(request.getParameter("gastos").trim());
-                
+
             } catch (NumberFormatException nfe) {
                 errores = true;
                 cadenaErrores += "El campo gastos debe ser numerico.<br>";
