@@ -37,7 +37,7 @@
             aceptar = request.getParameter("aceptar");
 
         %>
-        <form method="POST" action="#">
+        <form method="POST" action="">
             <table>
                 <%-- Formulario sin envío del formulario o sin elegir el capital Extrajero--%>
 
