@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 13-feb-2018, 11:53:38
-    Author     : Antonio Jose Herrera Tabaco 
+    Author     : Grupo 7 IT
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,6 +17,7 @@
                 response.addCookie(new Cookie("nombre", request.getParameter("nombre")));
                 response.addCookie(new Cookie("apellidos", request.getParameter("apellidos")));
                 response.addCookie(new Cookie("sexo", request.getParameter("sexo")));
+                response.sendRedirect("index.jsp");
             }
 
             boolean hayCookies = false;

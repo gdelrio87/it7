@@ -1,7 +1,7 @@
 <%-- 
-    Document   : mujer
-    Created on : 13-feb-2018, 11:55:27
-    Author     : Antonio Jose Herrera Tabaco 
+    Document   : hombre
+    Created on : 13-feb-2018, 11:55:12
+    Author     : Grupo 7 IT
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,12 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Bienvenida</h1>
         <%
             Cookie galletas[] = request.getCookies();
+            boolean hayCookies = false;
             for (Cookie c : galletas) {
                 if (c.getName().equals("nombre") || c.getName().equals("apellidos") || c.getName().equals("sexo")) {
-                    out.print(c.getName() + ":" + c.getValue() + "<br/>");
+                    hayCookies = true;
                 }
             }
 
@@ -25,22 +25,38 @@
                 for (Cookie c : galletas) {
                     if (c.getName().equals("nombre")) {
                         c.setMaxAge(0);
+                        response.addCookie(c);
                     }
 
                     if (c.getName().equals("apellidos")) {
                         c.setMaxAge(0);
+                        response.addCookie(c);
                     }
 
                     if (c.getName().equals("sexo")) {
                         c.setMaxAge(0);
+                        response.addCookie(c);
                     }
+                }
+                response.sendRedirect("index.jsp");
+            }
 
-                    response.sendRedirect("index.jsp");
+            if (hayCookies) {
+        %>                
+        <h1>Bienvenida</h1>
+        <%  for (Cookie c : galletas) {
+                if (c.getName().equals("nombre") || c.getName().equals("apellidos") || c.getName().equals("sexo")) {
+                    out.print(c.getName() + ":" + c.getValue() + "<br/>");
                 }
             }
-        %>
-        <form action="hombre.jsp" method="get">
+        %>        
+        <form action="mujer.jsp" method="get">
             <input type="submit" name="logout" value="Deslogarse"/>
         </form>
+        <%
+            } else {
+                response.sendRedirect("index.jsp");
+            }
+        %>
     </body>
 </html>
