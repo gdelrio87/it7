@@ -41,6 +41,10 @@
 
             try {
                 ingresos = Double.parseDouble(request.getParameter("ingresos").trim());
+                if(ingresos < 0){
+                    errores = true;
+                    cadenaErrores += "El campo ingresos debe ser numerico positivo.<br>";
+                }
 
             } catch (NumberFormatException nfe) {
                 errores = true;
@@ -49,6 +53,10 @@
 
             try {
                 gastos = Double.parseDouble(request.getParameter("gastos").trim());
+                if(gastos < 0){
+                    errores = true;
+                    cadenaErrores += "El campo gastos debe ser numerico positivo.<br>";
+                }
 
             } catch (NumberFormatException nfe) {
                 errores = true;
