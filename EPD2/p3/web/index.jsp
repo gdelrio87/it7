@@ -13,13 +13,19 @@
     </head>
     <body>
         <%
-            if (!request.getParameter("enviar").equals("") && !request.getParameter("nombre").equals("") && !request.getParameter("apellidos").equals("") && !request.getParameter("sexo").equals("")) {
-                response.addCookie(new Cookie("nombre", request.getParameter("nombre")));
-                response.addCookie(new Cookie("apellidos", request.getParameter("apellidos")));
-                response.addCookie(new Cookie("sexo", request.getParameter("sexo")));
-                response.sendRedirect("index.jsp");
+            
+            if (request.getParameter("enviar") != null) {
+                String nombre = request.getParameter("nombre").trim();
+                String apellidos = request.getParameter("apellidos").trim();
+                String sexo = request.getParameter("sexo").trim();
+                if (!nombre.equals("") && !apellidos.equals("") && !sexo.equals("")) {
+                    response.addCookie(new Cookie("nombre", nombre));
+                    response.addCookie(new Cookie("apellidos", apellidos));
+                    response.addCookie(new Cookie("sexo", sexo));
+                    response.sendRedirect("index.jsp");
+                }
             }
-
+            
             boolean hayCookies = false;
             Cookie galletas[] = request.getCookies();
             if (galletas != null) {
