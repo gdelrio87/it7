@@ -8,8 +8,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
-
-    String nombre, apellidos, email, estudios, bloques, nota;    
+    String nombre, apellidos, email, estudios, bloques, nota;
 
 %>
 <!DOCTYPE html>
@@ -28,34 +27,36 @@
             En caso negativo, indicar qué nota espera obtener en la asignatura: <input type="text" name="nota" /><br/>
             <input type="submit" name="enviar"/>
         </form>
-        <%                        
-            nombre = request.getParameter("nombre");
-            apellidos = request.getParameter("apellidos");
-            email = request.getParameter("email");
-            estudios = request.getParameter("estudio");
-            bloques = request.getParameter("bloques");
-            nota = request.getParameter("nota");
+        <%
+            if (request.getParameter("enviar") != null) {
 
-            if (!nombre.equals("") && nombre != null) {
-                out.print("Nombre: "+nombre+"<br/>");
-            }
+                nombre = request.getParameter("nombre");
+                apellidos = request.getParameter("apellidos");
+                email = request.getParameter("email");
+                estudios = request.getParameter("estudio");
+                bloques = request.getParameter("bloques");
+                nota = request.getParameter("nota");
 
-            if (!apellidos.equals("") && apellidos != null) {
-                out.print("Apellidos: "+apellidos+"<br/>");
-            }
+                if (!nombre.equals("")) {
+                    out.print("Nombre: " + nombre + "<br/>");
+                }
 
-            if (!email.equals("") && email != null) {
-                out.print("Email: "+email+"<br/>");
-            }
+                if (!apellidos.equals("")) {
+                    out.print("Apellidos: " + apellidos + "<br/>");
+                }
 
-            if (!estudios.equals("") && estudios != null) {
-                if(Integer.parseInt(estudios) == 1){
-                    out.print("Bloques que le resulto dificil: "+bloques);
-                } else {
-                    out.print("Nota esperada: "+nota);
+                if (!email.equals("")) {
+                    out.print("Email: " + email + "<br/>");
+                }
+
+                if (estudios != null) {
+                    if (Integer.parseInt(estudios) == 1) {
+                        out.print("Bloques que le resulto dificil: " + bloques);
+                    } else {
+                        out.print("Nota esperada: " + nota);
+                    }
                 }
             }
-
         %>
     </body>
 </html>
