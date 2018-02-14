@@ -60,21 +60,32 @@
                         No<input type="radio" name="capitalExtranjero" value="no" /></td></tr>
                         <%
                             //comprobamos que todos los datos están rellenos para mostrar el capital Extranjero
-                            if (capitalExtranjero != null && nombre != "" && sedeSocial != "" && telefono != "") {
-                                if (capitalExtranjero.equals("si")) {
-                                    out.write("<tr><td>Pa&iacute;s:</td><td><input type=\"text\" name=\"pais\" /></td></tr>");
-                                    out.write("<tr><td>Aportaci&oacute;n en %:</td><td><input type=\"number\" name=\"aportacion\" /></td></tr>");
-                                    out.write("<tr><td>Banco en el extranjero:</td><td><input type=\"text\" name=\"banco\" /></td></tr>");
-                                } else if (capitalExtranjero.equals("no")) {
-                                    out.write("<tr><td>Socio principal:</td><td><input type=\"text\" name=\"socioPpal\" /></td></tr>");
-                                    out.write("<tr><td>Aportaci&oacute;n socio principal:</td><td><input type=\"number\" name=\"aportSocPpal\" /></td></tr>");
-                                    out.write("<tr><td>Avalista:</td><td><input type=\"text\" name=\"avalista\" /></td></tr>");
-                                }
+
+                            try {
+                                numTelefono = Integer.parseInt(telefono);
+
+                            } catch (NumberFormatException nfe) {
+                                falloNum = true;
                             }
-                            if (nombre == "" || sedeSocial == "" || telefono == "") {
+                            if (numTelefono < 0 && aceptar != null) {
+                                out.write("El campo teléfono debe ser mayor de 0");
+                            } else {
+                                if (capitalExtranjero != null && nombre != "" && sedeSocial != "" && telefono != "") {
+                                    if (capitalExtranjero.equals("si")) {
+                                        out.write("<tr><td>Pa&iacute;s:</td><td><input type=\"text\" name=\"pais\" /></td></tr>");
+                                        out.write("<tr><td>Aportaci&oacute;n en %:</td><td><input type=\"number\" name=\"aportacion\" /></td></tr>");
+                                        out.write("<tr><td>Banco en el extranjero:</td><td><input type=\"text\" name=\"banco\" /></td></tr>");
+                                    } else if (capitalExtranjero.equals("no")) {
+                                        out.write("<tr><td>Socio principal:</td><td><input type=\"text\" name=\"socioPpal\" /></td></tr>");
+                                        out.write("<tr><td>Aportaci&oacute;n socio principal:</td><td><input type=\"number\" name=\"aportSocPpal\" /></td></tr>");
+                                        out.write("<tr><td>Avalista:</td><td><input type=\"text\" name=\"avalista\" /></td></tr>");
+                                    }
+                                }
+                                if (nombre == "" || sedeSocial == "" || telefono == "") {
 
-                                out.write("<b>Deben de rellenarse todos los campos ya que son requeridos y los campos telefono, aportacion y aportacion social deben ser numericos</b>");
+                                    out.write("<b>Deben de rellenarse todos los campos ya que son requeridos y los campos telefono, aportacion y aportacion social deben ser numericos</b>");
 
+                                }
                             }
 
                         %>
@@ -86,13 +97,6 @@
 
         <% if (aceptar != null && capitalExtranjero == null && nombre != "" && sedeSocial != "" && telefono != "") {
 
-                try {
-                    numTelefono = Integer.parseInt(telefono);
-
-                } catch (NumberFormatException nfe) {
-                    falloNum = true;
-                }
-
                 if (pais != null && pais != "" && aportacion != null && aportacion != "" && banco != null && banco != "") {
                     try {
                         nAportacion = Integer.parseInt(aportacion);
@@ -102,6 +106,12 @@
         %>
         <jsp:forward page="p5.jsp"/>
         <%      }
+
+            if (nAportacion < 0) {
+                out.write("El campo aportacion social debe ser mayor o igual a 0");
+            } else {
+
+
         %>
         <table border="1">
             <tr><td>Nombre</td><td><%= nombre%></td></tr>
@@ -113,13 +123,17 @@
             <tr><td>Aportaci&oacute;n en %</td><td><%= sedeSocial%></td></tr>
             <tr><td>Banco en el extranjero</td><td><%= telefono%></td></tr>
         </table>
-        <% } else if (socioPpal != null && socioPpal != "" && aportSocPpal != null && aportSocPpal != "" && avalista != null && avalista != "") {
+        <%  }
+        } else if (socioPpal != null && socioPpal != "" && aportSocPpal != null && aportSocPpal != "" && avalista != null && avalista != "") {
             try {
                 nAportSocPpal = Integer.parseInt(aportSocPpal);
                 falloNum = true;
             } catch (NumberFormatException nfe) {
 
             }
+            if (nAportSocPpal < 0) {
+                out.write("El campo aportacion social debe ser mayor o igual a 0");
+            } else {
         %>
         <table border="1">
             <tr><td>Nombre</td><td><%= nombre%></td></tr>
@@ -131,11 +145,13 @@
             <tr><td>Aportaci&oacute;n socio principal</td><td><%= aportSocPpal%></td></tr>
             <tr><td>Avalista:</td><td><%= avalista%></td></tr>
         </table>
-        <%} else {
+        <%}
+                } else {
 
                     out.write("<b>Deben de rellenarse todos los campos ya que son requeridos y los campos telefono, aportacion y aportacion social deben ser numericos</b>");
 
                 }
+
             }%>
 
     </body>
