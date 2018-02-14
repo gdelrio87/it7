@@ -13,7 +13,7 @@
     </head>
     <body>
         <%
-            if (request.getParameter("enviar") != null && request.getParameter("nombre") != null && request.getParameter("apellidos") != null && request.getParameter("sexo") != null) {
+            if (!request.getParameter("enviar").equals("") && !request.getParameter("nombre").equals("") && !request.getParameter("apellidos").equals("") && !request.getParameter("sexo").equals("")) {
                 response.addCookie(new Cookie("nombre", request.getParameter("nombre")));
                 response.addCookie(new Cookie("apellidos", request.getParameter("apellidos")));
                 response.addCookie(new Cookie("sexo", request.getParameter("sexo")));
