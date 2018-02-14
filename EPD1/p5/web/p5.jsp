@@ -11,6 +11,8 @@
     String pais, aportacion, banco;
     String socioPpal, aportSocPpal, avalista;
     String capitalExtranjero, aceptar;
+    int numTelefono, nAportacion, nAportSocPpal;
+    boolean falloNum;
 %>
 <!DOCTYPE html>
 <html>
@@ -36,8 +38,10 @@
 
             aceptar = request.getParameter("aceptar");
 
+            falloNum = false;
+
         %>
-        <form method="POST" action="#">
+        <form method="POST" action="">
             <table>
                 <%-- Formulario sin envío del formulario o sin elegir el capital Extrajero--%>
 
@@ -68,19 +72,37 @@
                                 }
                             }
                             if (nombre == "" || sedeSocial == "" || telefono == "") {
-                                out.write("<b>Deben de rellenarse todos los campos ya que son requeridos</b>");
+
+                                out.write("<b>Deben de rellenarse todos los campos ya que son requeridos y los campos telefono, aportacion y aportacion social deben ser numericos</b>");
 
                             }
+
                         %>
                 <tr><td><input type="submit" name="aceptar" value="Aceptar" /></td></tr>
             </table>
         </form>
 
         <%-- Comprobamos que todos los datos estén introducidos para mostrar las tablas con los datos --%>
-        
+
         <% if (aceptar != null && capitalExtranjero == null && nombre != "" && sedeSocial != "" && telefono != "") {
 
-                if (pais != null && pais != "" && aportacion != null && aportacion != "" && banco != null && banco != "") {%>
+                try {
+                    numTelefono = Integer.parseInt(telefono);
+
+                } catch (NumberFormatException nfe) {
+                    falloNum = true;
+                }
+
+                if (pais != null && pais != "" && aportacion != null && aportacion != "" && banco != null && banco != "") {
+                    try {
+                        nAportacion = Integer.parseInt(aportacion);
+                        falloNum = true;
+                    } catch (NumberFormatException nfe) {
+
+        %>
+        <jsp:forward page="p5.jsp"/>
+        <%      }
+        %>
         <table border="1">
             <tr><td>Nombre</td><td><%= nombre%></td></tr>
             <tr><td>Sede Social</td><td><%= sedeSocial%></td></tr>
@@ -91,7 +113,14 @@
             <tr><td>Aportaci&oacute;n en %</td><td><%= sedeSocial%></td></tr>
             <tr><td>Banco en el extranjero</td><td><%= telefono%></td></tr>
         </table>
-        <% } else if (socioPpal != null && socioPpal != "" && aportSocPpal != null && aportSocPpal != "" && avalista != null && avalista != "") {%>
+        <% } else if (socioPpal != null && socioPpal != "" && aportSocPpal != null && aportSocPpal != "" && avalista != null && avalista != "") {
+            try {
+                nAportSocPpal = Integer.parseInt(aportSocPpal);
+                falloNum = true;
+            } catch (NumberFormatException nfe) {
+
+            }
+        %>
         <table border="1">
             <tr><td>Nombre</td><td><%= nombre%></td></tr>
             <tr><td>Sede Social</td><td><%= sedeSocial%></td></tr>
@@ -103,7 +132,9 @@
             <tr><td>Avalista:</td><td><%= avalista%></td></tr>
         </table>
         <%} else {
-                    out.write("<b>Deben de rellenarse todos los campos ya que son requeridos</b>");
+
+                    out.write("<b>Deben de rellenarse todos los campos ya que son requeridos y los campos telefono, aportacion y aportacion social deben ser numericos</b>");
+
                 }
             }%>
 

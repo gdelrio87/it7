@@ -26,7 +26,7 @@
             Apellidos: <input type="text" name="apellidos" /><br/>
             Email: <input type="text" name="email" /><br/>
             Direccion: <input type="text" name="direccion" /><br/>
-            Ha estudiado antes IT ?: <input type="radio" name="estudio" value="1"><input type="radio" name="estudio" value="0"/><br/>
+            Ha estudiado antes IT ?: Si<input type="radio" name="estudio" value="1">No<input type="radio" name="estudio" value="0"/><br/>
             En caso afirmativo, indicar el o los bloques que encontró más difíciles: <input type="text" name="bloques" /><br/>
             En caso negativo, indicar qué nota espera obtener en la asignatura: <input type="text" name="nota" /><br/>
             <!-- Ampliacion para el problema 2 -->
