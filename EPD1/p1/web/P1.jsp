@@ -1,11 +1,9 @@
 <%-- 
     Document   : P1
     Created on : 07-feb-2018, 17:05:46
-<<<<<<< HEAD
-    Author     : Grupo 7
-=======
+
     Author     : Grupo7 IT
->>>>>>> 43050bbb143cdb0108aad107b03dd029f48f2875
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -38,19 +36,19 @@
             bloques = request.getParameter("bloques");
             nota = request.getParameter("nota");
 
-            if (nombre != "" && nombre != null) {
+            if (!nombre.equals("") && nombre != null) {
                 out.print("Nombre: "+nombre+"<br/>");
             }
 
-            if (apellidos != "" && apellidos != null) {
+            if (!apellidos.equals("") && apellidos != null) {
                 out.print("Apellidos: "+apellidos+"<br/>");
             }
 
-            if (email != "" && email != null) {
+            if (!email.equals("") && email != null) {
                 out.print("Email: "+email+"<br/>");
             }
 
-            if (estudios != "" && estudios != null) {
+            if (!estudios.equals("") && estudios != null) {
                 if(Integer.parseInt(estudios) == 1){
                     out.print("Bloques que le resulto dificil: "+bloques);
                 } else {
