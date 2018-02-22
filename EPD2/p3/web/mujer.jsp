@@ -46,7 +46,11 @@
         <h1>Bienvenida</h1>
         <%  for (Cookie c : galletas) {
                 if (c.getName().equals("nombre") || c.getName().equals("apellidos") || c.getName().equals("sexo")) {
-                    out.print(c.getName() + ":" + c.getValue() + "<br/>");
+                    if (c.getName().equals("sexo")) {
+                        out.print(c.getName() + ":Mujer<br/>");
+                    } else {
+                        out.print(c.getName() + ":" + c.getValue() + "<br/>");
+                    }
                 }
             }
         %>        

@@ -32,6 +32,7 @@
                 for (Cookie c : galletas) {
                     if (c.getName().equals("nombre")) {
                         hayCookies = true;
+                        break;
                     }
                 }
             }
@@ -41,8 +42,8 @@
             Nombre: <input type="text" name="nombre" /><br/>
             Apellidos: <input type="text" name="apellidos" /><br/>
 
-            <input type="radio" name="sexo" value="1" >Hombre</input>
-            <input type="radio" name="sexo" value="0" >Mujer</input><br/>
+            <input type="radio" name="sexo" value="1" required>Hombre</input>
+            <input type="radio" name="sexo" value="0" required>Mujer</input><br/>
             <input type="submit" name="enviar" />
         </form>
         <%
