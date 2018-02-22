@@ -19,20 +19,17 @@
             <p>
                 <%@include file="noticia1.txt" %>
                 </br>
-                <input type="radio" name="muestra1" value="1" >Muestra</input>
-                <input type="radio" name="muestra1" value="0" >Oculta</input>
+                <%@include file="radioMuestra1.jsp" %>
             </p>
             <p>
                 <%@include file="noticia2.txt" %>
                 </br>
-                <input type="radio" name="muestra2" value="1" >Muestra</input>
-                <input type="radio" name="muestra2" value="0" >Oculta</input>
+                <%@include file="radioMuestra2.jsp" %>
             </p>
             <p>
                 <%@include file="noticia3.txt" %>
                 </br>
-                <input type="radio" name="muestra3" value="1" >Muestra</input>
-                <input type="radio" name="muestra3" value="0" >Oculta</input>
+                <%@include file="radioMuestra3.jsp" %>
             </p>
             <input type="submit" name="enviar" />
         </form>
@@ -41,49 +38,55 @@
         %>
         <form method="get" action="P1.jsp">
             <p>
-                <%
-                    if (request.getParameter("muestra1").equals("0")) {
-                        out.write("información no mostrada");
-                    } else {
+                <% if (request.getParameter("muestra1") != null) {
+                        if (request.getParameter("muestra1").equals("0")) {
+                            out.write("información no mostrada");
+                        } else {
                 %>
                 <%@include file="noticia1.txt" %>
                 <%
+                        }
+                    } else {
+                        out.write("Debe seleccionar una opci&oacute;n obligatoriamente");
                     }
                 %>
                 </br>
-                <input type="radio" name="muestra1" value="1" >Muestra</input>
-                <input type="radio" name="muestra1" value="0" >Oculta</input>
+                <%@include file="radioMuestra1.jsp" %>
             </p>
             <p>
             <p>
-                <%
-                    if (request.getParameter("muestra2").equals("0")) {
-                        out.write("información no mostrada");
-                    } else {
+                <% if (request.getParameter("muestra2") != null) {
+                        if (request.getParameter("muestra2").equals("0")) {
+                            out.write("información no mostrada");
+                        } else {
                 %>
                 <%@include file="noticia2.txt" %>
                 <%
+                        }
+                    } else {
+                        out.write("Debe seleccionar una opci&oacute;n obligatoriamente");
                     }
                 %>
                 </br>
-                <input type="radio" name="muestra2" value="1" >Muestra</input>
-                <input type="radio" name="muestra2" value="0" >Oculta</input>
+                <%@include file="radioMuestra2.jsp" %>
             </p>
         </p>
         <p>
         <p>
-            <%
-                if (request.getParameter("muestra3").equals("0")) {
-                    out.write("información no mostrada");
-                } else {
+            <% if (request.getParameter("muestra3") != null) {
+                    if (request.getParameter("muestra3").equals("0")) {
+                        out.write("información no mostrada");
+                    } else {
             %>
             <%@include file="noticia3.txt" %>
             <%
+                    }
+                } else {
+                    out.write("Debe seleccionar una opci&oacute;n obligatoriamente");
                 }
             %>
             </br>
-            <input type="radio" name="muestra3" value="1" >Muestra</input>
-            <input type="radio" name="muestra3" value="0" >Oculta</input>
+            <%@include file="radioMuestra3.jsp" %>
         </p>
     </p>
     <input type="submit" name="enviar" />
