@@ -14,7 +14,7 @@
     <body>
         <table>
             <tr>
-                <th>Campo firmulario</th>
+                <th>Campo formulario</th>
                 <th>Valor</th>
             </tr>     
             <tr>
@@ -69,7 +69,7 @@
             </tr>
             
             <tr>
-                <th>Definición objeto request</th>
+                <th>Definición objeto impl&iacute;cito request</th>
                 <th>Resultado</th>
             </tr>
             <tr>
