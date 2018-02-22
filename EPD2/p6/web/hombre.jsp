@@ -24,9 +24,7 @@
 
             if (request.getParameter("logout") != null) {
 
-                session.removeAttribute("nombre");
-                session.removeAttribute("apellidos");
-                session.removeAttribute("sexo");
+                session.invalidate();
 
         %>
         <jsp:forward page="index.jsp"/>
@@ -38,7 +36,10 @@
         <%
             out.print("Nombre: "+ sessionNombre +"<br/>");
             out.print("Apellidos: "+ sessionApellidos +"<br/>");
-            out.print("Sexo: "+ sessionSexo +"<br/>");
+            if(sessionSexo.equals("1")){
+                out.print("Sexo: Hombre<br/>");
+            }
+            
 
         %>        
         <form action="hombre.jsp" method="get">
