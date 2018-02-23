@@ -1,9 +1,11 @@
 <%-- 
     Document   : index
     Created on : 22-feb-2018, 12:45:47
-    Author     : Antonio Jose Herrera Tabaco 
+    Author     : Grupo 7 IT 
 --%>
 
+<%@page import="java.sql.Time"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,43 +16,56 @@
     </head>
     <body>
         <%
-            String[][] arrayCoches = new String[4][5];
+            List aparcamiento = new ArrayList<>();
 
-            arrayCoches[0][0] = "12784HIH";
-            arrayCoches[0][1] = "BMW";
-            arrayCoches[0][2] = "10:05";
-            arrayCoches[0][3] = "--";
-            arrayCoches[0][4] = "30";
+            List coche1 = new ArrayList<>();
+            coche1.add("12784HIH");
+            coche1.add("BMW");
+            coche1.add(new Time(10, 05, 0));
+            coche1.add(null);
+            coche1.add(30);
 
-            arrayCoches[1][0] = "76234AAC";
-            arrayCoches[1][1] = "Toyota";
-            arrayCoches[1][2] = "10:07";
-            arrayCoches[1][3] = "10:35";
-            arrayCoches[1][4] = "30";
+            aparcamiento.add(coche1);
 
-            arrayCoches[2][0] = "32162BAQ";
-            arrayCoches[2][1] = "Audi";
-            arrayCoches[2][2] = "10:45";
-            arrayCoches[2][3] = "--";
-            arrayCoches[2][4] = "90";
+            List coche2 = new ArrayList<>();
+            coche2.add("32162BAQ");
+            coche2.add("Toyota");
+            coche2.add(new Time(10, 07, 0));
+            coche2.add(new Time(10, 35, 0));
+            coche2.add(30);
 
-            arrayCoches[3][0] = "87823CDA";
-            arrayCoches[3][1] = "Mercedes";
-            arrayCoches[3][2] = "10:46";
-            arrayCoches[3][3] = "11:05";
-            arrayCoches[3][4] = "15";
+            aparcamiento.add(coche2);
+
+            List coche3 = new ArrayList<>();
+            coche3.add("32162BAQ");
+            coche3.add("Audi");
+            coche3.add(new Time(10, 45, 0));
+            coche3.add(null);
+            coche3.add(90);
+
+            aparcamiento.add(coche3);
+
+            List coche4 = new ArrayList<>();
+            coche4.add("87823CDA");
+            coche4.add("Mercedes");
+            coche4.add(new Time(10, 46, 0));
+            coche4.add(new Time(11, 05, 0));
+            coche4.add(15);
+
+            aparcamiento.add(coche4);
+
         %>
         <table border="1">
             <tr><th>Matricula</th><th>Modelo</th><th>Hora de entrada</th><th>Hora de salida</th><th>Tiempo permitido</th></tr>
-                    <%
-                        for (int i = 0; i < arrayCoches.length; i++) {
+                    <%  for (int i = 0; i < aparcamiento.size(); i++) {
+                     
+                    List coche = (List) aparcamiento.get(i);
                     %>
             <tr>
-                <%
-                    for (int j = 0; j < arrayCoches[0].length; j++) {
+                <%  for (int j = 0; j < coche.size(); j++) {
                 %>
 
-                <td><%= arrayCoches[i][j]%></td>
+                <td><%= coche.get(j)%></td>
 
 
                 <%
