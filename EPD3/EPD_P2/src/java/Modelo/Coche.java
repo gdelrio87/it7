@@ -10,7 +10,7 @@ import java.sql.Time;
 
 /**
  * 
- * @author Antonio Jose Herrera Tabaco 
+ * @author Grupo 7 IT
  */
 public class Coche {
     private String matricula; 

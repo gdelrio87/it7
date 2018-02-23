@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 22-feb-2018, 12:43:36
-    Author     : Antonio Jose Herrera Tabaco 
+    Author     : Grupo 7 IT
 --%>
 
 <%@page import="java.util.ArrayList"%>

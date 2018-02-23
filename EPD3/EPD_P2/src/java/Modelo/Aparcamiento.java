@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author Antonio Jose Herrera Tabaco
+ * @author Grupo 7 IT
  */
 public class Aparcamiento {
 
