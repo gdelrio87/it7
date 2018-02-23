@@ -4,6 +4,92 @@
     Author     : Grupo 7 IT 
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%
+
+class Coche {
+    private String matricula; 
+    private String modelo;
+    private Time horaEntrada;
+    private Time horaSalida;
+    private int tiempoPermitido;
+
+    public Coche(String matricula, String modelo, Time horaEntrada, Time horaSalida, int tiempoPermitido) {
+        this.matricula = matricula;
+        this.modelo = modelo;
+        this.horaEntrada = horaEntrada;
+        this.horaSalida = horaSalida;
+        this.tiempoPermitido = tiempoPermitido;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public Time getHoraEntrada() {
+        return horaEntrada;
+    }
+
+    public void setHoraEntrada(Time horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
+
+    public Time getHoraSalida() {
+        return horaSalida;
+    }
+
+    public void setHoraSalida(Time horaSalida) {
+        this.horaSalida = horaSalida;
+    }
+
+    public int getTiempoPermitido() {
+        return tiempoPermitido;
+    }
+
+    public void setTiempoPermitido(int tiempoPermitido) {
+        this.tiempoPermitido = tiempoPermitido;
+    }
+    
+}
+
+
+class Aparcamiento {
+
+    public List<Coche> listadoCoches() {
+        List<Coche> listaCoches = new ArrayList<Coche>();
+
+        Coche coche1 = new Coche("12784HIH", "BMW", new Time(10,05,0), null, 30);
+        listaCoches.add(coche1);
+
+        Coche coche2 = new Coche("76234AAC", "Toyota", new Time(10,07,0), new Time(10,35,0), 30);
+        listaCoches.add(coche2);
+
+        Coche coche3 = new Coche("32162BAQ", "Audi", new Time(10,45,0), null, 90);
+        listaCoches.add(coche3);
+
+        Coche coche4 = new Coche("87823CDA", "Mercedes", new Time(10,46,0),new Time(11,05,0) , 15);
+        listaCoches.add(coche4);
+
+        return listaCoches;
+    }
+}
+
+
+
+    %>
+
 <%@page import="java.sql.Time"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -15,62 +101,28 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-            List aparcamiento = new ArrayList<>();
-
-            List coche1 = new ArrayList<>();
-            coche1.add("12784HIH");
-            coche1.add("BMW");
-            coche1.add(new Time(10, 05, 0));
-            coche1.add(null);
-            coche1.add(30);
-
-            aparcamiento.add(coche1);
-
-            List coche2 = new ArrayList<>();
-            coche2.add("32162BAQ");
-            coche2.add("Toyota");
-            coche2.add(new Time(10, 07, 0));
-            coche2.add(new Time(10, 35, 0));
-            coche2.add(30);
-
-            aparcamiento.add(coche2);
-
-            List coche3 = new ArrayList<>();
-            coche3.add("32162BAQ");
-            coche3.add("Audi");
-            coche3.add(new Time(10, 45, 0));
-            coche3.add(null);
-            coche3.add(90);
-
-            aparcamiento.add(coche3);
-
-            List coche4 = new ArrayList<>();
-            coche4.add("87823CDA");
-            coche4.add("Mercedes");
-            coche4.add(new Time(10, 46, 0));
-            coche4.add(new Time(11, 05, 0));
-            coche4.add(15);
-
-            aparcamiento.add(coche4);
-
-        %>
         <table border="1">
             <tr><th>Matricula</th><th>Modelo</th><th>Hora de entrada</th><th>Hora de salida</th><th>Tiempo permitido</th></tr>
-                    <%  for (int i = 0; i < aparcamiento.size(); i++) {
-                     
-                    List coche = (List) aparcamiento.get(i);
+                    <%
+                        Aparcamiento aparcamiento = new Aparcamiento();
+                        
+                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                        List<Coche> listadoAparcamientos = aparcamiento.listadoCoches();
+                        for (int i = 0; i < listadoAparcamientos.size(); i++) {
                     %>
             <tr>
-                <%  for (int j = 0; j < coche.size(); j++) {
-                %>
-
-                <td><%= coche.get(j)%></td>
-
-
-                <%
-                    }
-                %>
+                <td><%= listadoAparcamientos.get(i).getMatricula()%></td>
+                <td><%= listadoAparcamientos.get(i).getModelo()%></td>                
+                <td><%=  sdf.format(listadoAparcamientos.get(i).getHoraEntrada())%></td>
+                <td><% if (listadoAparcamientos.get(i).getHoraSalida() != null) {
+                        out.print(sdf.format(listadoAparcamientos.get(i).getHoraSalida()));
+                    } else {
+                    %>
+                    --
+                    <%
+                            }
+                            ;%></td>
+                <td><%= listadoAparcamientos.get(i).getTiempoPermitido()%></td>
             </tr>
             <%
                 }
