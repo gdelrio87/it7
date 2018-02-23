@@ -24,7 +24,7 @@
             List<Coche> listaCorrecto = new ArrayList<Coche>();
             for (int i = 0; i < listadoAparcamientos.size(); i++) {
                 if (listadoAparcamientos.get(i).getHoraSalida() != null) {
-                    if ((listadoAparcamientos.get(i).getHoraEntrada().getTime() + listadoAparcamientos.get(i).getTiempoPermitido() * 60000) > listadoAparcamientos.get(i).getHoraSalida().getTime()) {
+                    if ((listadoAparcamientos.get(i).getHoraEntrada().getTime() + listadoAparcamientos.get(i).getTiempoPermitido() * 60000) < listadoAparcamientos.get(i).getHoraSalida().getTime()) {
                         listaSuperados.add(listadoAparcamientos.get(i));
                     } else {
                         listaCorrecto.add(listadoAparcamientos.get(i));
