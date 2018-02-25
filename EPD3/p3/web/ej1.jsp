@@ -114,7 +114,7 @@
             <input type="submit" name="enviar" value="Enviar" />
         </form>
         <form>
-            Buscar coches que se encuentran en el aparcamiento<input type="submit" name="aparcados" value="Aparcados"   />
+            Buscar coches que se encuentran en el aparcamiento: <input type="submit" name="aparcados" value="Aparcados"   />
         </form>
     </body>
 </html>
