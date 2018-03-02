@@ -6,7 +6,10 @@
 package servlets;
 
 import Modelo.Aparcamiento;
+import Modelo.Coche;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -34,24 +37,51 @@ public class controlador extends HttpServlet {
         //HttpSession session = request.getSession(false);
         String url = "";
 
+        List<Coche> listadoAparcamientos = Aparcamiento.listadoCoches();
+
         if (request.getParameter("CambiaCorrecto") != null) {
+
+            List<Coche> listaCorrecto = new ArrayList<Coche>();
+            for (int i = 0; i < listadoAparcamientos.size(); i++) {
+                if (listadoAparcamientos.get(i).getHoraSalida() != null) {
+                    if (!listadoAparcamientos.get(i).esSuperado()) {
+                        listaCorrecto.add(listadoAparcamientos.get(i));
+                    }
+                } else {
+                    listaCorrecto.add(listadoAparcamientos.get(i));
+                }
+            }
+
             url = "/vistaAdd.jsp";
+            request.setAttribute("listadoCochesCorrecto", listaCorrecto);
             request.setAttribute("CambiaCorrecto", request.getParameter("CambiaCorrecto"));
         } else if (request.getParameter("CambiaSuperado") != null) {
+
+            List<Coche> listaSuperados = new ArrayList<Coche>();
+            for (int i = 0; i < listadoAparcamientos.size(); i++) {
+                if (listadoAparcamientos.get(i).getHoraSalida() != null) {
+                    if (listadoAparcamientos.get(i).esSuperado()) {
+                        listaSuperados.add(listadoAparcamientos.get(i));
+                    }
+                }
+            }
+
             url = "/vistaAdd.jsp";
+            request.setAttribute("listadoCochesSuperado", listaSuperados);
             request.setAttribute("CambiaSuperado", request.getParameter("CambiaSuperado"));
-        } else if(request.getParameter("enviar") != null){
+        } else if (request.getParameter("enviar") != null) {
             url = "/index.jsp";
             request.setAttribute("buscar", request.getParameter("buscar"));
             request.setAttribute("enviar", request.getParameter("enviar"));
-        } else if(request.getParameter("aparcados") != null){
+            request.setAttribute("listadoCoches", Aparcamiento.listadoCoches());
+        } else if (request.getParameter("aparcados") != null) {
             url = "/index.jsp";
+            request.setAttribute("listadoCoches", Aparcamiento.listadoCoches());
             request.setAttribute("aparcados", request.getParameter("aparcados"));
         } else {
             url = "/index.jsp";
+            request.setAttribute("listadoCoches", Aparcamiento.listadoCoches());
         }
-
-        request.setAttribute("listadoCoches", Aparcamiento.listadoCoches());
 
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(url);

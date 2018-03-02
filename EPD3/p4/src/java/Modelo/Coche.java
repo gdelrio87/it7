@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 import java.sql.Time;
 
 /**
- * 
- * @author Antonio Jose Herrera Tabaco 
+ *
+ * @author Antonio Jose Herrera Tabaco
  */
 public class Coche {
-    private String matricula; 
+
+    private String matricula;
     private String modelo;
     private Time horaEntrada;
     private Time horaSalida;
@@ -66,5 +66,12 @@ public class Coche {
     public void setTiempoPermitido(int tiempoPermitido) {
         this.tiempoPermitido = tiempoPermitido;
     }
-    
+
+    public boolean esSuperado() {
+        boolean superado = false;
+        if ((this.getHoraEntrada().getTime() + this.getTiempoPermitido() * 60000) < this.getHoraSalida().getTime()) {
+            superado = true;
+        }
+        return superado;
+    }
 }
