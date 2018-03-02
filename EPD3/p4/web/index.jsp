@@ -36,7 +36,7 @@
                     --
                     <%
                         }
-                        ;%></td>
+                        %></td>
                 <td><%= listadoAparcamientos.get(i).getTiempoPermitido()%></td>
             </tr>
 
@@ -46,33 +46,30 @@
         </table>
         <%
         } else if (request.getAttribute("enviar") != null && request.getAttribute("aparcados") == null) {
-            String buscar = (String) request.getParameter("buscar");
         %>
         <table border="1">
             <tr><th>Matricula</th><th>Modelo</th><th>Hora de entrada</th><th>Hora de salida</th><th>Tiempo permitido</th></tr>
                     <%
                         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                        List<Coche> listadoAparcamientos = (List<Coche>) request.getAttribute("listadoCoches");
-                        for (int i = 0; i < listadoAparcamientos.size(); i++) {
-                            if (listadoAparcamientos.get(i).getMatricula().substring(0, buscar.length()).equals(buscar)) {
+                        List<Coche> listadoFiltrado = (List<Coche>) request.getAttribute("listadoFiltrado");
+                        for (int i = 0; i < listadoFiltrado.size(); i++) {
                     %>
             <tr>
-                <td><%= listadoAparcamientos.get(i).getMatricula()%></td>
-                <td><%= listadoAparcamientos.get(i).getModelo()%></td>                
-                <td><%=  sdf.format(listadoAparcamientos.get(i).getHoraEntrada())%></td>
-                <td><% if (listadoAparcamientos.get(i).getHoraSalida() != null) {
-                        out.print(sdf.format(listadoAparcamientos.get(i).getHoraSalida()));
+                <td><%= listadoFiltrado.get(i).getMatricula()%></td>
+                <td><%= listadoFiltrado.get(i).getModelo()%></td>                
+                <td><%=  sdf.format(listadoFiltrado.get(i).getHoraEntrada())%></td>
+                <td><% if (listadoFiltrado.get(i).getHoraSalida() != null) {
+                        out.print(sdf.format(listadoFiltrado.get(i).getHoraSalida()));
                     } else {
                     %>
                     --
                     <%
                         }
-                        ;%></td>
-                <td><%= listadoAparcamientos.get(i).getTiempoPermitido()%></td>
+                        %></td>
+                <td><%= listadoFiltrado.get(i).getTiempoPermitido()%></td>
             </tr>
 
             <%
-                    }
                 }
             %>
         </table>
@@ -81,10 +78,9 @@
         %>
         <table border="1">
             <tr><th>Matricula</th><th>Modelo</th><th>Hora de entrada</th><th>Hora de salida</th><th>Tiempo permitido</th></tr>
-                    <%                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                        List<Coche> listadoAparcamientos = (List<Coche>) request.getAttribute("listadoCoches");
+                    <%  SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                        List<Coche> listadoAparcamientos = (List<Coche>) request.getAttribute("listadoAparcados");
                         for (int i = 0; i < listadoAparcamientos.size(); i++) {
-                            if (listadoAparcamientos.get(i).getHoraSalida() == null) {
                     %>
             <tr>
                 <td><%= listadoAparcamientos.get(i).getMatricula()%></td>
@@ -97,12 +93,11 @@
                     --
                     <%
                         }
-                        ;%></td>
+                        %></td>
                 <td><%= listadoAparcamientos.get(i).getTiempoPermitido()%></td>
             </tr>
 
             <%
-                    }
                 }
             %>
         </table>

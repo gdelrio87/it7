@@ -22,10 +22,9 @@
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             List<Coche> listaSuperados = (List<Coche>) request.getAttribute("listadoCochesSuperado");
             List<Coche> listaCorrecto = (List<Coche>) request.getAttribute("listadoCochesCorrecto");
-            
+
         %>
-        <%
-            if (request.getAttribute("CambiaSuperado") == null && request.getAttribute("todos") == null) { //muestro los coches que no han superado el tiempo
+        <%            if (request.getAttribute("CambiaSuperado") == null && request.getAttribute("todos") == null) { //muestro los coches que no han superado el tiempo
         %>
         <form action="controlador" method="get">
             <table border="1">
@@ -90,7 +89,7 @@
         <%
             } else if (request.getParameter("todos") != null) {
 
-            response.sendRedirect("index.jsp");
+                response.sendRedirect("index.jsp");
             }
         %>
     </body>

@@ -73,14 +73,31 @@ public class controlador extends HttpServlet {
             url = "/index.jsp";
             request.setAttribute("buscar", request.getParameter("buscar"));
             request.setAttribute("enviar", request.getParameter("enviar"));
-            request.setAttribute("listadoCoches", Aparcamiento.listadoCoches());
+
+            String buscar = (String) request.getParameter("buscar");
+            List<Coche> listaFiltrada = new ArrayList<Coche>();
+            for (int i = 0; i < listadoAparcamientos.size(); i++) {
+                if (listadoAparcamientos.get(i).getMatricula().substring(0, buscar.length()).equals(buscar)) {
+                    listaFiltrada.add(listadoAparcamientos.get(i));
+                }
+            }
+
+            request.setAttribute("listadoFiltrado", listaFiltrada);
         } else if (request.getParameter("aparcados") != null) {
             url = "/index.jsp";
-            request.setAttribute("listadoCoches", Aparcamiento.listadoCoches());
+
+            List<Coche> listaAparcados = new ArrayList<Coche>();
+            for (int i = 0; i < listadoAparcamientos.size(); i++) {
+                if (listadoAparcamientos.get(i).getHoraSalida() == null) {
+                    listaAparcados.add(listadoAparcamientos.get(i));
+                }
+            }
+
+            request.setAttribute("listadoAparcados", listaAparcados);
             request.setAttribute("aparcados", request.getParameter("aparcados"));
         } else {
             url = "/index.jsp";
-            request.setAttribute("listadoCoches", Aparcamiento.listadoCoches());
+            request.setAttribute("listadoCoches", listadoAparcamientos);
         }
 
         ServletContext sc = getServletContext();
