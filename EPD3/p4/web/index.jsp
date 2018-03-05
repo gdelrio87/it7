@@ -15,9 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-            if (request.getAttribute("enviar") == null && request.getAttribute("aparcados") == null) {
-        %>
+        
         <table border="1">
             <tr><th>Matricula</th><th>Modelo</th><th>Hora de entrada</th><th>Hora de salida</th><th>Tiempo permitido</th></tr>
                     <%
@@ -44,66 +42,7 @@
                 }
             %>
         </table>
-        <%
-        } else if (request.getAttribute("enviar") != null && request.getAttribute("aparcados") == null) {
-        %>
-        <table border="1">
-            <tr><th>Matricula</th><th>Modelo</th><th>Hora de entrada</th><th>Hora de salida</th><th>Tiempo permitido</th></tr>
-                    <%
-                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                        List<Coche> listadoFiltrado = (List<Coche>) request.getAttribute("listadoFiltrado");
-                        for (int i = 0; i < listadoFiltrado.size(); i++) {
-                    %>
-            <tr>
-                <td><%= listadoFiltrado.get(i).getMatricula()%></td>
-                <td><%= listadoFiltrado.get(i).getModelo()%></td>                
-                <td><%=  sdf.format(listadoFiltrado.get(i).getHoraEntrada())%></td>
-                <td><% if (listadoFiltrado.get(i).getHoraSalida() != null) {
-                        out.print(sdf.format(listadoFiltrado.get(i).getHoraSalida()));
-                    } else {
-                    %>
-                    --
-                    <%
-                        }
-                        %></td>
-                <td><%= listadoFiltrado.get(i).getTiempoPermitido()%></td>
-            </tr>
-
-            <%
-                }
-            %>
-        </table>
-        <%    } else if (request.getAttribute("buscar") == null && request.getAttribute("aparcados") != null) {
-
-        %>
-        <table border="1">
-            <tr><th>Matricula</th><th>Modelo</th><th>Hora de entrada</th><th>Hora de salida</th><th>Tiempo permitido</th></tr>
-                    <%  SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                        List<Coche> listadoAparcamientos = (List<Coche>) request.getAttribute("listadoAparcados");
-                        for (int i = 0; i < listadoAparcamientos.size(); i++) {
-                    %>
-            <tr>
-                <td><%= listadoAparcamientos.get(i).getMatricula()%></td>
-                <td><%= listadoAparcamientos.get(i).getModelo()%></td>                
-                <td><%=  sdf.format(listadoAparcamientos.get(i).getHoraEntrada())%></td>
-                <td><% if (listadoAparcamientos.get(i).getHoraSalida() != null) {
-                        out.print(sdf.format(listadoAparcamientos.get(i).getHoraSalida()));
-                    } else {
-                    %>
-                    --
-                    <%
-                        }
-                        %></td>
-                <td><%= listadoAparcamientos.get(i).getTiempoPermitido()%></td>
-            </tr>
-
-            <%
-                }
-            %>
-        </table>
-        <%
-            }
-        %>
+        
         <form action="controlador" method="get">
             Buscar inicio matr&iacute;cula: <input type="text" name="buscar" />
             <input type="submit" name="enviar" value="Enviar" />

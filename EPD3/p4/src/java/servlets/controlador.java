@@ -71,9 +71,7 @@ public class controlador extends HttpServlet {
             request.setAttribute("CambiaSuperado", request.getParameter("CambiaSuperado"));
         } else if (request.getParameter("enviar") != null) {
             url = "/index.jsp";
-            request.setAttribute("buscar", request.getParameter("buscar"));
-            request.setAttribute("enviar", request.getParameter("enviar"));
-
+            
             String buscar = (String) request.getParameter("buscar");
             List<Coche> listaFiltrada = new ArrayList<Coche>();
             for (int i = 0; i < listadoAparcamientos.size(); i++) {
@@ -82,7 +80,7 @@ public class controlador extends HttpServlet {
                 }
             }
 
-            request.setAttribute("listadoFiltrado", listaFiltrada);
+            request.setAttribute("listadoCoches", listaFiltrada);
         } else if (request.getParameter("aparcados") != null) {
             url = "/index.jsp";
 
@@ -93,8 +91,8 @@ public class controlador extends HttpServlet {
                 }
             }
 
-            request.setAttribute("listadoAparcados", listaAparcados);
-            request.setAttribute("aparcados", request.getParameter("aparcados"));
+            request.setAttribute("listadoCoches", listaAparcados);
+        
         } else {
             url = "/index.jsp";
             request.setAttribute("listadoCoches", listadoAparcamientos);
