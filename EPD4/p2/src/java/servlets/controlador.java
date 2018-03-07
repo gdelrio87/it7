@@ -88,7 +88,6 @@ public class controlador extends HttpServlet {
         } else if (request.getParameter("aparcados") != null) {
             url = "/index.jsp";
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-
             List<Coche> listaAparcados = new ArrayList<Coche>();
             for (int i = 0; i < listadoAparcamientos.size(); i++) {
                 if (sdf.format(listadoAparcamientos.get(i).getHoraSalida()).equals("00:00")) {
