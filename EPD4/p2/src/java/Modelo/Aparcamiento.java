@@ -50,6 +50,9 @@ public class Aparcamiento {
         listaCoches.add(coche);
         }
         
+        resultado.close();
+        st.close();
+        conexion.close();
         return listaCoches;
     }
 }
