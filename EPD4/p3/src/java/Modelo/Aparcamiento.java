@@ -34,4 +34,20 @@ public class Aparcamiento {
 
         return listaCoches;
     }
+    
+    public List<Coche> listadoCocheMatricula(String matricula) {
+        List<Coche> listaCoches = new ArrayList<Coche>();
+        
+        sesion = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        org.hibernate.Transaction tx = sesion.beginTransaction();
+        
+        Query q = sesion.createQuery("from Coche where matricula like '"+matricula+"%'");
+        
+        listaCoches = (List<Coche>)q.list();
+        
+        tx.commit();
+
+        return listaCoches;
+    }
 }

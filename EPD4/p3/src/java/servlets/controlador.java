@@ -72,16 +72,11 @@ public class controlador extends HttpServlet {
             url = "/vistaAdd.jsp";
             request.setAttribute("listadoCochesSuperado", listaSuperados);
             request.setAttribute("CambiaSuperado", request.getParameter("CambiaSuperado"));
-        } else if (request.getParameter("enviar") != null) {
+        } else if (request.getParameter("enviar") != null) { //formulario para buscar matriculas
             url = "/index.jsp";
             
             String buscar = (String) request.getParameter("buscar");
-            List<Coche> listaFiltrada = new ArrayList<Coche>();
-            for (int i = 0; i < listadoAparcamientos.size(); i++) {
-                if (listadoAparcamientos.get(i).getMatricula().substring(0, buscar.length()).equals(buscar)) {
-                    listaFiltrada.add(listadoAparcamientos.get(i));
-                }
-            }
+            List<Coche> listaFiltrada = aparcamiento.listadoCocheMatricula(buscar);
 
             request.setAttribute("listadoCoches", listaFiltrada);
         } else if (request.getParameter("aparcados") != null) {
