@@ -55,4 +55,25 @@ public class Aparcamiento {
         conexion.close();
         return listaCoches;
     }
+    
+    public static List<Coche> buscarCocheMatricula(String matricula) throws SQLException {
+        List<Coche> listaCoches = new ArrayList<Coche>();
+        
+        Connection conexion = DriverManager.getConnection(url,usuario,clave);
+        
+        Statement st = (Statement) conexion.createStatement();
+        
+        ResultSet resultado = st.executeQuery("select * from coche where matricula like '"+ matricula + "%'");
+
+        while(resultado.next()){
+        Coche coche = new Coche(resultado.getString("matricula"), resultado.getString("modelo"), resultado.getTime("horaEntrada"), resultado.getTime("horaSalida"), resultado.getInt("tiempoPermitido"));
+        listaCoches.add(coche);
+        }
+        
+        resultado.close();
+        st.close();
+        conexion.close();
+        return listaCoches;
+    
+    }
 }
