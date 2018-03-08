@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Modelo.*;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,11 +49,9 @@ public class controladorAdmin extends HttpServlet {
         }else if(request.getParameter("editar") != null){
             
             request.setAttribute("CRUD", "editar");
-            request.setAttribute("coche",Aparcamiento.cocheMatricula(request.getParameter("editar")));
-            
-            
-            
-        
+            List<Coche> listadoAparcamientos = Aparcamiento.buscarCocheMatricula(request.getParameter("editar"));
+            request.setAttribute("coche", listadoAparcamientos.get(0));
+
         }else if(request.getParameter("eliminar") != null){
             
             List<Coche> listadoAparcamientos = Aparcamiento.listadoCoches();
@@ -63,8 +63,22 @@ public class controladorAdmin extends HttpServlet {
             
         
         }else if(request.getParameter("editarJDBC") != null){
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             
+            String matricula = request.getParameter("matricula");
+            String modelo = request.getParameter("modelo");
+            Time horaEntrada = Time.valueOf(request.getParameter("horaEntrada"));
+            Time horaSalida = Time.valueOf(request.getParameter("horaSalida"));
+            int tiempoPermitido = Integer.parseInt(request.getParameter("tiempoPermitido"));
             
+            String matriculaOriginal = (String)request.getAttribute("matriculaOriginal");
+            
+            Aparcamiento.update(matricula, modelo, horaEntrada, horaSalida, tiempoPermitido, matriculaOriginal);
+            
+            List<Coche> listadoAparcamientos = Aparcamiento.listadoCoches();
+            request.setAttribute("listadoCoches", listadoAparcamientos);
+            
+            url = "/administrador.jsp";
         
         }
         

@@ -16,7 +16,10 @@
     <body>
         
         <% 
+                       
             String matricula = ((Coche)request.getAttribute("coche")).getMatricula();
+            //no crea nada en el atributo.
+            request.setAttribute("matriculaOriginal", ((Coche)request.getAttribute("coche")).getMatricula());
             String modelo = ((Coche)request.getAttribute("coche")).getModelo();
             Time horaEntrada = ((Coche)request.getAttribute("coche")).getHoraEntrada();
             Time horaSalida = ((Coche)request.getAttribute("coche")).getHoraSalida();
@@ -29,7 +32,11 @@
                         <% if (request.getAttribute("CRUD").equals("insertar")) { %>
                 <tr><td><input type="text" /></td><td><input type="text" /></td><td><input type="time" /></td><td><input type="time" /></td><td><input type="number" /></td></tr>
                         <%} else if (request.getAttribute("CRUD").equals("editar")) { %>
-                <tr><td><input type="text" value="<%=matricula%>"/></td><td><input type="text" value="<%=modelo%>" /></td><td><input type="time" value="<%=horaEntrada%>"/></td><td><input type="time" value="<%=horaSalida%>"/></td><td><input type="number" value="<%=tiempoPermitido%>" /></td></tr>
+                <tr><td><input type="text" name="matricula" value="<%=matricula%>"/></td>
+                    <td><input type="text" name="modelo" value="<%=modelo%>" /></td>
+                    <td><input name="horaEntrada" type="time" value="<%=horaEntrada%>"/></td>
+                    <td><input name="horaSalida" type="time" value="<%=horaSalida%>"/></td>
+                    <td><input name="tiempoPermitido" type="number" value="<%=tiempoPermitido%>" /></td></tr>
                         <%}%>
             </table>
             <% if (request.getAttribute("CRUD").equals("insertar")) { %>

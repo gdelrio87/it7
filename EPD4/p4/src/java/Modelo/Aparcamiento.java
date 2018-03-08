@@ -57,20 +57,39 @@ public class Aparcamiento {
         return listaCoches;
     }
     
-    public static Coche cocheMatricula(String matricula) throws SQLException{
+    public static List<Coche> buscarCocheMatricula(String matricula) throws SQLException {
+        List<Coche> listaCoches = new ArrayList<Coche>();
         
         Connection conexion = DriverManager.getConnection(url,usuario,clave);
         
         Statement st = (Statement) conexion.createStatement();
         
-        //ResultSet resultado = st.executeQuery("select * from coche where matricula like '"+matricula+"'");
-        ResultSet resultado = st.executeQuery("SELECT * FROM `coche` where matricula like '12784HIH';");
-     
+        ResultSet resultado = st.executeQuery("select * from coche where matricula like '"+ matricula + "%'");
+
+        while(resultado.next()){
         Coche coche = new Coche(resultado.getString("matricula"), resultado.getString("modelo"), resultado.getTime("horaEntrada"), resultado.getTime("horaSalida"), resultado.getInt("tiempoPermitido"));
+        listaCoches.add(coche);
+        }
         
         resultado.close();
         st.close();
         conexion.close();
-        return coche;
+        return listaCoches;
+    
     }
+    
+    public static void update(String matricula,String modelo, Time horaEntrada,Time horaSalida, int tiempoPermitido,String matriculaOriginal) throws SQLException{
+        Connection conexion = DriverManager.getConnection(url,usuario,clave);
+        
+        Statement st = (Statement) conexion.createStatement();
+        
+        ResultSet resultado = st.executeQuery("UPDATE `coche` SET `matricula` = '"+matricula+"',"
+                + " `modelo` = '"+modelo+"', `horaEntrada` = '"+horaEntrada+"',"
+                + " `horaSalida` = '"+horaSalida+"', `tiempoPermitido` = '"+tiempoPermitido+"' WHERE `coche`.`matricula` = '"+matriculaOriginal+"'");
+        
+        resultado.close();
+        st.close();
+        conexion.close();
+    }
+
 }
