@@ -10,8 +10,7 @@ import Modelo.Coche;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.sql.Time;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Gonza
  */
-public class controlador extends HttpServlet {
+public class controladorAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,71 +38,75 @@ public class controlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url = "";
-
-        Aparcamiento aparcamiento = new Aparcamiento();
-
-        List<Coche> listadoAparcamientos = aparcamiento.listadoCoches();
-
-        if (request.getParameter("CambiaCorrecto") != null) {
-
-            List<Coche> listaCorrecto = new ArrayList<Coche>();
-            for (int i = 0; i < listadoAparcamientos.size(); i++) {
-                if (listadoAparcamientos.get(i).getHoraSalida() != null) {
-                    if (!listadoAparcamientos.get(i).esSuperado()) {
-                        listaCorrecto.add(listadoAparcamientos.get(i));
-                    }
-                } else {
-                    listaCorrecto.add(listadoAparcamientos.get(i));
-                }
-            }
-
-            url = "/vistaAdd.jsp";
-            request.setAttribute("listadoCochesCorrecto", listaCorrecto);
-            request.setAttribute("CambiaCorrecto", request.getParameter("CambiaCorrecto"));
-        } else if (request.getParameter("CambiaSuperado") != null) {
-
-            List<Coche> listaSuperados = new ArrayList<Coche>();
-            for (int i = 0; i < listadoAparcamientos.size(); i++) {
-                if (listadoAparcamientos.get(i).getHoraSalida() != null) {
-                    if (listadoAparcamientos.get(i).esSuperado()) {
-                        listaSuperados.add(listadoAparcamientos.get(i));
-                    }
-                }
-            }
-
-            url = "/vistaAdd.jsp";
-            request.setAttribute("listadoCochesSuperado", listaSuperados);
-            request.setAttribute("CambiaSuperado", request.getParameter("CambiaSuperado"));
-        } else if (request.getParameter("enviar") != null) { //formulario para buscar matriculas
-            url = "/index.jsp";
-
-            String buscar = (String) request.getParameter("buscar");
-            List<Coche> listaFiltrada = aparcamiento.listadoCocheMatricula(buscar);
-
-            request.setAttribute("listadoCoches", listaFiltrada);
-        } else if (request.getParameter("aparcados") != null) {
-            url = "/index.jsp";
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-            List<Coche> listaAparcados = new ArrayList<Coche>();
-            for (int i = 0; i < listadoAparcamientos.size(); i++) {
-                if (sdf.format(listadoAparcamientos.get(i).getHoraSalida()).equals("00:00")) {
-                    listaAparcados.add(listadoAparcamientos.get(i));
-                }
-            }
-
-            request.setAttribute("listadoCoches", listaAparcados);
-
-        }else if (request.getParameter("administrador") != null) {
-            url = "/administrador.jsp";
-            request.setAttribute("listadoCoches", listadoAparcamientos);
         
-        } else {
-            url = "/index.jsp";
-            request.setAttribute("listadoCoches", listadoAparcamientos);
-        }
+        String url = "/vistaCRUD.jsp";
+        Aparcamiento aparcamiento = new Aparcamiento();
+        
+        if(request.getParameter("insertar") != null){
+        
+            request.setAttribute("CRUD", "insertar");
+            
+            
+        }else if(request.getParameter("editar") != null){
+            
+            request.setAttribute("CRUD", "editar");
+            List<Coche> listadoAparcamientos = aparcamiento.listadoCocheMatricula(request.getParameter("editar"));
+            request.setAttribute("coche", listadoAparcamientos.get(0));
 
+        }else if(request.getParameter("eliminar") != null){
+            
+            String matricula = request.getParameter("eliminar");
+            
+            aparcamiento.delete(matricula);
+            
+            List<Coche> listadoAparcamientos = aparcamiento.listadoCoches();
+            request.setAttribute("listadoCoches", listadoAparcamientos);
+            
+            url = "/administrador.jsp";
+            
+        }else if(request.getParameter("insertarJDBC") != null){
+            
+            
+            String matricula = request.getParameter("matricula");
+            String modelo = request.getParameter("modelo");
+            Time horaEntrada = Time.valueOf(request.getParameter("horaEntrada"));
+            Time horaSalida = Time.valueOf(request.getParameter("horaSalida"));
+            int tiempoPermitido = Integer.parseInt(request.getParameter("tiempoPermitido"));
+            
+            aparcamiento.insert(matricula, modelo, horaEntrada, horaSalida, tiempoPermitido);
+            
+            List<Coche> listadoAparcamientos = aparcamiento.listadoCoches();
+            request.setAttribute("listadoCoches", listadoAparcamientos);
+            
+            url = "/administrador.jsp";
+            
+            
+        
+        }else if(request.getParameter("editarJDBC") != null){
+          
+            
+            String matricula = request.getParameter("matricula");
+            String modelo = request.getParameter("modelo");
+            Time horaEntrada = Time.valueOf(request.getParameter("horaEntrada"));
+            Time horaSalida = Time.valueOf(request.getParameter("horaSalida"));
+            int tiempoPermitido = Integer.parseInt(request.getParameter("tiempoPermitido"));
+            
+            String matriculaOriginal = (String)request.getParameter("matriculaOriginal");
+            
+            aparcamiento.update(matricula, modelo, horaEntrada, horaSalida, tiempoPermitido, matriculaOriginal);
+            
+            List<Coche> listadoAparcamientos = aparcamiento.listadoCoches();
+            request.setAttribute("listadoCoches", listadoAparcamientos);
+            
+            url = "/administrador.jsp";
+        
+        }else if(request.getParameter("volver") != null){
+            List<Coche> listadoAparcamientos = aparcamiento.listadoCoches();
+            request.setAttribute("listadoCoches", listadoAparcamientos);
+            
+            url = "/index.jsp";
+        }
+        
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(url);
         rd.forward(request, response);
@@ -124,7 +127,7 @@ public class controlador extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(controlador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(controladorAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -142,7 +145,7 @@ public class controlador extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(controlador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(controladorAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

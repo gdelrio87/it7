@@ -55,5 +55,10 @@
             <br />
             Mostar coches que S&Iacute; se han excedido en el tiempo: <input type="submit" name="CambiaSuperado" value="Excedidos">
         </form>
+        <br />
+        <br />
+        <form action="controlador" method="get">
+            Vista Administrador: <input type="submit" name="administrador" value="Administrador">
+        </form>
     </body>
 </html>
