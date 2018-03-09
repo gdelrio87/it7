@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Aparcamiento {
     
     Session sesion = null;
 
-    public List<Coche> listadoCoches() {
+    public List<Coche> listadoCoches() throws SQLException {
         List<Coche> listaCoches = new ArrayList<Coche>();
         
         sesion = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -35,7 +36,7 @@ public class Aparcamiento {
         return listaCoches;
     }
     
-    public List<Coche> listadoCocheMatricula(String matricula) {
+    public List<Coche> listadoCocheMatricula(String matricula) throws SQLException{
         List<Coche> listaCoches = new ArrayList<Coche>();
         
         sesion = HibernateUtil.getSessionFactory().getCurrentSession();
