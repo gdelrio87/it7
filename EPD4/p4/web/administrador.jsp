@@ -45,5 +45,9 @@
             %>
         </table>
         
+        <form action="controladorAdmin" method="get">
+            <input type="submit" name="volver" value="volver" />
+        </form>
+        
     </body>
 </html>

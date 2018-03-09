@@ -38,58 +38,92 @@ public class Aparcamiento {
 
     public static List<Coche> listadoCoches() throws SQLException {
         List<Coche> listaCoches = new ArrayList<Coche>();
-        
-        Connection conexion = DriverManager.getConnection(url,usuario,clave);
-        
+
+        Connection conexion = DriverManager.getConnection(url, usuario, clave);
+
         Statement st = (Statement) conexion.createStatement();
-        
+
         ResultSet resultado = st.executeQuery("select * from coche");
 
-        while(resultado.next()){
-        Coche coche = new Coche(resultado.getString("matricula"), resultado.getString("modelo"), resultado.getTime("horaEntrada"), resultado.getTime("horaSalida"), resultado.getInt("tiempoPermitido"));
-        listaCoches.add(coche);
+        while (resultado.next()) {
+            Coche coche = new Coche(resultado.getString("matricula"), resultado.getString("modelo"), resultado.getTime("horaEntrada"), resultado.getTime("horaSalida"), resultado.getInt("tiempoPermitido"));
+            listaCoches.add(coche);
         }
-        
+
         resultado.close();
         st.close();
         conexion.close();
-        
+
         return listaCoches;
     }
-    
+
     public static List<Coche> buscarCocheMatricula(String matricula) throws SQLException {
         List<Coche> listaCoches = new ArrayList<Coche>();
-        
-        Connection conexion = DriverManager.getConnection(url,usuario,clave);
-        
-        Statement st = (Statement) conexion.createStatement();
-        
-        ResultSet resultado = st.executeQuery("select * from coche where matricula like '"+ matricula + "%'");
 
-        while(resultado.next()){
-        Coche coche = new Coche(resultado.getString("matricula"), resultado.getString("modelo"), resultado.getTime("horaEntrada"), resultado.getTime("horaSalida"), resultado.getInt("tiempoPermitido"));
-        listaCoches.add(coche);
+        Connection conexion = DriverManager.getConnection(url, usuario, clave);
+
+        Statement st = (Statement) conexion.createStatement();
+
+        ResultSet resultado = st.executeQuery("select * from coche where matricula like '" + matricula + "%'");
+
+        while (resultado.next()) {
+            Coche coche = new Coche(resultado.getString("matricula"), resultado.getString("modelo"), resultado.getTime("horaEntrada"), resultado.getTime("horaSalida"), resultado.getInt("tiempoPermitido"));
+            listaCoches.add(coche);
         }
-        
+
         resultado.close();
         st.close();
         conexion.close();
         return listaCoches;
-    
+
     }
-    
-    public static void update(String matricula,String modelo, Time horaEntrada,Time horaSalida, int tiempoPermitido,String matriculaOriginal) throws SQLException{
-        Connection conexion = DriverManager.getConnection(url,usuario,clave);
-        
+
+    public static int update(String matricula, String modelo, Time horaEntrada, Time horaSalida, int tiempoPermitido, String matriculaOriginal) throws SQLException {
+        Connection conexion = DriverManager.getConnection(url, usuario, clave);
+
         Statement st = (Statement) conexion.createStatement();
-        
-        ResultSet resultado = st.executeQuery("UPDATE `coche` SET `matricula` = '"+matricula+"',"
-                + " `modelo` = '"+modelo+"', `horaEntrada` = '"+horaEntrada+"',"
-                + " `horaSalida` = '"+horaSalida+"', `tiempoPermitido` = '"+tiempoPermitido+"' WHERE `coche`.`matricula` = '"+matriculaOriginal+"'");
-        
-        resultado.close();
+
+        String sql = "UPDATE `coche` SET `matricula` = '" + matricula + "',"
+                + " `modelo` = '" + modelo + "', `horaEntrada` = '" + horaEntrada + "',"
+                + " `horaSalida` = '" + horaSalida + "', `tiempoPermitido` = '" + tiempoPermitido + "' WHERE `coche`.`matricula` = '" + matriculaOriginal + "';";
+
+        int resultado = st.executeUpdate(sql);
+
         st.close();
         conexion.close();
+
+        return resultado;
+    }
+
+    public static int insert(String matricula, String modelo, Time horaEntrada, Time horaSalida, int tiempoPermitido) throws SQLException {
+        Connection conexion = DriverManager.getConnection(url, usuario, clave);
+
+        Statement st = (Statement) conexion.createStatement();
+
+        String sql = "INSERT INTO `coche` (`id`, `matricula`, `modelo`, `horaEntrada`, `horaSalida`, `tiempoPermitido`) VALUES (NULL, '" + matricula + "',"
+                + " '" + modelo + "', '" + horaEntrada + "', '" + horaSalida + "', '" + tiempoPermitido + "');";
+
+        int resultado = st.executeUpdate(sql);
+
+        st.close();
+        conexion.close();
+
+        return resultado;
+    }
+
+    public static int delete(String matricula) throws SQLException {
+        Connection conexion = DriverManager.getConnection(url, usuario, clave);
+
+        Statement st = (Statement) conexion.createStatement();
+
+        String sql = "DELETE FROM `coche` WHERE `coche`.`matricula` = '" + matricula + "';";
+
+        int resultado = st.executeUpdate(sql);
+
+        st.close();
+        conexion.close();
+
+        return resultado;
     }
 
 }

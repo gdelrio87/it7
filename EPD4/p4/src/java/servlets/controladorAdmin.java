@@ -54,16 +54,17 @@ public class controladorAdmin extends HttpServlet {
 
         }else if(request.getParameter("eliminar") != null){
             
+            String matricula = request.getParameter("eliminar");
+            
+            Aparcamiento.delete(matricula);
+            
             List<Coche> listadoAparcamientos = Aparcamiento.listadoCoches();
             request.setAttribute("listadoCoches", listadoAparcamientos);
+            
             url = "/administrador.jsp";
             
         }else if(request.getParameter("insertarJDBC") != null){
             
-            
-        
-        }else if(request.getParameter("editarJDBC") != null){
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             
             String matricula = request.getParameter("matricula");
             String modelo = request.getParameter("modelo");
@@ -71,7 +72,25 @@ public class controladorAdmin extends HttpServlet {
             Time horaSalida = Time.valueOf(request.getParameter("horaSalida"));
             int tiempoPermitido = Integer.parseInt(request.getParameter("tiempoPermitido"));
             
-            String matriculaOriginal = (String)request.getAttribute("matriculaOriginal");
+            Aparcamiento.insert(matricula, modelo, horaEntrada, horaSalida, tiempoPermitido);
+            
+            List<Coche> listadoAparcamientos = Aparcamiento.listadoCoches();
+            request.setAttribute("listadoCoches", listadoAparcamientos);
+            
+            url = "/administrador.jsp";
+            
+            
+        
+        }else if(request.getParameter("editarJDBC") != null){
+          
+            
+            String matricula = request.getParameter("matricula");
+            String modelo = request.getParameter("modelo");
+            Time horaEntrada = Time.valueOf(request.getParameter("horaEntrada"));
+            Time horaSalida = Time.valueOf(request.getParameter("horaSalida"));
+            int tiempoPermitido = Integer.parseInt(request.getParameter("tiempoPermitido"));
+            
+            String matriculaOriginal = (String)request.getParameter("matriculaOriginal");
             
             Aparcamiento.update(matricula, modelo, horaEntrada, horaSalida, tiempoPermitido, matriculaOriginal);
             
@@ -80,6 +99,11 @@ public class controladorAdmin extends HttpServlet {
             
             url = "/administrador.jsp";
         
+        }else if(request.getParameter("volver") != null){
+            List<Coche> listadoAparcamientos = Aparcamiento.listadoCoches();
+            request.setAttribute("listadoCoches", listadoAparcamientos);
+            
+            url = "/index.jsp";
         }
         
         ServletContext sc = getServletContext();
