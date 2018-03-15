@@ -50,7 +50,7 @@ public class LibreriaServlet extends HttpServlet {
                 String url = "/Compra.jsp";
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
-                request.setAttribute("ListaLibros", Almacen.consultaLibrosDisponibles());
+                //request.setAttribute("ListaLibros", Almacen.consultaLibrosDisponibles());
                 try {
                     request.setAttribute("ListaCompra", Almacen.consultaListaLibrosSolicitados((List) session.getAttribute("tienda.carro")));
                 } catch (Exception ex) {

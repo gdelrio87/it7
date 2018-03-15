@@ -8,8 +8,8 @@
 <%@page import="java.util.*" %>
 <%@page import="libreria.*" %>
 <%
-    List<String> listaIsbns
-            = (List<String>) session.getAttribute("tienda.carro");
+//    List<String> listaIsbns
+//            = (List<String>) session.getAttribute("tienda.carro");
     List<Libro> listaCompra
             = (List) request.getAttribute("ListaCompra");
     if (listaCompra != null && (listaCompra.size() > 0)) {
