@@ -11,6 +11,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
+
 public class Almacen {
 
     Session session = null;
@@ -57,6 +58,7 @@ public class Almacen {
     }
 
     public List<Libro> consultaLibrosDisponibles() throws SQLException {
+        
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q = session.createQuery("from Libro");
