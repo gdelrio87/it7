@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 10-03-2018 a las 04:56:55
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.9
+-- Servidor: localhost
+-- Tiempo de generación: 15-03-2018 a las 13:31:14
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,10 +30,11 @@ USE `almacen`;
 -- Estructura de tabla para la tabla `editorial`
 --
 
-CREATE TABLE `editorial` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE IF NOT EXISTS `editorial` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `editorial`
@@ -49,14 +50,16 @@ INSERT INTO `editorial` (`id`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `libro`
 --
 
-CREATE TABLE `libro` (
+CREATE TABLE IF NOT EXISTS `libro` (
   `id` int(11) NOT NULL,
   `autor` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `titulo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `precio` float NOT NULL,
   `isbn` int(11) NOT NULL,
-  `id_editorial` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id_editorial` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `libro_ibfk_1` (`id_editorial`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `libro`
@@ -73,30 +76,14 @@ INSERT INTO `libro` (`id`, `autor`, `titulo`, `precio`, `isbn`, `id_editorial`) 
 (8, 'Juan Pérez Mercader', '¿Qué Sabemos del Universo?', 11.5, 108, 2);
 
 --
--- Índices para tablas volcadas
+-- Restricciones para tablas volcadas
 --
 
 --
--- Indices de la tabla `editorial`
---
-ALTER TABLE `editorial`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `libro`
+-- Filtros para la tabla `libro`
 --
 ALTER TABLE `libro`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `editorial`
---
-ALTER TABLE `editorial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  ADD CONSTRAINT `libro_ibfk_1` FOREIGN KEY (`id_editorial`) REFERENCES `editorial` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

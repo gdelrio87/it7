@@ -7,8 +7,11 @@ package libreria.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -35,53 +38,60 @@ public class LibreriaServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
-        if (session != null) {
-
+        Almacen almacen = new Almacen();
+        if (session != null && request.getParameter("Agregar") != null || request.getParameter("Comprar") != null) {
+            request.setAttribute("listaLibros", almacen.consultaLibrosDisponibles());
             String accion = request.getParameter("Accion");
 
             if (accion.equals("agregar")) {
 
                 List<String> listaIsbns = (List<String>) session.getAttribute("tienda.carro");
                 String isbn = request.getParameter("seleccionLibros");
-                Libro libro = null;
-                try {
-                    Almacen almacen = new Almacen();
-                    libro = almacen.consultaLibro(Integer.parseInt(isbn));
-                    if (libro != null) {
-                        if (listaIsbns == null) {
-                            listaIsbns = new ArrayList<String>(10);
-                        }
-                        listaIsbns.add(isbn);
-                        session.setAttribute("tienda.carro", listaIsbns);
-                    } else {
-                        PrintWriter out = response.getWriter();
-                        out.print("ERROR: Libro con ISBN " + isbn + " no estádisponible.");
-                        out.close();
+
+                if (almacen.consultaDisponibilidadLibro(Integer.parseInt(isbn))) {
+                    if (listaIsbns == null) {
+                        listaIsbns = new ArrayList<String>(10);
                     }
-                } catch (Exception ex) {
+                    listaIsbns.add(isbn);
+                    
+                    session.setAttribute("tienda.carro", listaIsbns);
+
+                } else {
                     PrintWriter out = response.getWriter();
-                    out.print("ERROR: " + ex.getMessage());
+                    out.print("" + isbn);
                     out.close();
                 }
                 //OJO!! debe empezar con '/' para indicar que es relativo al contexto actual
                 String url = "/Tienda.jsp";
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
+                try {
+                    request.setAttribute("librosSolicitados", almacen.consultaListaLibrosSolicitados(listaIsbns));   
+                    //request.setAttribute("editorial",almacen.consultaEditorial(isbn));
+
+                } catch (Exception ex) {
+                    Logger.getLogger(LibreriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 rd.forward(request, response);
             } else if (accion.equals("comprar")) {
                 String url = "/Compra.jsp";
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
+                try {
+                    request.setAttribute("librosSolicitados", almacen.consultaListaLibrosSolicitados((List<String>) session.getAttribute("tienda.carro")));
+                } catch (Exception ex) {
+                    Logger.getLogger(LibreriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 rd.forward(request, response);
             }
         } else {
-
             String url = "/Tienda.jsp";
             ServletContext sc = getServletContext();
             RequestDispatcher rd = sc.getRequestDispatcher(url);
+            request.setAttribute("listaLibros", almacen.consultaLibrosDisponibles());
             rd.forward(request, response);
 
         }
@@ -100,7 +110,11 @@ public class LibreriaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(LibreriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -114,7 +128,11 @@ public class LibreriaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(LibreriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

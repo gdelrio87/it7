@@ -10,13 +10,7 @@
 <%@page import="libreria.Libro" %>
 
 <%
-    List<Libro> listaLibros = null;
-    try {
-        Almacen almacen = new Almacen();
-        listaLibros = almacen.consultaLibrosDisponibles();
-    } catch (Exception ex) {
-        out.print(ex.getMessage());
-    }
+    List<Libro> listaLibros = (List<Libro>)request.getAttribute("listaLibros");
 %>
 <html>
     <head>

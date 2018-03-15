@@ -9,9 +9,10 @@ session.getCreationTime() or session.getLastAccessTime(): --%>
 <%@page import="java.util.*" %>
 <%@page import="libreria.*" %>
 <%
-    Almacen almacen = new Almacen();
-    List<String> listaIsbns = (List<String>) session.getAttribute("tienda.carro");
-    List<Libro> listaCompra = almacen.consultaListaLibrosSolicitados(listaIsbns);
+        List<String> listaIsbns = (List<String>) session.getAttribute("tienda.carro");
+
+    //List<Libro> listaCompra = Almacen.consultaListaLibrosSolicitados(listaIsbns);
+    List<Libro> listaCompra = (List<Libro>)request.getAttribute("librosSolicitados");
     if (listaCompra != null && (listaCompra.size() > 0)) {
 %>
 <center>
@@ -25,15 +26,15 @@ session.getCreationTime() or session.getLastAccessTime(): --%>
         </tr>
         <%
             for (int idx = 0; idx < listaCompra.size(); idx++) {
-                Libro libro = listaCompra.get(idx);
-                String editorial = almacen.consultaEditorial(libro.getIdEditorial());
+                Libro libro = listaCompra.get(idx);                
+                //request.setAttribute("idEditorial", libro.getId()); 
         %>
         <tr>
             <td><b><%= libro.getTitulo()%></b></td>
             <td><b><%= libro.getAutor()%></b></td>
             <td><b><%= libro.getPrecio()%></b></td>
             <td><b><%= libro.getCantidad()%></b></td>
-            <td><b><%= editorial%></b></td>
+            <td><b><%= libro.getEditorial().getNombre()%></b></td>
         </tr>
         <%
             }%>
