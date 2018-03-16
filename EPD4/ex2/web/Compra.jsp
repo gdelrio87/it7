@@ -6,11 +6,7 @@
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <%@ page session="true" import="java.util.*, libreria.*" %>
 <%
-    Almacen almacen = new Almacen();
-    List<String> listaIsbns
-            = (List<String>) session.getAttribute("tienda.carro");
-    List<Libro> listaCompra
-            = almacen.consultaListaLibrosSolicitados(listaIsbns);
+    List<Libro> listaCompra = (List<Libro>) request.getAttribute("ListaCompra");
 %>
 
 <html>

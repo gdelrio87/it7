@@ -26,6 +26,7 @@
                         Libro libro = listaLibros.get(i);
                         String txtLibro = libro.getTitulo() + "; "
                                 + libro.getAutor() + "; " + libro.getPrecio();
+                        
                 %>
                 <option value="<%=String.valueOf(libro.getIsbn())%>"><%=txtLibro%></option>
                 <% }%>
