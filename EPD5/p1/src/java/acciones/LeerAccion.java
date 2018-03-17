@@ -5,6 +5,7 @@
  */
 package acciones;
 
+
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 import libreria.Almacen;
@@ -37,5 +38,5 @@ public class LeerAccion extends ActionSupport {
         setListaLibros(almacen.consultaLibrosDisponibles());
         return SUCCESS;
     }
-    
+
 }

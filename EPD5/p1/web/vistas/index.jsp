@@ -38,7 +38,7 @@
                         <td> <s:property value="autor" /> </td>
                         <td> <s:property value="precio" /> </td>
                         <td> <s:property value="cantidad" /> </td>  
-                        <td> <s:property value="Editorial.nombre" /> </td>  
+                        <td> <s:property value="editorial.nombre" /> </td>  
                     </tr>
                 </s:iterator>
 

@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
+
 
 public class Almacen {
 
@@ -56,6 +58,7 @@ public class Almacen {
     }
 
     public List<Libro> consultaLibrosDisponibles() throws SQLException {
+        
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q = session.createQuery("from Libro");
@@ -64,34 +67,4 @@ public class Almacen {
         tx.commit();
         return resultados;
     }
-    
-    public String consultaEditorial(String isbn){
-        
-        Editorial editorial = null;
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("from Editorial where id = (from Libro where isbn = "+isbn+")");
-        
-        editorial = (Editorial) q.uniqueResult();
-        
-        tx.commit();
-        
-        return editorial.getNombre();
-    }
-    
-    public boolean consultaDisponibilidadLibro(int isbn) throws SQLException {
-
-        boolean disponible = false;
-        List<Libro> lista = this.consultaLibrosDisponibles();
-        Iterator it = lista.iterator();
-        while (it.hasNext() && !disponible) {
-            Libro libro = (Libro) it.next();
-            if (libro.getIsbn() == isbn) {
-                disponible = true;
-            }
-        }
-        return disponible;
-        
-    }
-    
 }
