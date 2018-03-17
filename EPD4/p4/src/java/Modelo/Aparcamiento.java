@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +83,7 @@ public class Aparcamiento {
         Connection conexion = DriverManager.getConnection(url, usuario, clave);
 
         Statement st = (Statement) conexion.createStatement();
-
+      
         String sql = "UPDATE `coche` SET `matricula` = '" + matricula + "',"
                 + " `modelo` = '" + modelo + "', `horaEntrada` = '" + horaEntrada + "',"
                 + " `horaSalida` = '" + horaSalida + "', `tiempoPermitido` = '" + tiempoPermitido + "' WHERE `coche`.`matricula` = '" + matriculaOriginal + "';";

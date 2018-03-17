@@ -68,8 +68,8 @@ public class controladorAdmin extends HttpServlet {
             
             String matricula = request.getParameter("matricula");
             String modelo = request.getParameter("modelo");
-            Time horaEntrada = Time.valueOf(request.getParameter("horaEntrada"));
-            Time horaSalida = Time.valueOf(request.getParameter("horaSalida"));
+            Time horaEntrada = Time.valueOf(request.getParameter("horaEntrada")+":00");
+            Time horaSalida = Time.valueOf(request.getParameter("horaSalida")+":00");
             int tiempoPermitido = Integer.parseInt(request.getParameter("tiempoPermitido"));
             
             Aparcamiento.insert(matricula, modelo, horaEntrada, horaSalida, tiempoPermitido);
