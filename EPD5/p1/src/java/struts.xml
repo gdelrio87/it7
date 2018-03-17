@@ -1,0 +1,41 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        <action name="">
+            <result type="chain">
+                <param name="actionName">LeerAccion</param>
+            </result>
+        </action>
+    </package>
+    
+    <package name="lectura" extends="struts-default">
+        <action name="LeerAccion" class="acciones.LeerAccion">
+            <result name="success">/vistas/index.jsp</result>
+        </action>
+    </package>
+    
+    <package name="carrito" extends="struts-default">
+        <!--
+        <action name="AddCarrito" class="acciones.AddCarrito">
+            <result name="success">/vistas/index.jsp</result>
+        </action>
+        --> 
+        <action name="AddCarrito" class="acciones.AddCarrito">
+            <result type="chain">
+                <param name="actionName">LeerAccion</param> 
+                <!-- 
+                    Se llama a LeerAccion porque cuando vuelve de agregar al carrito debe de volver a cargar el select donde estan todos los libros (esta tambien se encarga de llamar a la vista principal),
+                    en caso de que se llame a la vista principal no se le llamaria a este metodo y no cargaria el select, por lo que petaria. 
+                -->
+            </result>
+        </action>
+        
+        <action name="Comprar" class="acciones.AddCarrito" method="comprar">
+            <result name="success">/vistas/compra.jsp</result>
+        </action>
+    </package>
+</struts>
