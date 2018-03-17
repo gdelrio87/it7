@@ -66,11 +66,10 @@ public class controladorAdmin extends HttpServlet {
             
         }else if(request.getParameter("insertarJDBC") != null){
             
-            
             String matricula = request.getParameter("matricula");
             String modelo = request.getParameter("modelo");
-            Time horaEntrada = Time.valueOf(request.getParameter("horaEntrada"));
-            Time horaSalida = Time.valueOf(request.getParameter("horaSalida"));
+            Time horaEntrada = Time.valueOf(request.getParameter("horaEntrada")+":00");
+            Time horaSalida = Time.valueOf(request.getParameter("horaSalida")+":00");
             int tiempoPermitido = Integer.parseInt(request.getParameter("tiempoPermitido"));
             
             aparcamiento.insert(matricula, modelo, horaEntrada, horaSalida, tiempoPermitido);
@@ -80,8 +79,6 @@ public class controladorAdmin extends HttpServlet {
             
             url = "/administrador.jsp";
             
-            
-        
         }else if(request.getParameter("editarJDBC") != null){
           
             
