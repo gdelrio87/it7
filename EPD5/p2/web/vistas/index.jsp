@@ -1,12 +1,9 @@
 <%-- 
     Document   : index
-    Created on : 22-feb-2018, 12:43:36
-    Author     : Grupo 7 IT 
+    Created on : 19-mar-2018, 13:39:04
+    Author     : Gonza
 --%>
 
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.List"%>
-<%@page import="Modelo.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
@@ -16,48 +13,44 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <s:select list="listaAparcamientos" ></s:select>
-        <table border="1">
-            <tr><th>Matricula</th><th>Modelo</th><th>Hora de entrada</th><th>Hora de salida</th><th>Tiempo permitido</th></tr>
-                    <%
-                        /*SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                        List<Coche> listadoAparcamientos = (List<Coche>) request.getAttribute("listadoCoches");
-                        for (int i = 0; i < listadoAparcamientos.size(); i++) {*/
-                    %>
-            
-            
-            
-            <tr>
-                <td><%= //listadoAparcamientos.get(i).getMatricula()%></td>
-                <td><%= //listadoAparcamientos.get(i).getModelo()%></td>                
-                <td><%= // sdf.format(listadoAparcamientos.get(i).getHoraEntrada())%></td>
-                <td><% //if (!sdf.format(listadoAparcamientos.get(i).getHoraSalida()).equals("00:00")) {
-                        //out.print(sdf.format(listadoAparcamientos.get(i).getHoraSalida()));
-                    //} else { */
-                    %>
-                    --
-                    <%
-                        //}
-                        %></td>
-                <td><%= //listadoAparcamientos.get(i).getTiempoPermitido()%></td>
-            </tr>
 
-            <%
-                //}
-            %>
+        <table border="1">
+            <tr>
+                <th>Matricula</th>
+                <th>Modelo</th>
+                <th>Hora entrada</th>
+                <th>Hora salida</th>
+                <th>Tiempo Permitido</th>
+            </tr>
+            <s:iterator value="listadoAparcamientos" >
+                <tr>
+                    <td><s:property value="matricula" /></td>
+                    <td><s:property value="modelo" /></td>
+                    <td>
+                        <s:property value="horaEntrada" />
+                    </td>
+                    <td>
+                        <s:property value="horaSalida" /> 
+                    </td>
+                    <td><s:property value="tiempoPermitido" /></td>
+                </tr>
+            </s:iterator>
         </table>
-        
-        <form action="controlador" method="get">
-            Buscar inicio matr&iacute;cula: <input type="text" name="buscar" />
-            <input type="submit" name="enviar" value="Enviar" />
-        </form>
-        <form action="controlador" method="get">
-            Buscar coches que se encuentran en el aparcamiento: <input type="submit" name="aparcados" value="Aparcados"   />
-        </form>
-        <form action="controlador" method="get">
-            Mostar coches que NO se han excedido en el tiempo: <input type="submit" name="CambiaCorrecto" value="Correctos">
-            <br />
-            Mostar coches que S&Iacute; se han excedido en el tiempo: <input type="submit" name="CambiaSuperado" value="Excedidos">
-        </form>
+        <s:form action="buscarCorrectos">
+            <s:submit name="cochesCorrectos" value="Coches Correctos"></s:submit>
+        </s:form>
+        <s:form action="buscarExcedidos">
+            <s:submit name="cochesExcedidos" value="Coches Excedidos"></s:submit>
+        </s:form>
+        <s:form action="buscarAparcados">
+            <s:submit name="cochesAparcados" value="Coches Aparcados"></s:submit>
+        </s:form>
+        <s:form action="cogerDatos">
+            <s:submit name="todos" value="Todos los coches"></s:submit>
+        </s:form>
+        <s:form action="buscarMatricula">
+            <s:textfield name="matricula" label="Buscar por el inicio de la matrícula"></s:textfield>
+            <s:submit name="buscarMatricula" value="Buscar"></s:submit>
+        </s:form>
     </body>
 </html>

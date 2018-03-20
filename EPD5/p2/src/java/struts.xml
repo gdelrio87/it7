@@ -2,8 +2,9 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
+<!-- Author: Gonza -->
+ 
 <struts>
-    <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
         <action name="">
             <result type="chain">
@@ -12,8 +13,20 @@
         </action>
     </package>
     
-    <package name="leerCoches" extendes="struts-default">
-        <action name="cogerDatos" class="acciones.buscarAccion">
+    <package name="leerCoches" extends="struts-default">
+        <action name="cogerDatos" class="acciones.cocheAccion">
+            <result name="success">/vistas/index.jsp</result>
+        </action>
+        <action name="buscarCorrectos" method="cochesCorrectos" class="acciones.cocheAccion" >
+            <result name="success">/vistas/index.jsp</result>
+        </action>
+        <action name="buscarExcedidos" method="cochesExcedidos" class="acciones.cocheAccion" >
+            <result name="success">/vistas/index.jsp</result>
+        </action>
+        <action name="buscarMatricula" method="buscarCocheMatricula" class="acciones.cocheAccion" >
+            <result name="success">/vistas/index.jsp</result>
+        </action>
+        <action name="buscarAparcados" method="buscarCocheAparcado" class="acciones.cocheAccion" >
             <result name="success">/vistas/index.jsp</result>
         </action>
     </package>
