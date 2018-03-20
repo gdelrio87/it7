@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : 19-mar-2018, 13:39:04
-    Author     : Gonza
+    Document   : vistaAdd
+    Created on : 20-mar-2018, 16:33:06
+    Author     : Antonio Jose Herrera Tabaco 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,7 +13,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-
         <table border="1">
             <tr>
                 <th>Matricula</th>
@@ -41,12 +40,6 @@
                 </tr>
             </s:iterator>
         </table>
-        <s:form action="buscarCorrectos">
-            <s:submit name="cochesCorrectos" value="Coches Correctos"></s:submit>
-        </s:form>
-        <s:form action="buscarExcedidos">
-            <s:submit name="cochesExcedidos" value="Coches Excedidos"></s:submit>
-        </s:form>
         <s:form action="buscarAparcados">
             <s:submit name="cochesAparcados" value="Coches Aparcados"></s:submit>
         </s:form>

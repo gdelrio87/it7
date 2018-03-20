@@ -82,10 +82,9 @@ public class Aparcamiento {
     
     public List<Coche> listadoCochesAparcados(List<Coche> listaCoches) {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             List<Coche> listaAparcados = new ArrayList<Coche>();
             for (int i = 0; i < listaCoches.size(); i++) {
-                if (sdf.format(listaCoches.get(i).getHoraSalida()).equals("00:00")) {
+                if (listaCoches.get(i).getHoraSalida() == null) {
                     listaAparcados.add(listaCoches.get(i));
                 }
             }
