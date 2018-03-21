@@ -18,10 +18,10 @@
             <result name="success">/vistas/index.jsp</result>
         </action>
         <action name="buscarCorrectos" method="cochesCorrectos" class="acciones.cocheAccion" >
-            <result name="success">/vistas/vistaAdd.jsp</result>
+            <result name="success">/vistas/index.jsp</result>
         </action>
         <action name="buscarExcedidos" method="cochesExcedidos" class="acciones.cocheAccion" >
-            <result name="success">/vistas/vistaAdd.jsp</result>
+            <result name="success">/vistas/index.jsp</result>
         </action>
         <action name="buscarMatricula" method="buscarCocheMatricula" class="acciones.cocheAccion" >
             <result name="success">/vistas/index.jsp</result>
