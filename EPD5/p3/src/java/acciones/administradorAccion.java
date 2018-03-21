@@ -20,10 +20,12 @@ public class administradorAccion extends ActionSupport {
     private Aparcamiento aparcamiento;
     private List<Coche> listadoAparcamientos;
     private String matricula;
+    private String matriculaOriginal;
     private String modelo;
     private Time horaEntrada;
     private Time horaSalida;
     private int tiempoPermitido;
+    private String tipoDAO;
     
     public administradorAccion() {
     }
@@ -33,13 +35,44 @@ public class administradorAccion extends ActionSupport {
         return SUCCESS;
     }
     
-    public String dao() throws Exception {
+    public String insertar() throws Exception {
         aparcamiento = new Aparcamiento();
 
         aparcamiento.insert(getMatricula(),getModelo(),getHoraEntrada(), getHoraSalida(), getTiempoPermitido());
 
         return SUCCESS;
     }
+    
+    public String update() throws Exception {
+        aparcamiento = new Aparcamiento();
+
+        aparcamiento.update(getMatricula(),getModelo(),getHoraEntrada(), getHoraSalida(), getTiempoPermitido(), getMatriculaOriginal());
+
+        return SUCCESS;
+    }
+    
+    public String eliminar() throws Exception {
+        aparcamiento = new Aparcamiento();
+
+        aparcamiento.delete(getMatricula());
+
+        return SUCCESS;
+    }
+    
+    public String vistaUpdate() throws Exception{
+        
+        aparcamiento = new Aparcamiento();
+        
+        listadoAparcamientos = aparcamiento.listadoCocheMatricula(getMatricula());
+        setMatricula(listadoAparcamientos.get(0).getMatricula());
+        setModelo(listadoAparcamientos.get(0).getModelo());
+        setHoraEntrada(listadoAparcamientos.get(0).getHoraEntrada());
+        setHoraSalida(listadoAparcamientos.get(0).getHoraSalida());
+        setTiempoPermitido(listadoAparcamientos.get(0).getTiempoPermitido());
+        
+        return SUCCESS;
+    }
+    
 
     public Aparcamiento getAparcamiento() {
         return aparcamiento;
@@ -96,6 +129,23 @@ public class administradorAccion extends ActionSupport {
     public void setTiempoPermitido(int tiempoPermitido) {
         this.tiempoPermitido = tiempoPermitido;
     }
+
+    public String getTipoDAO() {
+        return tipoDAO;
+    }
+
+    public void setTipoDAO(String tipoDAO) {
+        this.tipoDAO = tipoDAO;
+    }
+
+    public String getMatriculaOriginal() {
+        return matriculaOriginal;
+    }
+
+    public void setMatriculaOriginal(String matriculaOriginal) {
+        this.matriculaOriginal = matriculaOriginal;
+    }
+    
     
     
 }

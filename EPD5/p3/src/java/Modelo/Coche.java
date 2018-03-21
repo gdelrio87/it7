@@ -1,6 +1,7 @@
 package Modelo;
 // Generated 19-mar-2018 13:26:03 by Hibernate Tools 4.3.1
 
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -11,14 +12,14 @@ public class Coche implements java.io.Serializable {
     private Integer id;
     private String matricula;
     private String modelo;
-    private Date horaEntrada;
-    private Date horaSalida;
+    private Time horaEntrada;
+    private Time horaSalida;
     private int tiempoPermitido;
 
     public Coche() {
     }
 
-    public Coche(String matricula, String modelo, Date horaEntrada, Date horaSalida, int tiempoPermitido) {
+    public Coche(String matricula, String modelo, Time horaEntrada, Time horaSalida, int tiempoPermitido) {
         this.matricula = matricula;
         this.modelo = modelo;
         this.horaEntrada = horaEntrada;
@@ -50,19 +51,19 @@ public class Coche implements java.io.Serializable {
         this.modelo = modelo;
     }
 
-    public Date getHoraEntrada() {
+    public Time getHoraEntrada() {
         return this.horaEntrada;
     }
 
-    public void setHoraEntrada(Date horaEntrada) {
+    public void setHoraEntrada(Time horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
 
-    public Date getHoraSalida() {
+    public Time getHoraSalida() {
         return this.horaSalida;
     }
 
-    public void setHoraSalida(Date horaSalida) {
+    public void setHoraSalida(Time horaSalida) {
         this.horaSalida = horaSalida;
     }
 

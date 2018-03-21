@@ -13,8 +13,8 @@
         </action>
     </package>
     
-    <package name="leerCoches" extends="struts-default">
-        <action name="cogerDatos" class="acciones.cocheAccion">
+    <package name="leerCoches"  extends="struts-default">
+        <action name="cogerDatos"  class="acciones.cocheAccion">
             <result name="success">/vistas/index.jsp</result>
         </action>
         <action name="buscarCorrectos" method="cochesCorrectos" class="acciones.cocheAccion" >
@@ -35,8 +35,21 @@
         <action name="vistaAdministrador" class="acciones.administradorAccion">
             <result name="success">/vistas/administrador.jsp</result>
         </action>
-        <action name="DAO" method="dao" class="acciones.administradorAccion" >
+        <action name="DAOinsertar" method="insertar" class="acciones.administradorAccion" >
             <result type="chain" >
+                <param name="actionName">cogerDatos</param>
+            </result>
+        </action>
+        <action name="DAOeliminar" method="eliminar" class="acciones.administradorAccion" >
+            <result type="chain" >
+                <param name="actionName">cogerDatos</param>
+            </result>
+        </action>
+        <action name="vistaUpdate" method="vistaUpdate" class="acciones.administradorAccion">
+            <result name="success">/vistas/administrador.jsp</result>
+        </action>
+        <action name="DAOeditar" method="update"  class="acciones.administradorAccion" >
+            <result type="chain">
                 <param name="actionName">cogerDatos</param>
             </result>
         </action>

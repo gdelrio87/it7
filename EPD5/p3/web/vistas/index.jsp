@@ -24,6 +24,7 @@
                 <th colspan="2">
                     <form action="vistaAdministrador">
                         <input type="image" src="iconos/insertar.png" style="width: 30%;" />
+                        <input type="hidden" name="tipoDAO" value="insert"/>
                     </form>
                 </th>
             </tr>
@@ -35,7 +36,7 @@
                         <s:date name="horaEntrada" format="HH:mm"/>
                     </td>
                     <td>
-                        <s:if test="%{horaSalida == null}">
+                        <s:if test="%{horaSalida.toString().equals('00:00:00')}">
                             <s:text name="--"/> 
                         </s:if>                                                    
                         <s:else>                            
@@ -43,11 +44,14 @@
                         </s:else>
                     </td>
                     <td><s:property value="tiempoPermitido" /></td>
-                    <td><form action="vistaAdministrador">
+                    <td><form action="vistaUpdate">
                         <input type="image" src="iconos/editar.png" style="width: 30%;" />
+                        <input type="hidden" name="matricula" value="<s:property value="matricula"/>"/>
+                        <input type="hidden" name="tipoDAO" value="update"/>
                     </form></td>
-                    <td><form action="vistaAdministrador">
-                        <input type="image" src="iconos/eliminar.png" style="width: 30%;" />
+                    <td><form action="DAOeliminar">
+                            <input type="image" src="iconos/eliminar.png" style="width: 30%;" />
+                            <input type="hidden" name="matricula" value="<s:property value="matricula"/>"/>
                     </form></td>
                 </tr>
             </s:iterator>
@@ -67,9 +71,6 @@
         <s:form action="buscarMatricula">
             <s:textfield name="matriculaBuscar" label="Buscar por el inicio de la matrícula"></s:textfield>
             <s:submit name="buscarMatricula" value="Buscar"></s:submit>
-        </s:form>
-        <s:form action="vistaAdministrador">
-            <s:submit name="administrador" value="Formulario Administrador"></s:submit>
         </s:form>
     </body>
 </html>
