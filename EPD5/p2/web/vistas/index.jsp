@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 19-mar-2018, 13:39:04
-    Author     : Gonza
+    Author     : Grupo 7 IT
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
