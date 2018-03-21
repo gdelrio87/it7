@@ -1,0 +1,42 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="default" extends="struts-default">
+        <action name="">
+            <result type="chain">
+                <param name="actionName">LeerAccion</param>
+            </result>
+        </action>
+    </package>
+    
+    <package name="lectura" extends="struts-default">
+        <action name="LeerAccion" class="acciones.LeerAccion">
+            <result name="success">/vistas/index.jsp</result>
+        </action>
+    </package>
+    
+    <package name="carrito" extends="struts-default">       
+        <action name="AddCarrito" class="acciones.AddCarrito">
+            <result type="chain">
+                <param name="actionName">LeerAccion</param> 
+            </result>
+        </action>
+        
+        <action name="Comprar" class="acciones.AddCarrito" method="comprar">
+            <result name="success">/vistas/compra.jsp</result>
+        </action>
+    </package>
+    
+    <package name="agregar" extends="struts-default">
+        <action name="VistaAgregar"> 
+            <result>/vistas/agregar.jsp</result>  
+        </action>
+        
+        <action name="nuevoLibro" class="acciones.Agregar" method="nuevoLibro">
+            <result name="success">/vistas/index.jsp</result>
+            <result name="input">/vistas/agregar.jsp</result>
+        </action>
+    </package>
+</struts>
