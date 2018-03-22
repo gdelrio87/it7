@@ -5,15 +5,13 @@
  */
 package acciones;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import java.sql.SQLException;
-import java.sql.Time;
 import java.util.List;
+import java.util.Map;
 import libreria.Almacen;
 import libreria.Editorial;
-import libreria.HibernateUtil;
 import libreria.Libro;
-import org.hibernate.Session;
 
 /**
  *
@@ -26,13 +24,13 @@ public class Agregar extends ActionSupport {
     private float precio;
     private int isbn;
     private List<Editorial> listaEditoriales;
-    private Editorial editorial;
+    private int editorial;
 
-    public Editorial getEditorial() {
+    public int getEditorial() {
         return editorial;
     }
 
-    public void setEditorial(Editorial editorial) {
+    public void setEditorial(int editorial) {
         this.editorial = editorial;
     }    
 
@@ -86,16 +84,18 @@ public class Agregar extends ActionSupport {
     
     public String nuevoLibro() throws Exception{
         setListaEditoriales(almacen.consultaEditoriales());
-        almacen.agregar(getEditorial(), getAutor(), getTitulo(), getPrecio(), getIsbn());
+        almacen.agregar(almacen.obtenerEditorial(getEditorial()), getAutor(), getTitulo(), getPrecio(), getIsbn());
+        Map session = (Map) ActionContext.getContext().get("session");
+        session.put("libros", almacen.consultaLibrosDisponibles());
         return SUCCESS;
     }    
 
     public void validate(){
-        if(this.autor == null){
+        if(this.autor.length() == 0){
             addFieldError("autor", "El autor no puede estar vacio");
         }
         
-        if(this.titulo == null){
+        if(this.titulo.length() == 0){
             addFieldError("titulo", "El titulo no puede estar vacio");
         }
         
@@ -106,6 +106,5 @@ public class Agregar extends ActionSupport {
         if(this.isbn == 0){
             addFieldError("isbn", "El isbn no puede estar vacio");
         }
-        
     }
 }

@@ -15,7 +15,7 @@
     <body>        
         <h1>Tienda Electrónica de Libros</h1>
         <s:form action="AddCarrito">
-            <strong>Libros</strong><s:select list="listaLibros" listKey="isbn" listValue="%{titulo+'; ' +autor+'; ' +precio}" name="isbn"/>
+            <strong>Libros</strong><s:select list="#session.libros" listKey="isbn" listValue="%{titulo+'; ' +autor+'; ' +precio}" name="isbn"/>
             <input type="submit" name="agregar" value="Agregar Libro"/>
         </s:form>
         <s:form action="VistaAgregar">

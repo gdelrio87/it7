@@ -39,7 +39,8 @@ public class LeerAccion extends ActionSupport {
         Almacen almacen = new Almacen();        
         Map session = (Map) ActionContext.getContext().get("session");
         session.put("editoriales", almacen.consultaEditoriales());
-        setListaLibros(almacen.consultaLibrosDisponibles());
+        session.put("libros", almacen.consultaLibrosDisponibles());
+        //setListaLibros(almacen.consultaLibrosDisponibles());
         return SUCCESS;
     }
 

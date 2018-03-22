@@ -11,7 +11,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
-
 public class Almacen {
 
     Session session = null;
@@ -58,7 +57,7 @@ public class Almacen {
     }
 
     public List<Libro> consultaLibrosDisponibles() throws SQLException {
-        
+
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q = session.createQuery("from Libro");
@@ -67,8 +66,8 @@ public class Almacen {
         tx.commit();
         return resultados;
     }
-    
-    public List<Editorial> consultaEditoriales(){
+
+    public List<Editorial> consultaEditoriales() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q = session.createQuery("from Editorial");
@@ -77,13 +76,24 @@ public class Almacen {
         tx.commit();
         return resultados;
     }
-    
-    public void agregar(Editorial editorial, String autor, String titulo, float precio, int isbn){
+
+    public Editorial obtenerEditorial(int id) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        org.hibernate.Transaction tx = session.beginTransaction();
+        Editorial editorial = null;
+        Query q = session.createQuery("from Editorial where id = '" + id + "'");
+        editorial = (Editorial) q.uniqueResult();
+        
+        tx.commit();
+        return editorial;
+    }
+
+    public void agregar(Editorial editorial, String autor, String titulo, float precio, int isbn) {
         Session sesion = null;
         sesion = HibernateUtil.getSessionFactory().getCurrentSession();
-        org.hibernate.Transaction tx = sesion.beginTransaction();        
-        
-        Libro libro = new Libro(editorial, autor, titulo, precio, isbn);        
+        org.hibernate.Transaction tx = sesion.beginTransaction();
+
+        Libro libro = new Libro(editorial, autor, titulo, precio, isbn);
         sesion.save(libro);
 
         tx.commit();
