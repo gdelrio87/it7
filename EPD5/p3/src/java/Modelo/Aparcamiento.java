@@ -7,7 +7,6 @@ package Modelo;
 
 import java.sql.SQLException;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -67,44 +66,46 @@ public class Aparcamiento {
         }
         return listaCorrecto;
     }
+
     public List<Coche> listadoCochesExcedidos(List<Coche> listaAparcados) {
 
         List<Coche> listaSuperados = new ArrayList<Coche>();
-            for (int i = 0; i < listaAparcados.size(); i++) {
-                if (listaAparcados.get(i).getHoraSalida() != null) {
-                    if (listaAparcados.get(i).esSuperado()) {
-                        listaSuperados.add(listaAparcados.get(i));
-                    }
+        for (int i = 0; i < listaAparcados.size(); i++) {
+            if (listaAparcados.get(i).getHoraSalida() != null) {
+                if (listaAparcados.get(i).esSuperado()) {
+                    listaSuperados.add(listaAparcados.get(i));
                 }
             }
+        }
         return listaSuperados;
     }
-    
+
     public List<Coche> listadoCochesAparcados(List<Coche> listaCoches) {
 
-            List<Coche> listaAparcados = new ArrayList<Coche>();
-            for (int i = 0; i < listaCoches.size(); i++) {
-                if (listaCoches.get(i).getHoraSalida() == null) {
-                    listaAparcados.add(listaCoches.get(i));
-                }
+        List<Coche> listaAparcados = new ArrayList<Coche>();
+        for (int i = 0; i < listaCoches.size(); i++) {
+            if (listaCoches.get(i).getHoraSalida().toString().equals("00:00:00")) {
+                listaAparcados.add(listaCoches.get(i));
             }
+        }
         return listaAparcados;
     }
-    
+
     public void insert(String matricula, String modelo, Time horaEntrada, Time horaSalida, int tiempoPermitido) throws SQLException {
 
         sesion = HibernateUtil.getSessionFactory().getCurrentSession();
 
         org.hibernate.Transaction tx = sesion.beginTransaction();
-        
-        Coche coche = new Coche(matricula,modelo, horaEntrada, horaSalida, tiempoPermitido);
-        
+        Coche coche = new Coche();
+
+        coche = new Coche(matricula, modelo, horaEntrada, horaSalida, tiempoPermitido);
+
         sesion.save(coche);
 
         tx.commit();
-        
+
     }
-    
+
     public int update(String matricula, String modelo, Time horaEntrada, Time horaSalida, int tiempoPermitido, String matriculaOriginal) throws SQLException {
 
         sesion = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -116,14 +117,14 @@ public class Aparcamiento {
                 + " horaSalida = '" + horaSalida + "', tiempoPermitido = '" + tiempoPermitido + "' where matricula = '" + matriculaOriginal + "'";
 
         Query q = sesion.createQuery(sql);
-        
+
         int numAffected = q.executeUpdate();
 
         tx.commit();
-        
+
         return numAffected;
     }
-    
+
     public int delete(String matricula) throws SQLException {
 
         sesion = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -133,12 +134,12 @@ public class Aparcamiento {
         String sql = "delete from Coche where matricula = '" + matricula + "'";
 
         Query q = sesion.createQuery(sql);
-        
+
         int numAffected = q.executeUpdate();
 
         tx.commit();
-        
+
         return numAffected;
     }
-    
+
 }
