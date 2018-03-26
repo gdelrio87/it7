@@ -1,0 +1,58 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+    <field name="fecha">
+        <field-validator type="date">
+            <param name="min">01/01/50</param>
+            <param name="max">01/01/00</param>
+            <message>Birthday must be within ${min} and ${max}</message>
+        </field-validator>
+    </field>
+    <field name="ingresos">
+        <field-validator type="double">
+            <param name="minInclusive">700,55</param>
+            <param name="maxExclusive">1500,66</param>
+            <message>Doble entre %{minInclusive} y %{maxExclusive}</message>
+        </field-validator>
+    </field>
+    <field name="e_mail">
+        <field-validator type="requiredstring">
+            <message>Email requerido</message>
+        </field-validator>
+        
+        <field-validator type="email">
+            <message>Email no válido</message>
+        </field-validator>
+    </field>
+    
+    <field name="edad">
+        <field-validator type="required">
+            <message>Edad requerida</message>
+        </field-validator>
+        <field-validator type="int">
+            <param name="min">20</param>
+            <param name="max">50</param>
+            <message>Edad entre ${min} y ${max}</message>
+        </field-validator>
+    </field>
+     
+    <field name="nombre">
+          
+        <field-validator type="requiredstring">
+            <message>Nombre requerido</message>
+        </field-validator>
+          
+        <field-validator type="stringlength">
+            <param name="minLength">4</param>
+            <param name="maxLength">12</param>
+            <param name="trim">true</param>
+            <message>El nombre debe tener entre ${minLength} y ${maxLength}</message>
+        </field-validator>
+    </field>
+    <field name="page">
+        <field-validator type="url">
+            <message>URL inválida</message>
+        </field-validator>
+    </field>
+</validators>
