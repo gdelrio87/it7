@@ -55,4 +55,19 @@
             <message>URL inválida</message>
         </field-validator>
     </field>
+    <field name="hora_laboral">
+        <field-validator type="short">
+            <param name="min">4</param>
+            <param name="max">8</param>
+            <message>Las horas deben estar entre ${min} y ${max}</message>
+        </field-validator>
+    </field>
+    <field name="telefono">
+        <field-validator type="regex">
+            <param name="regex"><![CDATA[^[0-9]{9}$]]></param>
+            <message>El telefono debe tener 9 dígitos</message>
+        </field-validator>
+    </field>
+  
+    
 </validators>

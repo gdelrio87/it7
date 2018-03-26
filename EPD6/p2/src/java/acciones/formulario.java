@@ -20,6 +20,8 @@ public class formulario extends ActionSupport {
     private Integer edad;
     private String nombre;
     private String page;
+    private Integer hora_laboral;
+    private Integer telefono;
     
     public formulario() {
     }
@@ -75,6 +77,24 @@ public class formulario extends ActionSupport {
     public void setPage(String page) {
         this.page = page;
     }
+
+    public Integer getHora_laboral() {
+        return hora_laboral;
+    }
+
+    public void setHora_laboral(Integer hora_laboral) {
+        this.hora_laboral = hora_laboral;
+    }
+
+    public Integer getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+
+    
     
     
     
