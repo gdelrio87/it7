@@ -19,7 +19,7 @@
         </action>
         
         <action name="formulario" class="acciones.formulario">
-            <result name="success">/index.jsp</result>
+            <result name="success">/success.jsp</result>
             <result name="input">/index.jsp</result>
         </action>
     </package>

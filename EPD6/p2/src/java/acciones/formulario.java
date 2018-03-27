@@ -16,12 +16,15 @@ public class formulario extends ActionSupport {
     
     private Date fecha;
     private Double ingresos;
+    private Double retencion;
+    private Double neto;
     private String e_mail;
     private Integer edad;
     private String nombre;
     private String page;
-    private Integer hora_laboral;
+    private Short hora_laboral;
     private Integer telefono;
+    private Integer experiencia;
     
     public formulario() {
     }
@@ -78,11 +81,11 @@ public class formulario extends ActionSupport {
         this.page = page;
     }
 
-    public Integer getHora_laboral() {
+    public Short getHora_laboral() {
         return hora_laboral;
     }
 
-    public void setHora_laboral(Integer hora_laboral) {
+    public void setHora_laboral(Short hora_laboral) {
         this.hora_laboral = hora_laboral;
     }
 
@@ -94,8 +97,28 @@ public class formulario extends ActionSupport {
         this.telefono = telefono;
     }
 
-    
-    
-    
-    
+    public Double getRetencion() {
+        return retencion;
+    }
+
+    public void setRetencion(Double retencion) {
+        this.retencion = retencion;
+    }
+
+    public Double getNeto() {
+        return neto;
+    }
+
+    public void setNeto(Double neto) {
+        this.neto = neto;
+    }   
+
+    public Integer getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(Integer experiencia) {
+        this.experiencia = experiencia;
+    }
+
 }

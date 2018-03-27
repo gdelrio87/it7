@@ -15,15 +15,23 @@
     </head>
     <body>
         <s:form action="formulario" validate="true" method="POST" >
-            <s:textfield name="nombre" label="Nombre"></s:textfield>
-            <s:textfield name="edad" label="Edad"></s:textfield>
-            <s:textfield name="fecha" label="Fecha Nacimiento"></s:textfield>
-            <s:textfield name="e_mail" label="Email"></s:textfield>
-            <% /*<s:textfield name="page" label="URL"></s:textfield>*/ %>
-            <s:textfield name="ingresos" label="Ingresos deseados"></s:textfield>
-            <s:textfield name="hora_laboral" label="Horas laborales"></s:textfield>
-            <s:textfield name="telefono" label="Teléfono"></s:textfield>
-            <s:submit name="enviar" value="Enviar" ></s:submit>
+            <s:textfield key="nombre" ></s:textfield>
+            <s:textfield key="edad" ></s:textfield>
+            <s:textfield key="fecha"></s:textfield>
+            <s:textfield key="e_mail" ></s:textfield>
+           <s:textfield key="page" ></s:textfield>
+            <s:textfield key="hora_laboral" ></s:textfield>
+            <s:textfield key="telefono" ></s:textfield>
+            <s:textfield key="experiencia" ></s:textfield>
+            <s:textfield key="ingresos" ></s:textfield>
+            <s:textfield key="retencion"></s:textfield>
+            <s:textfield key="neto" ></s:textfield>
+            <s:submit key="enviar" value="Enviar" ></s:submit>
         </s:form>
+
+        
+            
+          
+      
     </body>
 </html>

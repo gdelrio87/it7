@@ -3,71 +3,120 @@
 
 <validators>
     <field name="fecha">
+        <field-validator type="conversion">
+            <message key="fecha.conversion"></message>
+        </field-validator>
         <field-validator type="date">
-            <param name="min">01/01/50</param>
+            <param name="min">01/01/60</param>
             <param name="max">01/01/00</param>
-            <message>Birthday must be within ${min} and ${max}</message>
+            <message key="fecha.date"></message>
         </field-validator>
     </field>
     <field name="ingresos">
+        <field-validator type="conversion">
+            <message key="ingresos.conversion"></message>
+        </field-validator>
         <field-validator type="double">
             <param name="minInclusive">700,55</param>
             <param name="maxExclusive">1500,66</param>
-            <message>Doble entre %{minInclusive} y %{maxExclusive}</message>
+            <message key="ingresos.double"></message>
         </field-validator>
     </field>
     <field name="e_mail">
         <field-validator type="requiredstring">
-            <message>Email requerido</message>
+            <message key="e_mail.requiredstring"></message>
+        </field-validator>
+        
+        <field-validator type="conversion">
+            <message key="e_mail.conversion"></message>
         </field-validator>
         
         <field-validator type="email">
-            <message>Email no válido</message>
+            <message key="e_mail.email"></message>
         </field-validator>
     </field>
     
     <field name="edad">
         <field-validator type="required">
-            <message>Edad requerida</message>
+            <message key="edad.required"></message>
+        </field-validator>
+        <field-validator type="conversion">
+            <message key="edad.conversion"></message>
         </field-validator>
         <field-validator type="int">
-            <param name="min">20</param>
-            <param name="max">50</param>
-            <message>Edad entre ${min} y ${max}</message>
+            <param name="min">18</param>
+            <param name="max">58</param>
+            <message key="edad.int"></message>
         </field-validator>
     </field>
      
     <field name="nombre">
           
         <field-validator type="requiredstring">
-            <message>Nombre requerido</message>
+            <message key="nombre.requiredstring" ></message>
+        </field-validator>
+        
+        <field-validator type="conversion">
+            <message key="nombre.conversion" ></message>
         </field-validator>
           
         <field-validator type="stringlength">
             <param name="minLength">4</param>
             <param name="maxLength">12</param>
             <param name="trim">true</param>
-            <message>El nombre debe tener entre ${minLength} y ${maxLength}</message>
+            <message key="nombre.stringlength" ></message>
         </field-validator>
+        
     </field>
     <field name="page">
+        <field-validator type="conversion">
+            <message key="page.conversion" ></message>
+        </field-validator>
         <field-validator type="url">
-            <message>URL inválida</message>
+            <message key="page.url" ></message>
         </field-validator>
     </field>
     <field name="hora_laboral">
         <field-validator type="short">
             <param name="min">4</param>
             <param name="max">8</param>
-            <message>Las horas deben estar entre ${min} y ${max}</message>
+            <message key="hora_laboral.short"></message>
         </field-validator>
     </field>
     <field name="telefono">
+        <field-validator type="conversion">
+            <message key="telefono.conversion" ></message>
+        </field-validator>
         <field-validator type="regex">
             <param name="regex"><![CDATA[^[0-9]{9}$]]></param>
-            <message>El telefono debe tener 9 dígitos</message>
+            <message key="telefono.regex" />
         </field-validator>
     </field>
-  
+    <field name="retencion">
+        <field-validator type="double">
+            <param name="minInclusive">2</param>
+            <param name="maxExclusive">18</param>
+            <message key="retencion.double"></message>
+        </field-validator>
+    </field>
+    <field name="neto">
+        <field-validator type="fieldexpression">
+            <param name="expression">neto eq (ingresos + (ingresos*(retencion/100)))</param>
+            <message key="neto.fieldexpression" ></message>
+        </field-validator>
+    </field>
+    
+    <field name="experiencia">
+        <field-validator type="required">
+            <message key="experiencia.required" ></message>
+        </field-validator>
+        <field-validator type="conversion">
+            <message key="experiencia.conversion" ></message>
+        </field-validator>
+        <field-validator type="int">
+            <param name="min">2</param>
+            <message key="experiencia.int" ></message>
+        </field-validator>
+    </field>
     
 </validators>
