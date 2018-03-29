@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 26-mar-2018, 17:58:32
-    Author     : Gonza
+    Author     : Grupo 7 IT
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,12 +14,12 @@
         <s:head />
     </head>
     <body>
-        <s:form action="formulario" validate="true" method="POST" >
+        <s:form action="formulario" method="POST" >
             <s:textfield key="nombre" ></s:textfield>
             <s:textfield key="edad" ></s:textfield>
             <s:textfield key="fecha"></s:textfield>
             <s:textfield key="e_mail" ></s:textfield>
-           <s:textfield key="page" ></s:textfield>
+            <s:textfield key="page" ></s:textfield>
             <s:textfield key="hora_laboral" ></s:textfield>
             <s:textfield key="telefono" ></s:textfield>
             <s:textfield key="experiencia" ></s:textfield>
@@ -29,9 +29,5 @@
             <s:submit key="enviar" value="Enviar" ></s:submit>
         </s:form>
 
-        
-            
-          
-      
     </body>
 </html>
