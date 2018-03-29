@@ -72,7 +72,8 @@
         <field-validator type="conversion">
             <message key="page.conversion" ></message>
         </field-validator>
-        <field-validator type="url">
+        <field-validator type="regex">
+            <param name="regex"><![CDATA[^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$]]></param>
             <message key="page.url" ></message>
         </field-validator>
     </field>
