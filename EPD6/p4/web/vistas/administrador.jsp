@@ -16,24 +16,24 @@
     <body>
 
         <s:if test="%{tipoDAO.equals('insert')}" >
-            <s:form action="DAOinsertar" validate="true">
+            <s:form action="DAOinsertar" validate="true" >
                 <s:textfield key="matricula" ></s:textfield>
                 <s:textfield key="modelo" ></s:textfield>
                 <s:textfield key="horaEntrada" ></s:textfield>
                 <s:textfield key="horaSalida" ></s:textfield>
                 <s:textfield key="tiempoPermitido" ></s:textfield>
-                <s:submit name="enviar" value="Insert"></s:submit>
+                <s:submit name="tipoDAO" value="Insert"></s:submit>
             </s:form>
         </s:if>
         <s:elseif test="%{tipoDAO.equals('update')}">
-            <s:form action="DAOeditar" validate="true">
+            <s:form action="DAOeditar" validate="true" >
                 <s:textfield key="matricula"  ></s:textfield>
                 <s:textfield key="modelo" ></s:textfield>
                 <s:textfield key="horaEntrada" ></s:textfield>
                 <s:textfield key="horaSalida" ></s:textfield>
                 <s:textfield key="tiempoPermitido" ></s:textfield>
                 <input type="hidden" name="matriculaOriginal" value="<s:property value="matricula"/>" />
-                <s:submit name="enviar" value="Update"></s:submit>
+                <s:submit name="tipoDAO" value="Update"></s:submit>
             </s:form>
         </s:elseif>
         <s:form action="cogerDatos">

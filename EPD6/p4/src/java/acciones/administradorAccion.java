@@ -9,8 +9,12 @@ import Modelo.Aparcamiento;
 import Modelo.Coche;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.ConversionErrorFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.FieldExpressionValidator;
+import com.opensymphony.xwork2.validator.annotations.IntRangeFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RegexFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import java.sql.Time;
 import java.util.List;
 
@@ -62,17 +66,7 @@ public class administradorAccion extends ActionSupport {
         return SUCCESS;
     }
     
-    public String vistaUpdate() throws Exception{
-        
-        aparcamiento = new Aparcamiento();
-        
-        listadoAparcamientos = aparcamiento.listadoCocheMatricula(getMatricula());
-        setMatricula(listadoAparcamientos.get(0).getMatricula());
-        setModelo(listadoAparcamientos.get(0).getModelo());
-        setHoraEntrada(listadoAparcamientos.get(0).getHoraEntrada());
-        setHoraSalida(listadoAparcamientos.get(0).getHoraSalida());
-        setTiempoPermitido(listadoAparcamientos.get(0).getTiempoPermitido());
-        
+    public String vistaUpdate() throws Exception{        
         return SUCCESS;
     }
 
@@ -97,6 +91,8 @@ public class administradorAccion extends ActionSupport {
     }
 
     @RequiredStringValidator(key="matricula.requiredstring")
+    @StringLengthFieldValidator(minLength = "8",maxLength = "8",key="matricula.stringlength")
+    @RegexFieldValidator(regex = "[0-9]{5}[A-Z]{3}",key="matricula.regex")
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
@@ -106,6 +102,8 @@ public class administradorAccion extends ActionSupport {
     }
 
     @RequiredStringValidator(key="modelo.requiredstring")
+    @StringLengthFieldValidator(minLength = "1",key="modelo.stringlength")
+    @ConversionErrorFieldValidator(key="modelo.conversion")
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
@@ -116,6 +114,7 @@ public class administradorAccion extends ActionSupport {
     }
 
     @RequiredFieldValidator(key="horaEntrada.required")
+    @RegexFieldValidator(regex = "(([0-2][0-3])|([0-1][0-9])):[0-5][0-9]:00",key="horaEntrada.range")
     public void setHoraEntrada(Time horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
@@ -125,6 +124,7 @@ public class administradorAccion extends ActionSupport {
     }
 
     @RequiredFieldValidator(key="horaSalida.required")
+    @RegexFieldValidator(regex = "(([0-2][0-3])|([0-1][0-9])):[0-5][0-9]:00",key="horaSalida.range")
     public void setHoraSalida(Time horaSalida) {
         this.horaSalida = horaSalida;
     }
@@ -135,6 +135,7 @@ public class administradorAccion extends ActionSupport {
 
     @RequiredFieldValidator(key="tiempoPermitido.required")
     @ConversionErrorFieldValidator(key="tiempoPermitido.conversion")
+    @IntRangeFieldValidator(min = "0",max="1440",key = "tiempoPermitido.range")
     public void setTiempoPermitido(int tiempoPermitido) {
         this.tiempoPermitido = tiempoPermitido;
     }

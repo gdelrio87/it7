@@ -45,14 +45,23 @@
                     </td>
                     <td><s:property value="tiempoPermitido" /></td>
                     <td><form action="vistaUpdate">
-                        <input type="image" src="iconos/editar.png" style="width: 30%;" />
-                        <input type="hidden" name="matricula" value="<s:property value="matricula"/>"/>
-                        <input type="hidden" name="tipoDAO" value="update"/>
-                    </form></td>
+                            <input type="image" src="iconos/editar.png" style="width: 30%;" />
+                            <input type="hidden" name="matricula" value="<s:property value="matricula"/>"/>
+                            <input type="hidden" name="modelo" value="<s:property value="modelo"/>"/>
+                            <input type="hidden" name="horaEntrada" value="<s:property value="horaEntrada"/>"/>
+                            <input type="hidden" name="horaSalida" value="<s:property value="horaSalida"/>"/>
+                            <input type="hidden" name="tiempoPermitido" value="<s:property value="tiempoPermitido"/>"/>
+                            <input type="hidden" name="tipoDAO" value="update"/>
+                        </form></td>
                     <td><form action="DAOeliminar">
                             <input type="image" src="iconos/eliminar.png" style="width: 30%;" />
                             <input type="hidden" name="matricula" value="<s:property value="matricula"/>"/>
-                    </form></td>
+                            <input type="hidden" name="modelo" value="<s:property value="modelo"/>"/>
+                            <input type="hidden" name="horaEntrada" value="<s:property value="horaEntrada"/>"/>
+                            <input type="hidden" name="horaSalida" value="<s:property value="horaSalida"/>"/>
+                            <input type="hidden" name="tiempoPermitido" value="<s:property value="tiempoPermitido"/>"/>
+                            <input type="hidden" name="tipoDAO" value="Delete"/>
+                        </form></td>
                 </tr>
             </s:iterator>
         </table>

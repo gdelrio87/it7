@@ -1,7 +1,6 @@
 package Modelo;
 // Generated 19-mar-2018 13:26:03 by Hibernate Tools 4.3.1
 
-import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import java.sql.Time;
 
 /**
