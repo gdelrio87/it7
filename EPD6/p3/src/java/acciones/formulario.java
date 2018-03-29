@@ -101,7 +101,7 @@ public class formulario extends ActionSupport {
         return page;
     }
 
-    @RegexFieldValidator(regex = "^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.]+$",key="page.url")
+    @UrlValidator(key="page.url")
     @ConversionErrorFieldValidator(key = "page.conversion")
     public void setPage(String page) {
         this.page = page;
