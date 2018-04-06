@@ -23,11 +23,12 @@
             <s:textfield key="hora_laboral" ></s:textfield>
             <s:textfield key="telefono" ></s:textfield>
             <s:textfield key="experiencia" ></s:textfield>
+            
             <s:textfield key="ingresos" ></s:textfield>
             <s:textfield key="retencion"></s:textfield>
             <s:textfield key="neto" ></s:textfield>
             <s:submit key="enviar" value="Enviar" ></s:submit>
         </s:form>
-
+        <p style="color: blue">(*)Los ingresos netos deben coincidir con los ingresos menos el porcentaje de retención</p>
     </body>
 </html>

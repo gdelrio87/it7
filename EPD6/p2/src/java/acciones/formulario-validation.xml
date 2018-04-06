@@ -101,7 +101,7 @@
     </field>
     <field name="neto">
         <field-validator type="fieldexpression">
-            <param name="expression">neto eq (ingresos + (ingresos*(retencion/100)))</param>
+            <param name="expression">neto eq (ingresos - (ingresos*(retencion/100)))</param>
             <message key="neto.fieldexpression" ></message>
         </field-validator>
     </field>
