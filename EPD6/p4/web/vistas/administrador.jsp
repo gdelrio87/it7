@@ -39,5 +39,6 @@
         <s:form action="cogerDatos">
             <s:submit name="todos" value="Volver"></s:submit>
         </s:form>
+                <s:text name="(*)Si no hay hora de salida, es necesario introducir 00:00:00" />
     </body>
 </html>

@@ -75,6 +75,8 @@ public class Aparcamiento {
                 if (listaAparcados.get(i).esSuperado()) {
                     listaSuperados.add(listaAparcados.get(i));
                 }
+                
+               
             }
         }
         return listaSuperados;
