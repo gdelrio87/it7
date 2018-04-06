@@ -32,6 +32,14 @@ public class Libro implements java.io.Serializable {
         this.precio = precio;
         this.isbn = isbn;
     }
+    public Libro(int id, Editorial editorial, String autor, String titulo, float precio, int isbn) {  
+        this.id = id;
+        this.editorial = editorial;
+        this.autor = autor;
+        this.titulo = titulo;
+        this.precio = precio;
+        this.isbn = isbn;
+    }
 
     public int getId() {
         return this.id;

@@ -37,6 +37,7 @@
         <action name="nuevoLibro" class="acciones.Agregar" method="nuevoLibro">
             <result name="success">/vistas/index.jsp</result>
             <result name="input">/vistas/agregar.jsp</result>
+            <result name="error">/vistas/error.jsp</result>
         </action>
     </package>
 </struts>

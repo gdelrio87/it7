@@ -88,14 +88,30 @@ public class Almacen {
         return editorial;
     }
 
-    public void agregar(Editorial editorial, String autor, String titulo, float precio, int isbn) {
-        Session sesion = null;
-        sesion = HibernateUtil.getSessionFactory().getCurrentSession();
-        org.hibernate.Transaction tx = sesion.beginTransaction();
+    public boolean agregar(Editorial editorial, String autor, String titulo, float precio, int isbn) {
+        boolean isbnRepeat = false;
+        
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        org.hibernate.Transaction tx = session.beginTransaction();
+        
+        //para evitar duplicidad en el ID, cogemos el último id insertado en la tabla y le añadimos 1
+        Query q = session.createQuery("From Libro order by id desc");
+        List<Libro> librosID = (List<Libro>)q.list();
+        
+        for (int i = 0; i < librosID.size(); i++) {
+            if(librosID.get(i).getIsbn() == isbn){
+                isbnRepeat = true;
+            }
+            
+        }
+        if(!isbnRepeat){
+        Libro libro = new Libro((librosID.get(0).getId()+1),editorial, autor, titulo, precio, isbn);
+        
+        session.save(libro);
 
-        Libro libro = new Libro(editorial, autor, titulo, precio, isbn);
-        sesion.save(libro);
-
+        
+        }
         tx.commit();
+        return isbnRepeat;
     }
 }

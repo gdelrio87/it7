@@ -14,7 +14,7 @@
         <s:head />
     </head>
     <body>
-        <s:form action="nuevoLibro">
+        <s:form action="nuevoLibro" validate="true">
             <s:textfield name="autor" label="Autor" />
             <s:textfield name="titulo" label="Titulo" />
             <s:textfield name="precio" label="Precio" />

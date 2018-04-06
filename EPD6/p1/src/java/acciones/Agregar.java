@@ -18,6 +18,7 @@ import libreria.Libro;
  * @author Antonio Jose Herrera Tabaco
  */
 public class Agregar extends ActionSupport {
+
     Almacen almacen = new Almacen();
     private String autor;
     private String titulo;
@@ -32,7 +33,7 @@ public class Agregar extends ActionSupport {
 
     public void setEditorial(int editorial) {
         this.editorial = editorial;
-    }    
+    }
 
     public List<Editorial> getListaEditoriales() {
         return listaEditoriales;
@@ -76,34 +77,38 @@ public class Agregar extends ActionSupport {
 
     public Agregar() {
     }
-    
-    public String execute() throws Exception {        
+
+    public String execute() throws Exception {
         setListaEditoriales(almacen.consultaEditoriales());
         return SUCCESS;
     }
-    
-    public String nuevoLibro() throws Exception{
-        setListaEditoriales(almacen.consultaEditoriales());
-        almacen.agregar(almacen.obtenerEditorial(getEditorial()), getAutor(), getTitulo(), getPrecio(), getIsbn());
-        Map session = (Map) ActionContext.getContext().get("session");
-        session.put("libros", almacen.consultaLibrosDisponibles());
-        return SUCCESS;
-    }    
 
-    public void validate(){
-        if(this.autor.length() == 0){
+    public String nuevoLibro() throws Exception {
+        setListaEditoriales(almacen.consultaEditoriales());
+        boolean isbnRepeat = almacen.agregar(almacen.obtenerEditorial(getEditorial()), getAutor(), getTitulo(), getPrecio(), getIsbn());
+        if (isbnRepeat) {
+            return ERROR;
+        } else {
+            Map session = (Map) ActionContext.getContext().get("session");
+            session.put("libros", almacen.consultaLibrosDisponibles());
+            return SUCCESS;
+        }
+    }
+
+    public void validate() {
+        if (this.autor.length() == 0) {
             addFieldError("autor", "El autor no puede estar vacio");
         }
-        
-        if(this.titulo.length() == 0){
+
+        if (this.titulo.length() == 0) {
             addFieldError("titulo", "El titulo no puede estar vacio");
         }
-        
-        if(this.precio == 0.0f){
+
+        if (this.precio == 0.0f) {
             addFieldError("precio", "El precio no puede estar vacio");
         }
-        
-        if(this.isbn == 0){
+
+        if (this.isbn == 0) {
             addFieldError("isbn", "El isbn no puede estar vacio");
         }
     }
