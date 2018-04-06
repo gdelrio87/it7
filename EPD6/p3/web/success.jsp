@@ -14,17 +14,17 @@
     </head>
     <body>
         <table>
-            <tr><td><s:label key="nombre" /></td></tr>
-            <tr><td><s:label key="edad"></s:label></td></tr>
-            <tr><td><s:label key="fecha"></s:label></td></tr>
-            <tr><td><s:label key="e_mail"></s:label></td></tr>
-            <tr><td><s:label key="page"></s:label></td></tr>
-            <tr><td><s:label key="hora_laboral"></s:label></td></tr>
-            <tr><td><s:label key="telefono"></s:label></td></tr>
-            <tr><td><s:label key="experiencia"></s:label></td></tr>
-            <tr><td><s:label key="ingresos"></s:label></td></tr>
-            <tr><td><s:label key="retencion"></s:label></td></tr>
-            <tr><td><s:label key="neto"></s:label></td></tr>
-        </table>
+            <tr><td>Nombre:</td><td><s:property value="nombre"></s:property></td></tr>
+            <tr><td>Edad:</td><td><s:property value="edad"></s:property></td></tr>
+            <tr><td>Fecha:</td><td><s:property value="fecha"></s:property></td></tr>
+            <tr><td>E-mail:</td><td><s:property value="e_mail"></s:property></td></tr>
+            <tr><td>Página(url):</td><td><s:property value="page"></s:property></td></tr>
+            <tr><td>Horas laborables:</td><td><s:property value="hora_laboral"></s:property></td></tr>
+            <tr><td>Teléfono:</td><td><s:property value="telefono"></s:property></td></tr>
+            <tr><td>Experiencia:</td><td><s:property value="experiencia"></s:property></td></tr>
+            <tr><td>Ingresos:</td><td><s:property value="ingresos"></s:property></td></tr>
+            <tr><td>Retencion Salarial (%):</td><td><s:property value="retencion"></s:property></td></tr>
+            <tr><td>Neto:</td><td><s:property value="neto"></s:property>
+       </table>
     </body>
 </html>

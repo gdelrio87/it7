@@ -140,7 +140,7 @@ public class formulario extends ActionSupport {
         return neto;
     }
 
-    @FieldExpressionValidator(expression = "neto eq (ingresos + (ingresos*(retencion/100)))",key="neto.fieldexpression")
+    @FieldExpressionValidator(expression = "neto eq (ingresos - (ingresos*(retencion/100)))",key="neto.fieldexpression")
     public void setNeto(Double neto) {
         this.neto = neto;
     }   
