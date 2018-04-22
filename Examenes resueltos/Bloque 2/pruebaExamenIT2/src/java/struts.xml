@@ -1,0 +1,44 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        
+        <action name="">
+            <result type="chain">
+                <param name="actionName">listado</param>
+            </result>
+        </action>
+        
+    </package>
+    
+    <package name="listadoReserva" extends="struts-default">
+        
+        <action name="listado" class="acciones.listadoReserva">
+            <result name="success">/vistas/list.jsp</result>
+        </action>
+        
+        <action name="listadoFiltro" method="filtroAnimal" class="acciones.listadoReserva">
+            <result name="success">/vistas/list.jsp</result>
+        </action>
+        
+        <action name="listadoBorrar" method="borrarAnimal" class="acciones.listadoReserva">
+            <result type="chain">
+                <param name="actionName">listado</param>
+            </result>
+        </action>
+        
+        <action name="listadoAdd" class="acciones.listadoReservaAdd">
+           <result name="success">/vistas/list.jsp</result>
+           <result name="input">/vistas/add.jsp</result>
+        </action>
+        
+        <action name="Add" method="addVista" class="acciones.listadoReserva">
+            <result name="success">/vistas/add.jsp</result>
+        </action>
+        
+    </package>
+    
+</struts>

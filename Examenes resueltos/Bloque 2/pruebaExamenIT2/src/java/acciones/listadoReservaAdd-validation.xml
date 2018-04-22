@@ -1,0 +1,38 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators> 
+    <field name="identificador">
+        <field-validator type="regex">
+            <param name="regex"><![CDATA[^[a-zA-Z]{4}[0-9]{4}]]></param>
+            <message key="identificador.regex"></message>
+        </field-validator> 
+        
+        <field-validator type="requiredstring">
+            <message key="identificador.required"></message>
+        </field-validator>
+    </field>
+    
+    <field name="pais">
+
+        <field-validator type="requiredstring">
+            <message key="pais.required"></message>
+        </field-validator>
+    </field>
+    
+    <field name="precio">
+       
+        <field-validator type="int">
+            <param name="min">100000</param>
+            <param name="max">999999</param>
+            <message key="precio.int"></message>
+        </field-validator>
+    </field>
+    
+    <field name="email">
+        <field-validator type="email">
+            <message key="email.email"></message>
+        </field-validator>
+    </field>
+    
+</validators>
