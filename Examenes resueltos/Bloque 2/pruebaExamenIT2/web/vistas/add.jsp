@@ -28,8 +28,8 @@
                 </tr>
 
 
-                <tr><td> <s:select key="tipoAnimal" list="listaTipoAnimales" name="animal"  listValue="animal" listKey="animal"></s:select></td>
-<!--                    <td class="tdLabel"><label for="nuevoAnimal_tipoAnimal" class="label">Animal:</label></td>
+                <tr><%--<td> <s:select key="tipoAnimal" list="listaTipoAnimales" name="tipoAnimal"  listValue="animal" listKey="animal"></s:select></td> --%>
+                   <td class="tdLabel"><label for="nuevoAnimal_tipoAnimal" class="label">Animal:</label></td>
                     <td><select name="tipoAnimal" id="nuevoAnimal_tipoAnimal">
                             <option value="lobo">lobo</option>
                             <option value="tigre">tigre</option>
@@ -37,7 +37,7 @@
                             <option value="elefante">elefante</option>
 
 
-                        </select>-->
+                        </select>
                     </td>
                 </tr>
 

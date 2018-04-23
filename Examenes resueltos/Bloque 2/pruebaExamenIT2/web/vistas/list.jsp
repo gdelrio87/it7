@@ -31,7 +31,7 @@
                     <tr>
                         <td>
                     <tr>
-                        <td colspan="2"><div align="right"><input type="submit" id="filtro_0" value="Filter by animal"/>
+                        <td colspan="2"><div align="right"><s:submit id="filtro_0" value="Filter by animal"/>
                             </div></td>
                     </tr>
 
@@ -49,7 +49,7 @@
                 <table >            
                     <td>
                     <tr>
-                        <td colspan="2"><div align="right"><input type="submit" id="listado_0" value="Remove filter"/>
+                        <td colspan="2"><div align="right"><s:submit id="listado_0" value="Remove filter"/>
                             </div></td>
                     </tr>
 
