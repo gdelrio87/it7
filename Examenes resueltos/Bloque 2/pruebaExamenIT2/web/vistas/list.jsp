@@ -21,7 +21,7 @@
                         <td>
                     <tr>
               
-                        <s:select list="listaTipoAnimales" name="animal" label="Animal" listValue="animal" listKey="animal"></s:select>
+                        <s:select list="#session.listaTipoAnimales" name="animal" label="Animal" listValue="animal" listKey="animal"></s:select>
                    
                     </tr>
 

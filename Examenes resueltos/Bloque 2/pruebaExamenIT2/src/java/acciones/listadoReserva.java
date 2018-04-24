@@ -5,8 +5,10 @@
  */
 package acciones;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
+import java.util.Map;
 import reserva.ReservaDAO;
 import reserva.Reservaanimales;
 import reserva.Tipoanimal;
@@ -34,9 +36,11 @@ public class listadoReserva extends ActionSupport {
     public String execute() throws Exception {
         ReservaDAO reserva = new ReservaDAO();
 
-        listaAnimales = reserva.listadoAnimales();
+        Map session = (Map) ActionContext.getContext().get("session");
         
-        listaTipoAnimales = reserva.listadoTipoAnimal();
+        session.put("listaTipoAnimales", reserva.listadoTipoAnimal());
+        
+        listaAnimales = reserva.listadoAnimales();
  
         return SUCCESS;
     }
@@ -44,9 +48,7 @@ public class listadoReserva extends ActionSupport {
     public String filtroAnimal() throws Exception {
         ReservaDAO reserva = new ReservaDAO();
 
-       
         listaAnimales = reserva.listadoAnimalesFiltro(getAnimal());
-        listaTipoAnimales = reserva.listadoTipoAnimal();
  
         return SUCCESS;
     }
@@ -55,7 +57,6 @@ public class listadoReserva extends ActionSupport {
         ReservaDAO reserva = new ReservaDAO();
         reserva.deleteAnimal(getId());
         listaAnimales = reserva.listadoAnimales();
-        listaTipoAnimales = reserva.listadoTipoAnimal();
  
         return SUCCESS;
     }
@@ -64,11 +65,6 @@ public class listadoReserva extends ActionSupport {
     
     public String addVista() throws Exception {
         
-         ReservaDAO reserva = new ReservaDAO();
-
-  
-        
-        listaTipoAnimales = reserva.listadoTipoAnimal();
               return SUCCESS;
     }
     
