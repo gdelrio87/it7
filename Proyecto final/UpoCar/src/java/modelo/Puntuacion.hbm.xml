@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-abr-2018 5:50:40 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Puntuacion" table="puntuacion" catalog="upocar" optimistic-lock="version">
+        <id name="idPuntuacion" type="java.lang.Integer">
+            <column name="id_puntuacion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuarioByIdUsuarioPuntua" class="modelo.Usuario" fetch="select">
+            <column name="id_usuario_puntua" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarioByIdUsuarioRecibe" class="modelo.Usuario" fetch="select">
+            <column name="id_usuario_recibe" not-null="true" />
+        </many-to-one>
+        <property name="puntuacion" type="int">
+            <column name="puntuacion" not-null="true" />
+        </property>
+        <property name="comentario" type="string">
+            <column name="comentario" length="250" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

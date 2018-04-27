@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-abr-2018 5:50:40 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Viaje" table="viaje" catalog="upocar" optimistic-lock="version">
+        <id name="idViaje" type="java.lang.Integer">
+            <column name="id_viaje" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="localidadByIdLocalidadDestino" class="modelo.Localidad" fetch="select">
+            <column name="id_localidad_destino" not-null="true" />
+        </many-to-one>
+        <many-to-one name="localidadByIdLocalidadOrigen" class="modelo.Localidad" fetch="select">
+            <column name="id_localidad_origen" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="modelo.Usuario" fetch="select">
+            <column name="id_usuario_publica" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vehiculo" class="modelo.Vehiculo" fetch="select">
+            <column name="id_vehiculo_elegido" not-null="true" />
+        </many-to-one>
+        <property name="puntoRecogida" type="string">
+            <column name="punto_recogida" length="200" not-null="true" />
+        </property>
+        <property name="plazasMax" type="int">
+            <column name="plazas_max" not-null="true" />
+        </property>
+        <property name="percioPersona" type="double">
+            <column name="percio_persona" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="fechaHoraSalida" type="timestamp">
+            <column name="fecha_hora_salida" length="19" not-null="true" />
+        </property>
+        <set name="pasajeroses" table="pasajeros" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_viaje" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Pasajeros" />
+        </set>
+    </class>
+</hibernate-mapping>
