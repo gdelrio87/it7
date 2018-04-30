@@ -37,9 +37,9 @@
                                 <s:textfield cssClass="form-control" name="origen" placeholder="Origen"></s:textfield>                            
 
                                 <s:textfield cssClass="form-control" name="destino" placeholder="Destino"></s:textfield>                            
-
-                                <s:textfield cssClass="form-control" name="fechaViaje" placeholder="dd/MM/yyyy"></s:textfield>  <!-- Sustituir por un date picker -->                          
-
+                                
+                                <input type="date" class="form-control" />
+                                
                                 <s:submit name="buscar" value="Buscar viaje" cssClass="btn btn-primary"></s:submit>
                                 </div>
                         </s:form>
