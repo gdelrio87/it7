@@ -1,0 +1,72 @@
+/* Para centrar la imagen principal del index*/
+#background-firstlook{
+    height: 100vh;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    min-height: 350px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.firstlook{
+    background-image: url("../images/background.jpg");
+}
+
+#contentPpal{
+    position: relative;
+    top: 25%;
+}
+
+
+/* FOOTER */
+
+footer{
+     background-color: #333;
+     padding:70px 0px;
+}	       
+
+.logo{
+    color:#FFF;
+    font-weight:800;
+    font-size:30px;
+}
+
+.adress span , .contact span , .social span{
+   color: #FFF; 
+   font-weight: 800; 
+   padding-bottom: 10px; 
+   margin-bottom: 20px;
+   display: block;
+   text-transform: uppercase;
+   font-size: 13px;
+   letter-spacing: 3px;
+}
+ 
+.adress li p , .contact li a , .social li a{
+    color:#FFF;
+    letter-spacing: 2px;
+    text-decoration:none;
+    font-size:12px;
+}
+
+.social li{
+    float:left;
+}
+
+.adress , .contact , .social {
+    list-style: none;
+}
+
+.fa{
+    color:#9c9c9c;
+    margin-right: 10px;
+    font-size:14px;
+}
+
+.rrss{
+    width: 24px;
+    margin-right: 5px;
+}
+
