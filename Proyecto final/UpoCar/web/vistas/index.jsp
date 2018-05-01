@@ -45,7 +45,7 @@
                                     <input type="date" class="form-control"/>
                                 </div>                                
 
-                            <s:submit name="buscar" value="Buscar viaje" cssClass="btn btn-default"></s:submit>
+                            <s:submit name="buscar" value="Buscar viaje" cssClass="btn btn-default btnBuscar"></s:submit>
                             </div>
                     </s:form>
                 </div>
