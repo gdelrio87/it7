@@ -12,38 +12,68 @@
     </head>
     <body>
         <s:set name="theme" value="'simple'" scope="page" /> <!-- Elimina el estilo de Struts de esta pagina -->
+
+        <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">UPOCAR</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Registrarse</a></li>                        
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+        </nav>
+
+
+
+        <!--        
         <div class="container-fluid">
             <div class="col-lg-12">
                 <div class="col-lg-2">
                     <input type="image" name="logo" class="img-responsive">
                 </div>
-                <div class="col-lg-10">
-                    <s:form action="login">
-                        <s:submit name="login" value="Login" cssClass="btn btn-primary"></s:submit>
-                    </s:form>
-                    <s:form action="registro">
-                        <s:submit name="registro" value="Registro" cssClass="btn btn-primary"></s:submit>
-                    </s:form>
-                </div>
-            </div>        
+                <div class="col-lg-10">                    
+        <s:form action="login">
+            <s:submit name="login" value="Login" cssClass="btn btn-primary"></s:submit>
+        </s:form>
+        <s:form action="registro">
+            <s:submit name="registro" value="Registro" cssClass="btn btn-primary"></s:submit>
+        </s:form>
+    </div>
+</div>                    
+</div>
+        -->
+        <div id="background-firstlook" class="firstlook">
+            <div class="col-md-6 col-md-offset-3" id="contentPpal">
+                <div id="infoPpal">
+                    <h1>¡Bienvenido a UpoCar!</h1>                    
 
-            <div id="background-firstlook" class="firstlook">
-                <div class="col-md-6 col-md-offset-3" id="contentPpal">
-                    <div id="infoPpal">
-                        <h1>¡Bienvenido a UpoCar!</h1>                    
-
-                        <s:form action="buscaViaje">
-                            <div class="input-group">
+                    <s:form action="buscaViaje">
+                        <div class="input-group">
+                            <div class="col-lg-4">
                                 <s:textfield cssClass="form-control" name="origen" placeholder="Origen"></s:textfield>                            
-
-                                <s:textfield cssClass="form-control" name="destino" placeholder="Destino"></s:textfield>                            
-                                
-                                <input type="date" class="form-control" />
-                                
-                                <s:submit name="buscar" value="Buscar viaje" cssClass="btn btn-primary"></s:submit>
                                 </div>
-                        </s:form>
-                    </div>
+
+                                <div class="col-lg-4">
+                                <s:textfield cssClass="form-control" name="destino" placeholder="Destino"></s:textfield>                            
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <input type="date" class="form-control"/>
+                                </div>                                
+
+                            <s:submit name="buscar" value="Buscar viaje" cssClass="btn btn-default"></s:submit>
+                            </div>
+                    </s:form>
                 </div>
             </div>
         </div>
