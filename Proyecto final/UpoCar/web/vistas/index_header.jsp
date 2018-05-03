@@ -26,13 +26,13 @@
                     <!--<li><a href="#">Registrarse</a></li>-->
                     <li>
                         <s:form action="toLogin">
-                            <s:submit name="toLogin" value="Login" cssClass="btn btn-default"></s:submit>
+                            <s:submit name="toLogin" value="Login" cssClass="navbar-brand"></s:submit>
                         </s:form>
                     </li>   
 
                     <li>
                         <s:form action="toRegistro">
-                            <s:submit name="toRegistro" value="Registro" cssClass="btn btn-default"></s:submit>
+                            <s:submit name="toRegistro" value="Registro" cssClass="navbar-brand"></s:submit>
                         </s:form>
                     </li> 
                 </ul>
