@@ -7,14 +7,18 @@
     <package name="default" extends="struts-default">
         <action name="">
             <result type="chain">
-                <param name="actionName">login</param>
+                <param name="actionName">index</param>
             </result>
         </action>
     </package>
     
-    <package name="login" extends="struts-default">
-        <action name="login" class="acciones.loginAction">
+    <package name="index" extends="struts-default">
+        <action name="index">
             <result name="success">/vistas/index.jsp</result>
+        </action>
+        
+        <action name="toLogin" method="toLogin" class="acciones.loginAction">
+            <result name="success">/vistas/login.jsp</result>
         </action>
     </package>
 </struts>

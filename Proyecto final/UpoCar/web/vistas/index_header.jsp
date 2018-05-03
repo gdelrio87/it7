@@ -20,8 +20,13 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">                    
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Registrarse</a></li>                        
+                    <!--<li><a href="#">Login</a></li> MIRAR COMO SE PONEN BIEN LOS ESTILOS EN VEZ DEL BOTON FEO DE STRUTS2-->
+                    <!--<li><a href="#">Registrarse</a></li>-->
+                    <li>
+                        <s:form action="toLogin">
+                            <s:submit name="toLogin" value="Login" cssClass="btn btn-default"></s:submit>
+                        </s:form>
+                    </li>                
                 </ul>
             </div>
         </nav>       

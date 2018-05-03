@@ -20,4 +20,8 @@ public class loginAction extends ActionSupport {
         return SUCCESS;
     }
     
+    public String toLogin(){
+        return SUCCESS;
+    }
+    
 }
