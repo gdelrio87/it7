@@ -7,13 +7,12 @@
             <div class="wrap">
                 <p class="form-title">
                     Login</p>
-                <form class="login">
-                    <s:textfield cssClass="form-control" name="usuario" cssStyle="inputLogin"></s:textfield>  <%-- Poner un width mas pequeño para los inputs --%>
-                    <s:password cssClass="form-control" name="password" cssStyle="inputLogin"></s:password>
-                    <s:submit cssClass="btn btn-success btn-sm" name="login" value="Login"></s:submit>     
-                </form>
+                    <s:form action="login" cssClass="login">                        
+                        <s:textfield cssClass="form-control" name="usuario" cssStyle="inputLogin"></s:textfield>  <%-- Poner un width mas pequeño para los inputs --%>
+                        <s:password cssClass="form-control" name="password" cssStyle="inputLogin"></s:password>
+                        <s:submit cssClass="btn btn-success btn-sm" name="login" value="Login"></s:submit>     
+                    </s:form>
             </div>
-
         </div>
     </div>
 </div>
