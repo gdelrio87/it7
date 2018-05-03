@@ -48,19 +48,19 @@
                         <ul class="social">
                             <span>Social</span>    
                             <li>
-                                <a href="#"><img src="images/facebook.png" class="rrss" alt="facebook"/></a>
+                                <a href="#"><img src="../images/facebook.png" class="rrss" alt="facebook"/></a>
                             </li>
 
                             <li>
-                                <a href="#"><img src="images/twitter.png" class="rrss" alt="twitter"/></a>
+                                <a href="#"><img src="../images/twitter.png" class="rrss" alt="twitter"/></a>
                             </li>
 
                             <li>
-                                <a href="#"><img src="images/pinterest.png" class="rrss" alt="pinterest"/></a>
+                                <a href="#"><img src="../images/pinterest.png" class="rrss" alt="pinterest"/></a>
                             </li>
 
                             <li>
-                                <a href="#"><img src="images/instagram.png" class="rrss" alt="instagram"/></a>
+                                <a href="#"><img src="../images/instagram.png" class="rrss" alt="instagram"/></a>
                             </li>
                         </ul>
                     </div>

@@ -5,8 +5,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style type="text/css">
-            <%@include file="../librerias/bootstrap-3.3.7-dist/css/bootstrap.min.css" %>
+            <%@include file="../librerias/bootstrap-3.3.7-dist/css/bootstrap.css" %>
             <%@include file="../css/css.css" %>
+            <%@include file="../css/buscaviajes.css" %>
         </style>
         <title>UpoCar</title>
     </head>
