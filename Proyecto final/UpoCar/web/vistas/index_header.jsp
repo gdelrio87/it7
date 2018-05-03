@@ -14,8 +14,10 @@
         <s:set name="theme" value="'simple'" scope="page" /> <!-- Elimina el estilo de Struts de esta pagina -->
 
         <nav class="navbar navbar-default">
-            <div class="navbar-header">                    
-                <a class="navbar-brand" href="#">UPOCAR</a>
+            <div class="navbar-header">   
+                <s:form action="toIndex">
+                    <s:submit name="toIndex" value="UPOCAR" cssClass="navbar-brand"></s:submit>
+                </s:form>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">                    
@@ -26,7 +28,13 @@
                         <s:form action="toLogin">
                             <s:submit name="toLogin" value="Login" cssClass="btn btn-default"></s:submit>
                         </s:form>
-                    </li>                
+                    </li>   
+
+                    <li>
+                        <s:form action="toRegistro">
+                            <s:submit name="toRegistro" value="Registro" cssClass="btn btn-default"></s:submit>
+                        </s:form>
+                    </li> 
                 </ul>
             </div>
         </nav>       

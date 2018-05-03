@@ -20,5 +20,15 @@
         <action name="toLogin" method="toLogin" class="acciones.loginAction">
             <result name="success">/vistas/login.jsp</result>
         </action>
+        
+        <action name="toRegistro" method="toRegistro" class="acciones.loginAction">
+            <result name="success">/vistas/registro.jsp</result>
+        </action>
+        
+        <action name="toIndex">
+            <result type="chain">
+                <param name="actionName">index</param>
+            </result>
+        </action>
     </package>
 </struts>
