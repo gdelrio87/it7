@@ -8,6 +8,8 @@
             <%@include file="../librerias/bootstrap-3.3.7-dist/css/bootstrap.css" %>
             <%@include file="../css/css.css" %>
             <%@include file="../css/buscaviajes.css" %>
+            <%@include file="../css/micuenta.css" %>
+            <%@include file="../css/misviajes.css" %>
         </style>
         <title>UpoCar</title>
     </head>
