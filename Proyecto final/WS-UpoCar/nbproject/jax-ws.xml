@@ -10,6 +10,9 @@
     <service name="wsProvincias">
       <implementation-class>ws.wsProvincias</implementation-class>
     </service>
+    <service name="wsViaje">
+      <implementation-class>ws.wsViaje</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
