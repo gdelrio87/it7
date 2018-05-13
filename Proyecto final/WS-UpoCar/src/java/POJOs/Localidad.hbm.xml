@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-may-2018 13:13:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Localidad" table="localidad" catalog="upocar" optimistic-lock="version">
+        <id name="idLocalidad" type="java.lang.Integer">
+            <column name="id_localidad" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="provincia" class="POJOs.Provincia" fetch="select">
+            <column name="id_provincia" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="65535" not-null="true" />
+        </property>
+        <set name="viajesForIdLocalidadDestino" table="viaje" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_localidad_destino" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Viaje" />
+        </set>
+        <set name="viajesForIdLocalidadOrigen" table="viaje" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_localidad_origen" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Viaje" />
+        </set>
+    </class>
+</hibernate-mapping>

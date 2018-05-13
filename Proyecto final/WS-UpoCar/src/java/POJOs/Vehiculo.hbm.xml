@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-may-2018 13:13:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Vehiculo" table="vehiculo" catalog="upocar" optimistic-lock="version">
+        <id name="idVehiculo" type="java.lang.Integer">
+            <column name="id_vehiculo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="POJOs.Usuario" fetch="select">
+            <column name="id_usuario" not-null="true" />
+        </many-to-one>
+        <property name="marca" type="string">
+            <column name="marca" length="50" not-null="true" />
+        </property>
+        <property name="modelo" type="string">
+            <column name="modelo" length="50" not-null="true" />
+        </property>
+        <property name="color" type="string">
+            <column name="color" length="50" not-null="true" />
+        </property>
+        <property name="plazas" type="int">
+            <column name="plazas" not-null="true" />
+        </property>
+        <set name="viajes" table="viaje" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_vehiculo_elegido" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Viaje" />
+        </set>
+        <set name="fotoVehis" table="foto_vehi" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_vehiculo" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.FotoVehi" />
+        </set>
+    </class>
+</hibernate-mapping>
