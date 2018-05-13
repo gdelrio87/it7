@@ -24,7 +24,7 @@ public class wsLocalidades {
     Session sesion = null;
     
     @WebMethod(operationName = "getLocalidades")
-    public List<Localidad> hello() {
+    public List<Localidad> getLocalidades() {
         sesion = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = sesion.beginTransaction();
         
