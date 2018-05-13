@@ -4,6 +4,12 @@
     <service name="wsLogin">
       <implementation-class>ws.wsLogin</implementation-class>
     </service>
+    <service name="wsLocalidades">
+      <implementation-class>ws.wsLocalidades</implementation-class>
+    </service>
+    <service name="wsProvincias">
+      <implementation-class>ws.wsProvincias</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
