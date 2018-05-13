@@ -36,4 +36,15 @@ public class wsLogin {
         tx.commit();
         return u;
     }
+    
+    @WebMethod(operationName = "registro")
+    public Usuario registro(@WebParam(name = "usuario") Usuario usuario){
+        sesion = HibernateUtil.getSessionFactory().getCurrentSession();
+        org.hibernate.Transaction tx = sesion.beginTransaction();
+        
+        sesion.save(usuario);
+        
+        tx.commit();        
+        return usuario;
+    }
 }
