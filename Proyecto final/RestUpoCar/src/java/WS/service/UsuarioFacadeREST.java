@@ -65,11 +65,11 @@ public class UsuarioFacadeREST extends AbstractFacade<Usuario> {
     }
     
     @GET
-    @Path("/login/{nomUsuario}")
+    @Path("/login/{nomUsuario}/{password}")
     @Produces({MediaType.APPLICATION_XML})
-    public Usuario login(@PathParam("nomUsuario") String usuario){
+    public Usuario login(@PathParam("nomUsuario") String usuario, @PathParam("password") String password){
         //Usuario u = (Usuario) em.createNamedQuery("Usuario.login").setParameter("nomUsuario", usuario).getSingleResult();        
-        Query q =  em.createQuery("SELECT u FROM Usuario u WHERE u.nomUsuario = :nomUsuario").setParameter("nomUsuario", usuario);      
+        Query q =  em.createQuery("SELECT u FROM Usuario u WHERE u.nomUsuario = :nomUsuario and u.password = :password").setParameter("nomUsuario", usuario).setParameter("password", password);      
         List l = q.getResultList();
         
         Usuario u = null;
