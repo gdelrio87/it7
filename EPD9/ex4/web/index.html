@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script type="text/javascript">
+            xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "http://localhost:8080/ex3/webresources/servicerest.libro",
+                    false);
+            xhttp.setRequestHeader("Accept", "application/xml");
+            xhttp.send();
+            document.write(xhttp.responseText);
+//para ver lo que tiene un objeto por consola inspeccionando el elemento en el navegador
+//console.dirxml(obj) o console.dir(obj) o console.log(obj)
+        </script>
+    </body>
+</html>
