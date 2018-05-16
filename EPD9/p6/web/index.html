@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="./jquery-1.12.4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "http://localhost:8080/p7EPD8/webresources/datos.pelicula/",
+                        false);
+                xhttp.setRequestHeader("Accept", "application/xml");
+                xhttp.send();
+                var rawXML = xhttp.responseXML;
+                // busca la etiqueta libro
+                var xmlRow = $(rawXML).find('pelicula');
+                // va recorriendo cada uno
+                var i = 0;
+                $('#tablaPeliculas').append('<thead id="tHead">');
+                $('#tHead').append('<th>ID</th>');
+                $('#tHead').append('<th>Nombre</th>');
+                $('#tHead').append('<th>Idioma</th>');
+                $('#tHead').append('<th>Pais</th>');
+                $('#tHead').append('<th>Fecha Estreno</th>');
+                $('#tHead').append('<th>Fecha Video</th>');
+                $(xmlRow).each(function () {
+                    $('#tablaPeliculas').append('<tr id="trTable' + i + '"');
+                    $('#trTable' + i).append('<td>' + $(this).find('id').text() + '</td>');
+                    $('#trTable' + i).append('<td>' + $(this).find('nombre').text() + '</td>');
+                    $('#trTable' + i).append('<td>' + $(this).find('idioma').text() + '</td>');
+                    $('#trTable' + i).append('<td>' + $(this).find('pais').text() + '</td>');
+                    $('#trTable' + i).append('<td>' + $(this).find('fechaEstreno').text() + '</td>');
+                    $('#trTable' + i).append('<td>' + $(this).find('fechaVideo').text() + '</td>');
+                    i++;
+                });
+            });
+
+            $(document).ready(function () {
+                $("#addPelicula").click(function () {
+
+                    $("#tableAddPelicula").toggle();
+                    $("#tableDeletePelicula").css("display", "none");
+                    $("#tableActualizarPelicula").css("display", "none");
+                })
+            });
+            $(document).ready(function () {
+                $("#deletePelicula").click(function () {
+                    $("#tableDeletePelicula").toggle();
+                    $("#tableAddPelicula").css("display", "none");
+                    $("#tableActualizarPelicula").css("display", "none");
+                })
+            });
+            $(document).ready(function () {
+                $("#actualizarPelicula").click(function () {
+                    $("#tableActualizarPelicula").toggle();
+                    $("#tableAddPelicula").css("display", "none");
+                    $("#tableDeletePelicula").css("display", "none");
+                })
+            });
+            $(document).ready(function () {
+                $("#enviarAddPelicula").click(function () {
+                    var nombre = $('#addNombre').val();
+                    var idioma = $('#addIdioma').val();
+                    var pais = $('#addPais').val();
+                    var fechaEstreno = $('#addFechaEstreno').val();
+                    var fechaVideo = $('#addFechaVideo').val();
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("POST", "http://localhost:8080/p7EPD8/webresources/datos.pelicula/", true);
+                    xhttp.setRequestHeader("Content-Type", "application/xml");
+                    var xmlNombre = "<nombre>" + nombre + "</nombre>";
+                    var xmlPais = "<pais>" + pais + "</pais>";
+                    var xmlIdioma = "<idioma>" + idioma + "</idioma>";
+                    var xmlPrecio = "<precio>" + pais + "</precio>";
+                    var xmlFechaEstreno = "<fechaEstreno>" + fechaEstreno + "</fechaEstreno>";
+                    var xmlFechaVideo = "<fechaVideo>" + fechaVideo + "</fechaVideo>";
+                    var xmlPelicula = "<pelicula>" + xmlFechaEstreno + xmlFechaVideo + "<id></id>" + xmlIdioma + xmlNombre + xmlPais + "</pelicula>";
+                    xhttp.send(xmlPelicula);
+                });
+            });
+            $(document).ready(function () {
+                $("#enviarDeletePelicula").click(function () {
+                    var id = $("#deletePeliculaID").val();
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("DELETE", "http://localhost:8080/p7EPD8/webresources/datos.pelicula/" + id, true);
+                    xhttp.onreadystatechange = function () {
+                        if (xhttp.readyState == 4 && xhttp.status == 204) {
+                            alert("Registro eliminado correctamente");
+                        }else if(xhttp.readyState == 4 && xhttp.status == 0){
+                            alert("El ID de la película no existe");
+                        }
+                    };
+                    xhttp.send();
+                });
+            });
+
+            $(document).ready(function () {
+                $("#envarActualizarPelicula").click(function () {
+                    xhttp = new XMLHttpRequest();
+                    var id = $("#actualizarPeliculaID").val();
+                    xhttp.open("PUT", "http://localhost:8080/p7EPD8/webresources/datos.pelicula/" + id, true);
+                    xhttp.setRequestHeader("Content-Type", "application/xml");
+                    var nombre = $('#actualizarNombre').val();
+                    var pais = $('#actualizarPais').val();
+                    var idioma = $('#actualizarIdioma').val();
+                    var fechaEstreno = $('#actualizarFechaEstreno').val();
+                    var fechaVideo = $('#actualizarFechaVideo').val();
+
+
+                    var xmlNombre = "<nombre>" + nombre + "</nombre>";
+                    var xmlID = "<id>" + id + "</id>";
+                    var xmlPais = "<pais>" + pais + "</pais>";
+                    var xmlIdioma = "<idioma>" + idioma + "</idioma>";
+                    var xmlFechaEstreno = "<fechaEstreno>" + fechaEstreno + "</fechaEstreno>";
+                    var xmlFechaVideo = "<fechaVideo>" + fechaVideo + "</fechaVideo>";
+                    var xmlPelicula = "<pelicula>" + xmlFechaEstreno + xmlFechaVideo + xmlID + xmlIdioma + xmlNombre + xmlPais + "</pelicula>";
+                    xhttp.send(xmlPelicula);
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <table id="tablaPeliculas" border="1">
+        </table>
+
+        <form action="#" id="tableAddPelicula" method="POST" style="display: none">
+            Nombre : <input type="text" id="addNombre"  /> </br>
+            Idioma : <input type="text" id="addIdioma"  /> </br>
+            Pais: <input type="text" id="addPais"  /> </br>
+            Fecha Estreno (YYYY-MM-DD): <input type="text" id="addFechaEstreno" /> </br>
+            Fecha Video (YYYY-MM-DD): <input type="text" id="addFechaVideo"  /> </br>
+            <input type="submit" id="enviarAddPelicula" value="Enviar" />
+
+        </form>
+
+        <form action="#" id="tableActualizarPelicula" method="POST" style="display: none">
+            Indique el ID de la pel&iacute;cula a actualizar: <input type="text" id="actualizarPeliculaID" /></br>
+            Nombre : <input type="text" id="actualizarNombre" /> </br>
+            Idioma : <input type="text" id="actualizarPais" /> </br>
+            Pais: <input type="text" id="actualizarIdioma"  /> </br>
+            Fecha Estreno (YYYY-MM-DD): <input type="text" id="actualizarFechaEstreno" /> </br>
+            Fecha Video (YYYY-MM-DD): <input type="text" id="actualizarFechaVideo" /> </br>
+            <input type="submit" id="envarActualizarPelicula" value="enviar" />
+        </form>
+
+        <form action="#" id="tableDeletePelicula" method="POST" style="display: none">
+            ID Pelicula: <input type="text" id="deletePeliculaID"  /> </br>
+            <input type="submit" value="Enviar" id="enviarDeletePelicula"  />
+        </form>
+
+        <button name="addPelicula" id="addPelicula">Añadir Pelicula</button>
+        <button  name="deletePelicula" id="deletePelicula">Delete Pelicula</button>
+        <button  name="actualizarPelicula" id="actualizarPelicula">Actualizar Pelicula</button>
+    </body>
+</html>
