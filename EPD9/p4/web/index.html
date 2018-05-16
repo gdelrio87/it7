@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="txt/css" href="./libreria/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css.css" />
+        <script type="text/javascript">
+            function mostrarListaPeliculas() {
+                xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "http://localhost:8080/p7EPD8/webresources/datos.pelicula",
+                        false);
+                xhttp.setRequestHeader("Accept", "application/xml");
+                xhttp.send();
+                var xml = xhttp.responseXML;
+                var texto = xml.getElementsByTagName("pais")[0];
+                //document.write(texto.textContent);
+                var tabla = document.createElement("table");
+                tabla.setAttribute("id", "tabla");
+                tabla.setAttribute("border", "1");
+                tabla.setAttribute("style", "color:white;width:100%;");
+                var tr = document.createElement("tr");
+                tr.setAttribute("style","background-color:black");
+                tr.setAttribute("id", "trTable");
+                var th = document.createElement("th");
+                th.textContent = "ID";
+                tr.appendChild(th);
+                var th = document.createElement("th");
+                th.textContent = "Nombre";
+                tr.appendChild(th);
+                var th = document.createElement("th");
+                th.textContent = "Pais";
+                tr.appendChild(th);
+                var th = document.createElement("th");
+                th.textContent = "Idioma";
+                tr.appendChild(th);
+                var th = document.createElement("th");
+                th.textContent = "Fecha Estreno";
+                tr.appendChild(th);
+                var th = document.createElement("th");
+                th.textContent = "Fecha Video";
+                tr.appendChild(th);
+                tabla.appendChild(tr);
+                document.getElementById("resultadosREST").appendChild(tabla);
+
+                for (var i = 0; i < xml.getElementsByTagName("pelicula").length; i++) {
+                    var tr = document.createElement("tr");
+                    tr.setAttribute("id", "trTable" + i);
+                    var td = document.createElement("td");
+                    td.setAttribute("style","background-color:red");
+                    td.textContent = xml.getElementsByTagName("id")[i].textContent;
+                    tr.appendChild(td);
+                    var td = document.createElement("td");
+                    td.setAttribute("style","background-color:blue");
+                    td.textContent = xml.getElementsByTagName("nombre")[i].textContent;
+                    tr.appendChild(td);
+                    var td = document.createElement("td");
+                    td.setAttribute("style","background-color:grey");
+                    td.textContent = xml.getElementsByTagName("pais")[i].textContent;
+                    tr.appendChild(td);
+                    var td = document.createElement("td");
+                    td.setAttribute("style","background-color:green");
+                    td.textContent = xml.getElementsByTagName("idioma")[i].textContent;
+                    tr.appendChild(td);
+                    var td = document.createElement("td");
+                    td.setAttribute("style","background-color:purple");
+                    var aText = xml.getElementsByTagName("fechaEstreno")[i].textContent.split("T00:00:00+");
+                    td.textContent = aText[0] + " " + aText[1];
+                    tr.appendChild(td);
+                    tabla.appendChild(tr);
+                    var td = document.createElement("td");
+                    var aText = xml.getElementsByTagName("fechaVideo")[i].textContent.split("T00:00:00+");
+                    td.setAttribute("style","background-color:pink");
+                    td.textContent = aText[0] + " " + aText[1];
+                    
+                    tr.appendChild(td);
+                    tabla.appendChild(tr);
+                }
+            }
+
+        </script>
+    </head>
+    <body onload="mostrarListaPeliculas()">
+        <h1>Libros</h1>
+        <div id="resultadosREST"></div>
+
+
+
+    </body>
+</html>
