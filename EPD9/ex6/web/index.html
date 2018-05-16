@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="./jquery-1.12.4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "http://localhost:8080/ex3/webresources/servicerest.libro",
+                        false);
+                xhttp.setRequestHeader("Accept", "application/xml");
+                xhttp.send();
+                var rawXML = xhttp.responseXML;
+                // busca la etiqueta libro
+                var xmlRow = $(rawXML).find('libro');
+                // va recorriendo cada uno
+                var i = 0;
+                $('#tablaLibros').append('<thead id="tHead">');
+                $('#tHead').append('<th>ID</th>');
+                $('#tHead').append('<th>Autor</th>');
+                $('#tHead').append('<th>Titulo</th>');
+                $('#tHead').append('<th>Precio</th>');
+                $('#tHead').append('<th>Isbn</th>');
+                $(xmlRow).each(function () {
+                    $('#tablaLibros').append('<tr id="trTable' + i + '"');
+                    $('#trTable' + i).append('<td>' + $(this).find('id').text() + '</td>');
+                    $('#trTable' + i).append('<td>' + $(this).find('autor').text() + '</td>');
+                    $('#trTable' + i).append('<td>' + $(this).find('titulo').text() + '</td>');
+                    $('#trTable' + i).append('<td>' + $(this).find('precio').text() + '</td>');
+                    $('#trTable' + i).append('<td>' + $(this).find('isbn').text() + '</td>');
+                    i++;
+                });
+            });
+
+            $(document).ready(function () {
+                $("#addLibro").click(function () {
+
+                    $("#tableAddLibro").toggle();
+                    $("#tableDeleteLibro").css("display", "none");
+                    $("#tableActualizarLibro").css("display", "none");
+                })
+            });
+            $(document).ready(function () {
+                $("#deleteLibro").click(function () {
+                    $("#tableDeleteLibro").toggle();
+                    $("#tableAddLibro").css("display", "none");
+                    $("#tableActualizarLibro").css("display", "none");
+                })
+            });
+            $(document).ready(function () {
+                $("#actualizarLibro").click(function () {
+                    $("#tableActualizarLibro").toggle();
+                    $("#tableAddLibro").css("display", "none");
+                    $("#tableDeleteLibro").css("display", "none");
+                })
+            });
+            $(document).ready(function () {
+                $("#enviarAddLibro").click(function () {
+                    var autor = $('#addAutor').val();
+                    var titulo = $('#addTitulo').val();
+                    var precio = $('#addPrecio').val();
+                    var isbn = $('#addIsbn').val();
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("POST", "http://localhost:8080/ex3/webresources/servicerest.libro", true);
+                    xhttp.setRequestHeader("Content-Type", "application/xml");
+                    var xmlAutor = "<autor>" + autor + "</autor>";
+                    var xmlTitulo = "<titulo>" + titulo + "</titulo>";
+                    var xmlPrecio = "<precio>" + precio + "</precio>";
+                    var xmlIsbn = "<isbn>" + isbn + "</isbn>";
+                    var xmlLibro = "<libro>" + xmlAutor + "<id></id>" + xmlTitulo + xmlPrecio + xmlIsbn + "</libro>";
+                    xhttp.send(xmlLibro);
+                });
+            });
+            $(document).ready(function () {
+                $("#enviarDeleteLibro").click(function () {
+                    var id = $("#deleteLibroID").val();
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("DELETE", "http://localhost:8080/ex3/webresources/servicerest.libro/" + id, true);
+                    xhttp.send();
+                });
+            });
+
+            $(document).ready(function () {
+                $("#envarActualizarLibro").click(function () {
+                    xhttp = new XMLHttpRequest();
+                    var id = $("#actualizarLibroID").val();
+                    xhttp.open("PUT", "http://localhost:8080/ex3/webresources/servicerest.libro/" + id, true);
+                    xhttp.setRequestHeader("Content-Type", "application/xml");
+                    var autor = $('#actualizarAutor').val();
+                    var titulo = $('#actualizarTitulo').val();
+                    var precio = $('#actualizarPrecio').val();
+                    var isbn = $('#actualizarIsbn').val();
+     
+            
+                    var xmlAutor = "<autor>" + autor + "</autor>";
+                    var xmlID = "<id>" + id + "</id>";
+                    var xmlTitulo = "<titulo>" + titulo + "</titulo>";
+                    var xmlPrecio = "<precio>" + precio + "</precio>";
+                    var xmlIsbn = "<isbn>" + isbn + "</isbn>";
+                    var xmlLibro = "<libro>" + xmlAutor + xmlID + xmlTitulo + xmlPrecio + xmlIsbn + "</libro>";
+                    xhttp.send(xmlLibro);
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <table id="tablaLibros" border="1">
+        </table>
+
+        <form action="#" id="tableAddLibro" method="POST" style="display: none">
+            Autor : <input type="text" id="addAutor"  /> </br>
+            Titulo : <input type="text" id="addTitulo"  /> </br>
+            Precio: <input type="text" id="addPrecio"  /> </br>
+            Isbn: <input type="text" id="addIsbn" /> </br>
+            <input type="submit" id="enviarAddLibro" value="Enviar" />
+
+        </form>
+
+        <form action="#" id="tableActualizarLibro" method="POST" style="display: none">
+            Indique el ID del libro a actualizar: <input type="text" id="actualizarLibroID" /></br>
+            Autor : <input type="text" id="actualizarAutor" /> </br>
+            Titulo : <input type="text" id="actualizarTitulo" /> </br>
+            Precio: <input type="text" id="actualizarPrecio"  /> </br>
+            Isbn: <input type="text" id="actualizarIsbn" /> </br>
+            <input type="submit" id="envarActualizarLibro" value="enviar" />
+        </form>
+
+        <form action="#" id="tableDeleteLibro" method="POST" style="display: none">
+            ID Libro: <input type="text" id="deleteLibroID"  /> </br>
+            <input type="submit" value="Enviar" id="enviarDeleteLibro"  />
+        </form>
+
+        <button name="addLibro" id="addLibro">Añadir Libro</button>
+        <button  name="deleteLibro" id="deleteLibro">Delete Libro</button>
+        <button  name="actualizarLibro" id="actualizarLibro">Actualizar Libro</button>
+    </body>
+</html>
