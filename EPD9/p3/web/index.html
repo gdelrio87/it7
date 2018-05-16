@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+                <script type="text/javascript">
+            function mostrarLongitud() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", "http://localhost:8080/p2/contarPalabras", false);
+                var request = '<?xml version="1.0" encoding="UTF-8"?>'
+                        + '<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">' +
+                        '<SOAP-ENV:Header/>' +
+                        '<S:Body>' +
+                        '<ns2:contarPalabras xmlns:ns2="http://contarPalabras/">' +
+                        '<numero>'+ document.getElementById("longText").value +'</numero>' +
+                        '</ns2:contarPalabras>' +
+                        '</S:Body>' +
+                        '</S:Envelope>';
+                xhttp.setRequestHeader('Content-Type', 'text/xml');
+                xhttp.send(request);
+                var xml = xhttp.responseXML;
+                var texto = xml.getElementsByTagName("return")[0];
+                document.write("El resultado es el siguiente: " + texto.textContent);
+            }
+        </script>
+
+        <form action="" method="post">
+            Introduzca una palabra: <input type="text" id="longText">
+            <input type="submit" onclick="mostrarLongitud()" value="Enviar">
+        </form>
+    </body>
+</html>
