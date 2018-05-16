@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="./jquery-1.12.4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "http://localhost:8080/p7EPD8/webresources/datos.pelicula",
+                        true);
+                xhttp.setRequestHeader("Accept", "application/xml");
+
+                $('#tablaLibros').append('<thead id="tHead">');
+                $('#tHead').append('<th>ID</th>');
+                $('#tHead').append('<th>Nombre</th>');
+                $('#tHead').append('<th>Idioma</th>');
+                $('#tHead').append('<th>Pais</th>');
+                $('#tHead').append('<th>Fecha Estreno</th>');
+                $('#tHead').append('<th>Fecha Video</th>');
+                
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        var rawXML = xhttp.responseXML;
+                    }
+
+                    // busca la etiqueta libro
+                    var xmlRow = $(rawXML).find('pelicula');
+                    // va recorriendo cada uno
+                    var i = 0;
+
+                    $(xmlRow).each(function () {
+                        $('#tablaLibros').append('<tr id="trTable' + i + '"');
+                        $('#trTable' + i).append('<td>' + $(this).find('id').text() + '</td>');
+                        $('#trTable' + i).append('<td>' + $(this).find('nombre').text() + '</td>');
+                        $('#trTable' + i).append('<td>' + $(this).find('idioma').text() + '</td>');
+                        $('#trTable' + i).append('<td>' + $(this).find('pais').text() + '</td>');
+                        $('#trTable' + i).append('<td>' + $(this).find('fechaEstreno').text() + '</td>');
+                        $('#trTable' + i).append('<td>' + $(this).find('fechaVideo').text() + '</td>');
+
+                        $('#demo').append($(this).find('id').text() + ' | ');
+                        $('#demo').append($(this).find('nombre').text() + ' | ');
+                        $('#demo').append($(this).find('idioma').text() + ' | ');
+                        $('#demo').append($(this).find('pais').text() + ' | ');
+                        $('#demo').append($(this).find('fechaEstreno').text() + ' | ');
+                        $('#demo').append($(this).find('fechaVideo').text() + ' | ');
+                        $('#demo').append('<br>');
+                        i++;
+                    });
+                };
+                xhttp.send();
+            });
+        </script>
+    </head>
+    <body>
+
+
+        <table id="tablaLibros" border="1">
+        </table>
+        <p id="demo"></p>
+    </body>
+
+</html>
