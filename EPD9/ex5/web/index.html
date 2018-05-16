@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="./jquery-1.12.4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "http://localhost:8080/ex3/webresources/servicerest.libro",
+                        false);
+                xhttp.setRequestHeader("Accept", "application/xml");
+                xhttp.send();
+                var rawXML = xhttp.responseXML;
+                // busca la etiqueta libro
+                var xmlRow = $(rawXML).find('libro');
+                // va recorriendo cada uno
+                var i = 0;
+                
+                $('#tablaLibros').append('<thead id="tHead">');
+                $('#tHead').append('<th>Autor</th>');
+                $('#tHead').append('<th>Titulo</th>');
+                $('#tHead').append('<th>Precio</th>');
+                $('#tHead').append('<th>Isbn</th>');
+                
+                $(xmlRow).each(function () {
+                    $('#tablaLibros').append('<tr id="trTable'+i+'"');
+                    $('#trTable'+i).append('<td>'+$(this).find('autor').text()+'</td>' );
+                    $('#trTable'+i).append('<td>'+$(this).find('titulo').text()+'</td>' );
+                    $('#trTable'+i).append('<td>'+$(this).find('precio').text()+'</td>' );
+                    $('#trTable'+i).append('<td>'+$(this).find('isbn').text()+'</td>' );
+                    
+                    $('#demo').append($(this).find('autor').text() +' ' );
+                    $('#demo').append($(this).find('titulo').text() +' ' );
+                    $('#demo').append($(this).find('precio').text() +' ' );
+                    $('#demo').append($(this).find('isbn').text() +' ' );
+                    $('#demo').append('<br>');
+                    i++;
+                });
+               
+            });
+        </script>
+    </head>
+    <body>
+
+   
+        <table id="tablaLibros" border="1">
+        </table>
+        <p id="demo"></p>
+    </body>
+
+</html>
