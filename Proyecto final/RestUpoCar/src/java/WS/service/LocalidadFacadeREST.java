@@ -7,10 +7,12 @@
 package WS.service;
 
 import WS.Localidad;
+import WS.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -68,6 +70,22 @@ public class LocalidadFacadeREST extends AbstractFacade<Localidad> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Localidad> findAll() {
         return super.findAll();
+    }
+    
+    @GET
+    @Path("/localidad/{localidad}")
+    @Produces({MediaType.APPLICATION_XML})
+    public Localidad getLocalidadByNombre(@PathParam("localidad") String localidad){      
+        Query q =  em.createQuery("SELECT l FROM Localidad l WHERE l.nombre = :localidad").setParameter("localidad", localidad);      
+        List l = q.getResultList();
+        
+        Localidad loc = null;
+        
+        if(l.size() > 0){
+            loc = (Localidad) l.get(0);
+        }
+        
+        return loc;
     }
 
     @GET

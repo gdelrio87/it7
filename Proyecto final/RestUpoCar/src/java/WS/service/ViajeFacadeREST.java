@@ -6,11 +6,13 @@
 
 package WS.service;
 
+import WS.Localidad;
 import WS.Viaje;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -63,6 +65,18 @@ public class ViajeFacadeREST extends AbstractFacade<Viaje> {
         return super.find(id);
     }
 
+    @GET
+    @Path("/buscaViaje/{origen}/{destino}") //falta introducir la hora del viaje (preguntar gonzalo -> problema con el atributo de la tabla fecha_hora_viaje de viaje)
+    @Produces({MediaType.APPLICATION_XML})
+    public List<Viaje> buscaViaje(@PathParam("origen") String origen, @PathParam("destino") String destino){   
+                
+        Query q = em.createQuery("SELECT v FROM Viaje v WHERE v.idLocalidadOrigen = (SELECT l.idLocalidad FROM Localidad l WHERE l.nombre = :origen) and v.idLocalidadDestino = (SELECT l.idLocalidad FROM Localidad l WHERE l.nombre = :destino)").setParameter("origen", origen).setParameter("destino", destino);
+              
+        List listaViajes = q.getResultList();
+        
+        return listaViajes;
+    }
+    
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
