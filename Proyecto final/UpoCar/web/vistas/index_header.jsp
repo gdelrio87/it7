@@ -10,34 +10,18 @@
             <%@include file="../css/buscaviajes.css" %>
             <%@include file="../css/micuenta.css" %>
             <%@include file="../css/misviajes.css" %>
+            <%@include file="../librerias/w3css/w3.css" %>
         </style>
         <title>UpoCar</title>
     </head>
     <body>
         <s:set name="theme" value="'simple'" scope="page" /> <!-- Elimina el estilo de Struts de esta pagina -->
 
-        <nav class="navbar navbar-default">
-            <div class="navbar-header">   
-                <s:form action="toIndex">
-                    <s:submit name="toIndex" value="UPOCAR" cssClass="navbar-brand"></s:submit>
-                </s:form>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">                    
-                <ul class="nav navbar-nav navbar-right">
-                    <!--<li><a href="#">Login</a></li> MIRAR COMO SE PONEN BIEN LOS ESTILOS EN VEZ DEL BOTON FEO DE STRUTS2-->
-                    <!--<li><a href="#">Registrarse</a></li>-->
-                    <li>
-                        <s:form action="toLogin">
-                            <s:submit name="toLogin" value="Login" cssClass="navbar-brand"></s:submit>
-                        </s:form>
-                    </li>   
-
-                    <li>
-                        <s:form action="toRegistro">
-                            <s:submit name="toRegistro" value="Registro" cssClass="navbar-brand"></s:submit>
-                        </s:form>
-                    </li> 
-                </ul>
-            </div>
-        </nav>       
+        <div class="w3-bar w3-border w3-light-grey">
+            <a href="#" class="w3-bar-item w3-button">Home</a>
+            <a href="#" class="w3-bar-item w3-button">Link 1</a>
+            <a href="#" class="w3-bar-item w3-button">Link 2</a>
+            <a href="#" class="w3-bar-item w3-button w3-right">Link 3</a>            
+        </div>
+        
+        <!-- Cambiar los a con un boton de struts2 y meter el css de arriba -->
