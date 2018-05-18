@@ -90,11 +90,11 @@ public class ViajeFacadeREST extends AbstractFacade<Viaje> {
     }
 
     @GET
-    @Path("/buscaViaje/{origen}/{destino}/{fechaViaje}")
+    @Path("/buscaViaje/{origen}/{destino}/{fechaSalida}")
     @Produces({MediaType.APPLICATION_XML})
-    public List<Viaje> buscaViaje(@PathParam("origen") String origen, @PathParam("destino") String destino, @PathParam("fechaViaje") String fechaViaje) {
+    public List<Viaje> buscaViaje(@PathParam("origen") String origen, @PathParam("destino") String destino, @PathParam("fechaSalida") String fechaViaje) {
 
-        Query q = em.createQuery("SELECT v FROM Viaje v WHERE v.idLocalidadOrigen = (SELECT l.idLocalidad FROM Localidad l WHERE l.nombre = :origen) and v.idLocalidadDestino = (SELECT l.idLocalidad FROM Localidad l WHERE l.nombre = :destino) and v.fechaSalida = :fechaViaje ").setParameter("origen", origen).setParameter("destino", destino).setParameter("fechaViaje", fechaViaje);
+        Query q = em.createQuery("SELECT v FROM Viaje v WHERE v.idLocalidadOrigen = (SELECT l.idLocalidad FROM Localidad l WHERE l.nombre = :origen) and v.idLocalidadDestino = (SELECT l.idLocalidad FROM Localidad l WHERE l.nombre = :destino) and v.fechaSalida = :fechaSalida").setParameter("origen", origen).setParameter("destino", destino).setParameter("fechaSalida", fechaViaje);
 
         List listaViajes = q.getResultList();
 
