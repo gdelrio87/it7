@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="./underscore-min.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:8080/p1ServerSOAP/calculaComparaFechas", false);
+            var request = '<?xml version="1.0" encoding="UTF-8"?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><S:Body><ns2:calculaComparaFecha xmlns:ns2="http://webServiceSOAP/"><fecha>19-8-2018</fecha><dia>Domingo</dia></ns2:calculaComparaFecha></S:Body></S:Envelope>';
+            xhttp.setRequestHeader('Content-Type', 'text/xml');
+            xhttp.send(request);
+            document.write(xhttp.responseText);
+            document.write(_.escape(xhttp.responseText));
+            
+        </script>
+    </body>
+</html>
