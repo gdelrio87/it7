@@ -31,4 +31,22 @@
             </result>
         </action>
     </package>
+    
+    <!-- Administrador -->
+    
+    <package name="administrador" extends="struts-default">
+        
+        <action name="toGestionMensajes" method="toGestionMensajes" class="acciones.adminAction">
+            <result name="success">/vistas/gestionmensajes.jsp</result>
+        </action>
+        
+        <action name="toGestionUsuarios" method="toGestionUsuarios" class="acciones.adminAction">
+            <result name="success">/vistas/gestionusuarios.jsp</result>
+        </action>
+        
+        <action name="toGestionViajes" method="toGestionViajes" class="acciones.adminAction">
+            <result name="success">/vistas/gestionviajes.jsp</result>
+        </action>
+        
+    </package>
 </struts>

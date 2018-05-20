@@ -1,4 +1,4 @@
-<%@include file="index_header.jsp" %>
+<%@include file="./index_header.jsp" %>
 <div class="container-fluid">
     <div id="background-firstlook">
         &nbsp;
@@ -22,11 +22,13 @@
                         <th>Destino</th>
                         <th></th>
                     </tr>
+                  <s:iterator value="listadoViajes">
                     <tr>
-                        <td>Sevilla</td>
-                        <td>Madrid</td>
+                        <td><s:property value="idLocalidadOrigen.nombre" /></td>
+                        <td><s:property value="idLocalidadDestino.nombre" /></td>
                         <td><img class="foto-mi-cuenta img-circle img-responsive" src="../images/papelera.png" /></td>
                     </tr>
+                    </s:iterator>
                 </table>
                 </div>
                 <div class="col-lg-4"></div>
@@ -48,4 +50,4 @@
         <div class="col-lg-2"></div>
     </div>
 </div>
-<%@include file="index_footer.jsp" %>
+<%@include file="./index_footer.jsp" %>
