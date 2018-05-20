@@ -48,5 +48,15 @@
             <result name="success">/vistas/gestionviajes.jsp</result>
         </action>
         
+        <action name="deleteViaje" method="deleteViaje" class="acciones.adminAction">
+            <result type="chain">
+                <param name="actionName">toGestionViajes</param>
+            </result>
+        </action>
+        
+        <action name="buscarUsuarioViaje" method="buscarUsuarioViaje" class="acciones.adminAction">
+            <result name="success">/vistas/gestionviajes.jsp</result>
+        </action>
+        
     </package>
 </struts>

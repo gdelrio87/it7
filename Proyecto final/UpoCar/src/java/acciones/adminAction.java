@@ -23,6 +23,8 @@ public class adminAction extends ActionSupport {
     List<Mensaje> listadoMensajes;
     List<Usuario> listadoUsuarios;
     List<Viaje> listadoViajes;
+    String idViaje;
+    String nomUsuario;
     
     public adminAction() {
     }
@@ -38,14 +40,26 @@ public class adminAction extends ActionSupport {
     }
     
     public String toGestionUsuarios() throws Exception {
-        UsuarioDAO mensajeDAO = new UsuarioDAO();
-        this.setListadoUsuarios(mensajeDAO.listarUsuarios());
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        this.setListadoUsuarios(usuarioDAO.listarUsuarios());
         return SUCCESS;
     }
     
     public String toGestionViajes() throws Exception {
-        ViajeDAO mensajeDAO = new ViajeDAO();
-        this.setListadoViajes(mensajeDAO.listarViajes());
+        ViajeDAO viajeDAO = new ViajeDAO();
+        this.setListadoViajes(viajeDAO.listarViajes());
+        return SUCCESS;
+    }
+    
+    public String deleteViaje() throws Exception {
+        ViajeDAO viajeDAO = new ViajeDAO();
+        viajeDAO.deleteViaje(this.getIdViaje());
+        return SUCCESS;
+    }
+    
+    public String buscarUsuarioViaje() throws Exception {
+        ViajeDAO viajeDAO = new ViajeDAO();
+        this.setListadoViajes(viajeDAO.listarViajesUsuario(this.getNomUsuario()));
         return SUCCESS;
     }
 
@@ -71,6 +85,22 @@ public class adminAction extends ActionSupport {
 
     public void setListadoViajes(List<Viaje> listadoViajes) {
         this.listadoViajes = listadoViajes;
+    }
+
+    public String getIdViaje() {
+        return idViaje;
+    }
+
+    public void setIdViaje(String idViaje) {
+        this.idViaje = idViaje;
+    }
+
+    public String getNomUsuario() {
+        return nomUsuario;
+    }
+
+    public void setNomUsuario(String nomUsuario) {
+        this.nomUsuario = nomUsuario;
     }
     
     

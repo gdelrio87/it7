@@ -26,6 +26,18 @@ public class ViajeDAO {
         List<Viaje> listaViajes = this.getClientViaje().findAll_XML(genericType);
         return listaViajes;
     }
+    
+    public void deleteViaje(String id){
+        clientViaje.remove(id);
+    }
+    
+    public List<Viaje> listarViajesUsuario(String nomUsuario) {
+        GenericType<List<Viaje>> genericType = new GenericType<List<Viaje>>() {
+        };
+        
+        List<Viaje> listaViajes = this.getClientViaje().buscaViajeUsuario(genericType, nomUsuario);
+        return listaViajes;
+    }
 
 
 public JerseyClientViaje getClientViaje() {
