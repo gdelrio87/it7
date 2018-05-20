@@ -106,7 +106,7 @@ public class ViajeFacadeREST extends AbstractFacade<Viaje> {
     @Produces({MediaType.APPLICATION_XML})
     public List<Viaje> buscaViajeUsuario(@PathParam("nombreUsuario") String nombreUsuario) {
 
-        Query q = em.createQuery("SELECT v FROM Viaje v WHERE v.idUsuarioPublica = (SELECT u.idUsuario FROM Usuario l WHERE u.nomUsuario = :nombreUsuario)").setParameter("nombreUsuario", nombreUsuario);
+        Query q = em.createQuery("SELECT v FROM Viaje v WHERE v.idUsuarioPublica = (SELECT u.idUsuario FROM Usuario u WHERE u.nomUsuario = :nombreUsuario)").setParameter("nombreUsuario", nombreUsuario);
 
         List listaViajes = q.getResultList();
 
