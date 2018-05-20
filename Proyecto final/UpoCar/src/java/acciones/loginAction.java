@@ -5,7 +5,11 @@
  */
 package acciones;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.Map;
+import modelo.UsuarioDAO;
+import webServiceREST.entidades.Usuario;
 
 /**
  *
@@ -15,7 +19,8 @@ public class loginAction extends ActionSupport {
     
     private String usuario;
     private String password;
-
+    UsuarioDAO dao = new UsuarioDAO();
+    
     public String getUsuario() {
         return usuario;
     }
@@ -48,6 +53,10 @@ public class loginAction extends ActionSupport {
     }
     
     public String login(){
+        Usuario u = dao.login(usuario, password);
+        
+        Map sesion = (Map) ActionContext.getContext().get("session");
+        sesion.put("usuario", u);
         
         return SUCCESS;
     }
