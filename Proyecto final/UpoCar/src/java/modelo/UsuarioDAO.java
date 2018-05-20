@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package modelo;
 
 import java.util.List;
@@ -12,23 +11,22 @@ import webServiceREST.JerseyClientUsuario;
 import webServiceREST.entidades.Usuario;
 
 /**
- * 
- * @author Antonio Jose Herrera Tabaco 
+ *
+ * @author Antonio Jose Herrera Tabaco
  */
 public class UsuarioDAO {
-    
+
     private JerseyClientUsuario clientUsuario = new JerseyClientUsuario();
 
     public List<Usuario> listarUsuarios() {
         GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {
         };
-        
+
         List<Usuario> listaUsuarios = this.getClientUsuario().findAll_XML(genericType);
         return listaUsuarios;
     }
 
-
-public JerseyClientUsuario getClientUsuario() {
+    public JerseyClientUsuario getClientUsuario() {
         return clientUsuario;
     }
 
@@ -36,4 +34,12 @@ public JerseyClientUsuario getClientUsuario() {
         this.clientUsuario = clientUsuario;
     }
 
+    public Usuario login(String usuario, String password){
+        GenericType<Usuario> genericType = new GenericType<Usuario>(){};
+        
+        Usuario user = clientUsuario.login(genericType, usuario, password);
+        
+        return user;
+    }
+    
 }

@@ -13,6 +13,25 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class loginAction extends ActionSupport {
     
+    private String usuario;
+    private String password;
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }    
+    
     public loginAction() {
     }
     
@@ -25,6 +44,11 @@ public class loginAction extends ActionSupport {
     }
     
     public String toRegistro(){
+        return SUCCESS;
+    }
+    
+    public String login(){
+        
         return SUCCESS;
     }
     
