@@ -17,6 +17,6 @@
     </div>
 </div>
 
-
+<!-- ESTO ES UNA PRUEBA DE CONFLICTO -->
 
 <%@include file="index_footer.jsp" %>
