@@ -40,11 +40,11 @@
             <result name="success">/vistas/gestionmensajes.jsp</result>
         </action>
         
-        <action name="toGestionUsuarios" class="acciones.adminAction">
+        <action name="toGestionUsuarios" method="toGestionUsuarios" class="acciones.adminAction">
             <result name="success">/vistas/gestionusuarios.jsp</result>
         </action>
         
-        <action name="toGestionViajes" class="acciones.adminAction">
+        <action name="toGestionViajes" method="toGestionViajes" class="acciones.adminAction">
             <result name="success">/vistas/gestionviajes.jsp</result>
         </action>
         

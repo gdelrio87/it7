@@ -26,8 +26,8 @@
                     <s:iterator value="listadoMensajes">
                     <tr>
                         <td><s:property value="texto" /></td>
-                        <td>Gonzalo</td>
-                        <td>Manuel</td>
+                        <td><s:property value="idUsuarioEnvia.nomUsuario" /></td>
+                        <td><s:property value="idUsuarioRecibe.nomUsuario" /></td>
                         <td><img class="foto-mi-cuenta img-circle img-responsive" src="../images/papelera.png" /></td>
                     </tr>
                     </s:iterator>

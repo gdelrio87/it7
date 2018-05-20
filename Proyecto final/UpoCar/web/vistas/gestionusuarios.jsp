@@ -22,11 +22,14 @@
                         <th>Apellidos</th>
                         <th></th>
                     </tr>
+                    <s:iterator value="listadoUsuarios">
                     <tr>
-                        <td>Gonzalo</td>
-                        <td>del R&iacute;o Al&aacute;ez</td>
+                        <td><s:property value="nombre" /></td>
+                        <td><s:property value="apellidos" /></td>
+                        <td><s:property value="idUsuarioRecibe.nomUsuario" /></td>
                         <td><img class="foto-mi-cuenta img-circle img-responsive" src="../images/papelera.png" /></td>
                     </tr>
+                    </s:iterator>
                 </table>
                 </div>
                 <div class="col-lg-4"></div>
