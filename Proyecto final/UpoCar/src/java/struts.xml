@@ -33,6 +33,7 @@
         
         <action name="login" method="login" class="acciones.loginAction">
             <result name="success">/vistas/index.jsp</result>
+            <result name="error">/vistas/login.jsp</result>
         </action>
     </package>
     

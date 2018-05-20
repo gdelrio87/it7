@@ -16,11 +16,11 @@ import webServiceREST.entidades.Usuario;
  * @author Gonza
  */
 public class loginAction extends ActionSupport {
-    
+
     private String usuario;
     private String password;
     UsuarioDAO dao = new UsuarioDAO();
-    
+
     public String getUsuario() {
         return usuario;
     }
@@ -35,30 +35,35 @@ public class loginAction extends ActionSupport {
 
     public void setPassword(String password) {
         this.password = password;
-    }    
-    
+    }
+
     public loginAction() {
     }
-    
+
     public String execute() throws Exception {
         return SUCCESS;
     }
-    
-    public String toLogin(){
+
+    public String toLogin() {
         return SUCCESS;
     }
-    
-    public String toRegistro(){
+
+    public String toRegistro() {
         return SUCCESS;
     }
-    
-    public String login(){
+
+    public String login() {
         Usuario u = dao.login(usuario, password);
-        
-        Map sesion = (Map) ActionContext.getContext().get("session");
-        sesion.put("usuario", u);
-        
-        return SUCCESS;
+
+        if (u == null) {
+            return ERROR;
+        } else {
+            Map sesion = (Map) ActionContext.getContext().get("session");
+            sesion.put("usuario", u);
+
+            return SUCCESS;
+        }
+
     }
-    
+
 }
