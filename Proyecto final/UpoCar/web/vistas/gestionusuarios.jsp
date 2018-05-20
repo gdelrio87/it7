@@ -1,8 +1,8 @@
-<%@include file="index_header.jsp" %>
+<%@include file="./index_header.jsp" %>
 <div class="container-fluid">
     <div id="background-firstlook">
         &nbsp;
-        <h1>Gesti&oacute;n Mensajes</h1>
+        <h1>Gesti&oacute;n Usuarios</h1>
         <hr />
         &nbsp;
         <div class="row">
@@ -18,15 +18,13 @@
                 <div class="col-lg-4">
                 <table class="col-lg-12" border="1">
                     <tr>
-                        <th>Asunto</th>
-                        <th>Remitente</th>
-                        <th>Destinatario</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
                         <th></th>
                     </tr>
                     <tr>
-                        <td>Viaje Sevilla-Madrid</td>
                         <td>Gonzalo</td>
-                        <td>Manuel</td>
+                        <td>del R&iacute;o Al&aacute;ez</td>
                         <td><img class="foto-mi-cuenta img-circle img-responsive" src="../images/papelera.png" /></td>
                     </tr>
                 </table>
@@ -49,4 +47,4 @@
         <div class="col-lg-2"></div>
     </div>
 </div>
-<%@include file="index_footer.jsp" %>
+<%@include file="./index_footer.jsp" %>

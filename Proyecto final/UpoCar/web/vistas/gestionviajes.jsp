@@ -1,4 +1,4 @@
-<%@include file="index_header.jsp" %>
+<%@include file="./index_header.jsp" %>
 <div class="container-fluid">
     <div id="background-firstlook">
         &nbsp;
@@ -48,4 +48,4 @@
         <div class="col-lg-2"></div>
     </div>
 </div>
-<%@include file="index_footer.jsp" %>
+<%@include file="./index_footer.jsp" %>
