@@ -15,13 +15,16 @@
         <title>UpoCar</title>
     </head>
     <body>
-        <s:set name="theme" value="'simple'" scope="page" /> <!-- Elimina el estilo de Struts de esta pagina -->
+        <s:set name="theme" value="'simple'" scope="page" /> <%-- Elimina el estilo de Struts de esta pagina --%>
 
         <div class="w3-bar w3-border w3-light-grey">
-            <a href="#" class="w3-bar-item w3-button">Home</a>
-            <a href="#" class="w3-bar-item w3-button">Link 1</a>
-            <a href="#" class="w3-bar-item w3-button">Link 2</a>
-            <a href="#" class="w3-bar-item w3-button w3-right">Link 3</a>            
-        </div>
-        
-        <!-- Cambiar los a con un boton de struts2 y meter el css de arriba -->
+            <a href="#" class="w3-bar-item w3-button">UPOCAR</a>                        
+            
+            <s:form action="toLogin">
+                <s:submit name="toLogin" value="LOGIN" cssClass="w3-bar-item w3-button w3-right"></s:submit>
+            </s:form>
+            
+            <s:form action="toRegistro">
+                <s:submit name="toRegistro" value="REGISTRATE" cssClass="w3-bar-item w3-button w3-right"></s:submit>
+            </s:form>            
+        </div>        
