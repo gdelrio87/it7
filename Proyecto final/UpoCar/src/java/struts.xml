@@ -35,6 +35,10 @@
             <result name="success">/vistas/index.jsp</result>
             <result name="error">/vistas/login.jsp</result>
         </action>
+        
+        <action name="logout" method="logout" class="acciones.loginAction">
+            <result name="success">/vistas/index.jsp</result>
+        </action>
     </package>
     
     <!-- Administrador -->

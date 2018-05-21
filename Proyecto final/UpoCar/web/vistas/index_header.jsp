@@ -21,12 +21,23 @@
         <div class="w3-bar w3-border w3-light-grey">
             <a href="#" class="w3-bar-item w3-button">UPOCAR</a>                        
 
-            <s:if test="#session.usuario.length() > 0">
-                <!-- Comprobar si es un usuario normal o es administrador -->
-                <a href="#" class="w3-bar-item w3-button">Usuario</a>                  
-                <a href="#" class="w3-bar-item w3-button">Publicar viaje</a>   
+            <s:if test="%{#session.usuario != null}">                
+                <s:if test="%{#session.usuario.tipoUsuario == '0'}"> <!-- Si es administrador -->                   
+
+                </s:if>
+                <s:else> <!-- Si es un usuario normal -->
+                    <a href="#" class="w3-bar-item w3-button">Ver ranking</a>                  
+                    <a href="#" class="w3-bar-item w3-button">Publicar viaje</a>                   
+                </s:else>
+
+
+
+                <s:form action="logout">
+                    <s:submit name="logout" value="Logout" cssClass="w3-bar-item w3-button w3-right"></s:submit>
+                </s:form>
+
             </s:if>
-            <s:else> <!-- No funciona la comprobacion de la sesion -->
+            <s:else>              
                 <s:form action="toLogin">
                     <s:submit name="toLogin" value="LOGIN" cssClass="w3-bar-item w3-button w3-right"></s:submit>
                 </s:form>
