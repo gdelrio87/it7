@@ -19,31 +19,29 @@
         <s:set name="theme" value="'simple'" scope="page" /> <%-- Elimina el estilo de Struts de esta pagina --%>
 
         <div class="w3-bar w3-border w3-light-grey">
-            <a href="#" class="w3-bar-item w3-button">UPOCAR</a>                        
+            <a href="#" class="w3-bar-item w3-button w3-padding-24">UPOCAR</a>                        
 
             <s:if test="%{#session.usuario != null}">                
                 <s:if test="%{#session.usuario.tipoUsuario == '0'}"> <!-- Si es administrador -->                   
-
+                    
                 </s:if>
                 <s:else> <!-- Si es un usuario normal -->
-                    <a href="#" class="w3-bar-item w3-button">Ver ranking</a>                  
-                    <a href="#" class="w3-bar-item w3-button">Publicar viaje</a>                   
+                    <a href="#" class="w3-bar-item w3-button w3-padding-24">Ver ranking</a>                  
+                    <a href="#" class="w3-bar-item w3-button w3-padding-24">Publicar viaje</a>                   
                 </s:else>
 
-
-
                 <s:form action="logout">
-                    <s:submit name="logout" value="Logout" cssClass="w3-bar-item w3-button w3-right"></s:submit>
+                    <s:submit name="logout" value="Logout" cssClass="w3-bar-item w3-button w3-right w3-padding-24"></s:submit>
                 </s:form>
 
             </s:if>
             <s:else>              
                 <s:form action="toLogin">
-                    <s:submit name="toLogin" value="LOGIN" cssClass="w3-bar-item w3-button w3-right"></s:submit>
+                    <s:submit name="toLogin" value="LOGIN" cssClass="w3-bar-item w3-button w3-right w3-padding-24"></s:submit>
                 </s:form>
 
                 <s:form action="toRegistro">
-                    <s:submit name="toRegistro" value="REGISTRATE" cssClass="w3-bar-item w3-button w3-right"></s:submit>
+                    <s:submit name="toRegistro" value="REGISTRATE" cssClass="w3-bar-item w3-button w3-right w3-padding-24"></s:submit>
                 </s:form>            
             </s:else>
         </div>        
