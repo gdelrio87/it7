@@ -51,6 +51,10 @@
         <action name="toPublicarViaje" method="toPublicarViaje" class="acciones.loginAction">
             <result name="success">/vistas/publicarviaje.jsp</result>
         </action>
+        
+        <action name="toRanking" method="toRanking" class="acciones.loginAction">
+            <result name="success">/vistas/ranking.jsp</result>
+        </action>
     </package>
     
     <!-- Administrador -->

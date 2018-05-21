@@ -63,6 +63,10 @@ public class loginAction extends ActionSupport {
     public String toPublicarViaje(){
         return SUCCESS;
     }
+    
+    public String toRanking(){
+        return SUCCESS;
+    }
 
     public String login() {
         Usuario u = dao.login(usuario, password);
