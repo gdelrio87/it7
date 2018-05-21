@@ -25,25 +25,29 @@
             <a href="#" class="w3-bar-item w3-button w3-padding-24">UPOCAR</a>                        
 
             <s:if test="%{#session.usuario != null}">  
-                                
+
                 <s:form action="logout">
                     <s:submit name="logout" value="Logout" cssClass="w3-bar-item w3-button w3-right w3-padding-24"></s:submit>
                 </s:form>
-                
+
                 <s:if test='%{#session.usuario.tipoUsuario.equals("0")}'> <!-- Si es administrador -->                   
                     <s:form action="toPanelAdmin">
                         <s:submit name="toPanelAdmin" value="Panel administrador" cssClass="w3-bar-item w3-button w3-right w3-padding-24"></s:submit>
                     </s:form>
                 </s:if>
                 <s:else> <!-- Si es un usuario normal -->                    
-                    
+
                     <s:form action="toMiCuenta">
                         <s:submit name="toMiCuenta" value="Mi cuenta" cssClass="w3-bar-item w3-button w3-right w3-padding-24"></s:submit>
                     </s:form>
                     
-                    <a href="#" class="w3-bar-item w3-button w3-padding-24">Publicar viaje</a>                   
-                </s:else>
+                    <s:form action="toPublicarViaje">
+                        <!--<a href="#" class="w3-bar-item w3-button w3-padding-24">Publicar viaje</a>-->
+                        <s:submit name="toPublicarViaje" value="Publicar viaje" cssClass="w3-bar-item w3-button w3-padding-24"></s:submit>
+                    </s:form>
                     
+                </s:else>
+
                 <a href="#" class="w3-bar-item w3-button w3-padding-24">Ver ranking</a>     
 
 

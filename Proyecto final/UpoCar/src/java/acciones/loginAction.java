@@ -59,6 +59,10 @@ public class loginAction extends ActionSupport {
     public String toMiCuenta(){
         return SUCCESS;
     }
+    
+    public String toPublicarViaje(){
+        return SUCCESS;
+    }
 
     public String login() {
         Usuario u = dao.login(usuario, password);

@@ -47,6 +47,10 @@
         <action name="toPanelAdmin" method="toPanelAdmin" class="acciones.loginAction">
             <result name="success">/vistas/administrador.jsp</result>
         </action>
+        
+        <action name="toPublicarViaje" method="toPublicarViaje" class="acciones.loginAction">
+            <result name="success">/vistas/publicarviaje.jsp</result>
+        </action>
     </package>
     
     <!-- Administrador -->
