@@ -26,9 +26,15 @@
 
             <s:if test="%{#session.usuario != null}">                                
                 <s:if test='%{#session.usuario.tipoUsuario.equals("0")}'> <!-- Si es administrador -->                   
-                    
+                    <s:form action="toPanelAdmin">
+                        <s:submit name="toPanelAdmin" value="Panel administrador" cssClass="w3-bar-item w3-button w3-right w3-padding-24"></s:submit>
+                    </s:form>
                 </s:if>
                 <s:else> <!-- Si es un usuario normal -->                    
+                    
+                    <s:form action="toMiCuenta">
+                        <s:submit name="toMiCuenta" value="Mi cuenta" cssClass="w3-bar-item w3-button w3-right w3-padding-24"></s:submit>
+                    </s:form>
                     
                     <a href="#" class="w3-bar-item w3-button w3-padding-24">Publicar viaje</a>                   
                 </s:else>

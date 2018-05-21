@@ -51,6 +51,14 @@ public class loginAction extends ActionSupport {
     public String toRegistro() {
         return SUCCESS;
     }
+    
+    public String toPanelAdmin(){
+        return SUCCESS;
+    }
+    
+    public String toMiCuenta(){
+        return SUCCESS;
+    }
 
     public String login() {
         Usuario u = dao.login(usuario, password);

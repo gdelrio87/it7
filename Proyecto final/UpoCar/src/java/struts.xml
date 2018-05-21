@@ -39,6 +39,14 @@
         <action name="logout" method="logout" class="acciones.loginAction">
             <result name="success">/vistas/index.jsp</result>
         </action>
+        
+        <action name="toMiCuenta" method="toMiCuenta" class="acciones.loginAction">
+            <result name="success">/vistas/micuenta.jsp</result>
+        </action>
+        
+        <action name="toPanelAdmin" method="toPanelAdmin" class="acciones.loginAction">
+            <result name="success">/vistas/administrador.jsp</result>
+        </action>
     </package>
     
     <!-- Administrador -->
