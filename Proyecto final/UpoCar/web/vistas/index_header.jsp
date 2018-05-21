@@ -1,3 +1,6 @@
+<%@page import="webServiceREST.entidades.Usuario"%>
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
+<%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
@@ -21,15 +24,17 @@
         <div class="w3-bar w3-border w3-light-grey">
             <a href="#" class="w3-bar-item w3-button w3-padding-24">UPOCAR</a>                        
 
-            <s:if test="%{#session.usuario != null}">                
-                <s:if test="%{#session.usuario.tipoUsuario == '0'}"> <!-- Si es administrador -->                   
+            <s:if test="%{#session.usuario != null}">                                
+                <s:if test='%{#session.usuario.tipoUsuario.equals("0")}'> <!-- Si es administrador -->                   
                     
                 </s:if>
-                <s:else> <!-- Si es un usuario normal -->
-                    <a href="#" class="w3-bar-item w3-button w3-padding-24">Ver ranking</a>                  
+                <s:else> <!-- Si es un usuario normal -->                    
+                    
                     <a href="#" class="w3-bar-item w3-button w3-padding-24">Publicar viaje</a>                   
                 </s:else>
-
+                    
+                <a href="#" class="w3-bar-item w3-button w3-padding-24">Ver ranking</a>     
+                
                 <s:form action="logout">
                     <s:submit name="logout" value="Logout" cssClass="w3-bar-item w3-button w3-right w3-padding-24"></s:submit>
                 </s:form>
